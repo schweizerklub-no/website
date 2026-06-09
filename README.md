@@ -1,2 +1,3 @@
-# website
-Website des Schweizer Klub Norwegen Oslo
+# Website des Schweizer Klub Norwegen Oslo
+
+Willkommen!

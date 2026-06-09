@@ -1,0 +1,13 @@
+### Mac ###
+.DS_Store
+
+### Development Tools ###
+.vscode
+.idea
+
+### Node ###
+/node_modules
+
+### Vitepress ###
+.vitepress/cache/
+.vitepress/dist/

@@ -1,0 +1,24 @@
+[tools]
+node = "24"
+pnpm = "11.5.2"
+
+[tasks."install"]
+description = "Install dependencies"
+run = "pnpm install"
+sources = ["package.json", "pnpm-lock.yaml"]
+outputs = ["node_modules/.modules.yaml"]
+
+[tasks.dev]
+description = "Run in development mode"
+depends = "install"
+run = "pnpm run site:dev"
+
+[tasks.build]
+description = "Build the project"
+depends = "install"
+run = "pnpm run site:build"
+
+[tasks.preview]
+description = "Preview the production build"
+depends = "build"
+run = "pnpm run site:preview"

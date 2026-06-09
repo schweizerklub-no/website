@@ -1,0 +1,6 @@
+autoInstallPeers: false
+minimumReleaseAge: 4320
+blockExoticSubdeps: true
+
+allowBuilds:
+  esbuild: false
