@@ -1,10 +1,21 @@
 {
   "scripts": {
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
     "site:dev": "vitepress dev",
     "site:build": "vitepress build",
-    "site,:preview": "vitepress preview"
+    "site:preview": "vitepress preview"
+  },
+  "dependencies": {
+    "search-insights": "^2.17.3",
+    "vue": "^3.5.35"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.16",
     "vitepress": "1.6.4"
   }
 }

@@ -22,3 +22,18 @@ run = "pnpm run site:build"
 description = "Preview the production build"
 depends = "build"
 run = "pnpm run site:preview"
+
+[tasks.lint]
+description = "Run linter with fixing enabled"
+depends = ["install"]
+run = "pnpm run lint:fix"
+
+[tasks.format]
+description = "Run formatter with fixing enabled"
+depends = ["install"]
+run = "pnpm run format:fix"
+
+[tasks.check]
+description = "Run lint and formatter checks"
+depends = ["install"]
+run = "pnpm run check:fix"
