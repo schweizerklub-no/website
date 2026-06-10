@@ -33,9 +33,13 @@ const metadata = { title: 'Über uns' };
         <div class="grid md:grid-cols-3 gap-8">
           {boardMembers.map((member) => (
             <div class="text-center p-6 border border-default rounded-lg">
-              <div class="w-20 h-20 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center">
-                <span class="text-3xl font-bold text-primary">{member.data.name.charAt(0)}</span>
-              </div>
+              {member.data.image ? (
+                <img src={member.data.image} alt={member.data.name} class="w-20 h-20 rounded-full object-cover mx-auto mb-4" />
+              ) : (
+                <div class="w-20 h-20 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center">
+                  <span class="text-3xl font-bold text-primary">{member.data.name.charAt(0)}</span>
+                </div>
+              )}
               <h3 class="text-lg font-semibold">{member.data.name}</h3>
               <p class="text-sm text-muted">{member.data.role}</p>
               {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
