@@ -1,0 +1,52 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  event: CollectionEntry<'events'>;
+  past?: boolean;
+  showWeekday?: boolean;
+}
+
+const { event, past = false, showWeekday = false } = Astro.props;
+const hasDetails = event.body?.trim();
+const localeDate = event.data.date.toLocaleDateString('de-DE', {
+  weekday: showWeekday ? 'long' : undefined,
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+{
+  hasDetails ? (
+    <a
+      href={`/anlasse/${event.id}/`}
+      class:list={[
+        'block border border-default rounded-lg overflow-hidden transition-shadow',
+        past ? 'opacity-60' : 'hover:shadow-lg',
+      ]}
+    >
+      {event.data.image && (
+        <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />
+      )}
+      <div class="p-6">
+        <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>{localeDate}</time>
+        <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
+        {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
+        {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+      </div>
+    </a>
+  ) : (
+    <div class:list={['border border-default rounded-lg overflow-hidden', past ? 'opacity-60' : '']}>
+      {event.data.image && (
+        <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />
+      )}
+      <div class="p-6">
+        <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>{localeDate}</time>
+        <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
+        {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
+        {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+      </div>
+    </div>
+  )
+}
