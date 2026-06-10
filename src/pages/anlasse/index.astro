@@ -1,14 +1,23 @@
 ---
 import { getCollection } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
+import { PAST_EVENTS_MONTHS } from '~/site-config';
 
 const events = await getCollection('events');
 const upcomingEvents = events
   .filter((e) => !e.data.visibilityEnd || e.data.visibilityEnd >= new Date())
   .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
 
+const cutoffDate = new Date();
+cutoffDate.setMonth(cutoffDate.getMonth() - PAST_EVENTS_MONTHS);
+
 const pastEvents = events
-  .filter((e) => e.data.visibilityEnd && e.data.visibilityEnd < new Date())
+  .filter(
+    (e) =>
+      e.data.visibilityEnd &&
+      e.data.visibilityEnd < new Date() &&
+      e.data.date >= cutoffDate,
+  )
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const metadata = { title: 'Anlässe' };
