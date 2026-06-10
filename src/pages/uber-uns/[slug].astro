@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const board = await getCollection('board');
+  return board
+    .filter((e) => e.body?.trim())
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const metadata = { title: entry.data.name };
+---
+
+<PageLayout metadata={metadata}>
+  <article class="py-16 px-4">
+    <div class="max-w-3xl mx-auto">
+      <a href="/uber-uns/" class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg border border-default hover:bg-page/80 transition-colors mb-8">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        Über uns
+      </a>
+
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        {entry.data.image ? (
+          <img src={entry.data.image} alt={entry.data.name} class="w-48 h-48 rounded-full object-cover shrink-0" />
+        ) : (
+          <div class="w-48 h-48 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+            <span class="text-6xl font-bold text-primary">{entry.data.name.charAt(0)}</span>
+          </div>
+        )}
+
+        <div>
+          <h1 class="text-4xl font-bold mb-2">{entry.data.name}</h1>
+          <p class="text-xl text-muted mb-4">{entry.data.role}</p>
+          {entry.data.email && (
+            <a href={`mailto:${entry.data.email}`} class="text-primary hover:underline text-sm">
+              {entry.data.email}
+            </a>
+          )}
+        </div>
+      </div>
+
+      {entry.data.bio && (
+        <p class="text-muted mt-8 mb-6">{entry.data.bio}</p>
+      )}
+
+      <div class="prose dark:prose-invert max-w-none">
+        <Content />
+      </div>
+    </div>
+  </article>
+</PageLayout>
