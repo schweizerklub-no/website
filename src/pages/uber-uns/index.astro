@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
+import BoardMemberCard from '~/components/BoardMemberCard.astro';
 
 const boardMembers = await getCollection('board');
 
@@ -31,44 +32,9 @@ const metadata = { title: 'Über uns' };
       <div class="max-w-5xl mx-auto">
         <h2 class="text-3xl font-bold mb-8 text-center">Vorstand</h2>
         <div class="grid md:grid-cols-3 gap-8">
-          {boardMembers.map((member) => {
-            const hasDetails = member.body?.trim();
-            return hasDetails ? (
-              <a href={`/uber-uns/${member.id}/`} class="block text-center p-6 border border-default rounded-lg hover:shadow-lg transition-shadow">
-                {member.data.image ? (
-                  <img src={member.data.image} alt={member.data.name} class="w-20 h-20 rounded-full object-cover mx-auto mb-4" />
-                ) : (
-                  <div class="w-20 h-20 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center">
-                    <span class="text-3xl font-bold text-primary">{member.data.name.charAt(0)}</span>
-                  </div>
-                )}
-                <h3 class="text-lg font-semibold">{member.data.name}</h3>
-                <p class="text-sm text-muted">{member.data.role}</p>
-                {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
-                {member.data.email && (
-                  <span class="text-xs text-primary mt-2 block">{member.data.email}</span>
-                )}
-              </a>
-            ) : (
-              <div class="text-center p-6 border border-default rounded-lg">
-                {member.data.image ? (
-                  <img src={member.data.image} alt={member.data.name} class="w-20 h-20 rounded-full object-cover mx-auto mb-4" />
-                ) : (
-                  <div class="w-20 h-20 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center">
-                    <span class="text-3xl font-bold text-primary">{member.data.name.charAt(0)}</span>
-                  </div>
-                )}
-                <h3 class="text-lg font-semibold">{member.data.name}</h3>
-                <p class="text-sm text-muted">{member.data.role}</p>
-                {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
-                {member.data.email && (
-                  <a href={`mailto:${member.data.email}`} class="text-xs text-primary hover:underline mt-2 block">
-                    {member.data.email}
-                  </a>
-                )}
-              </div>
-            );
-          })}
+          {boardMembers.map((member) => (
+            <BoardMemberCard member={member} showEmail />
+          ))}
         </div>
       </div>
     </section>
