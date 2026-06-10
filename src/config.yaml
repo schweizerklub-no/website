@@ -4,7 +4,6 @@ site:
   base: '/'
   trailingSlash: true
 
-  googleSiteVerificationId: false
 
 # Default SEO metadata
 metadata:
@@ -57,11 +56,6 @@ apps:
         index: false
     isRelatedPostsEnabled: false
     relatedPostsCount: 4
-
-analytics:
-  vendors:
-    googleAnalytics:
-      id: null
 
 ui:
   theme: 'system'
