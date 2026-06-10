@@ -2,56 +2,40 @@
 import { getCollection } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import EventCard from '~/components/EventCard.astro';
-import { PAST_EVENTS_MONTHS } from '~/site-config';
+import PageSection from '~/components/PageSection.astro';
+import CardGrid from '~/components/CardGrid.astro';
+import { getUpcomingEvents, getPastEvents } from '~/utils/events';
 
-const events = await getCollection('events');
-const upcomingEvents = events
-  .filter((e) => !e.data.visibilityEnd || e.data.visibilityEnd >= new Date())
-  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
-
-const cutoffDate = new Date();
-cutoffDate.setMonth(cutoffDate.getMonth() - PAST_EVENTS_MONTHS);
-
-const pastEvents = events
-  .filter(
-    (e) =>
-      e.data.visibilityEnd &&
-      e.data.visibilityEnd < new Date() &&
-      e.data.date >= cutoffDate,
-  )
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const upcomingEvents = await getUpcomingEvents();
+const pastEvents = await getPastEvents();
 
 const metadata = { title: 'Anlässe' };
 ---
 
 <PageLayout metadata={metadata}>
-  <section class="py-16 px-4">
-    <div class="max-w-7xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8">Anlässe</h1>
+  <PageSection title="Anlässe">
+    {upcomingEvents.length > 0 ? (
+      <>
+        <h2 class="text-2xl font-semibold mb-4">Bevorstehende Anlässe</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {upcomingEvents.map((event) => (
+            <EventCard event={event} showWeekday />
+          ))}
+        </div>
+      </>
+    ) : (
+      <p class="text-muted mb-16">Derzeit sind keine Anlässe geplant. Schauen Sie bald wieder vorbei!</p>
+    )}
 
-      {upcomingEvents.length > 0 ? (
-        <>
-          <h2 class="text-2xl font-semibold mb-4">Bevorstehende Anlässe</h2>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {upcomingEvents.map((event) => (
-              <EventCard event={event} showWeekday />
-            ))}
-          </div>
-        </>
-      ) : (
-        <p class="text-muted mb-16">Derzeit sind keine Anlässe geplant. Schauen Sie bald wieder vorbei!</p>
-      )}
-
-      {pastEvents.length > 0 && (
-        <>
-          <h2 class="text-2xl font-semibold mb-4">Vergangene Anlässe</h2>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pastEvents.map((event) => (
-              <EventCard event={event} past showWeekday />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  </section>
+    {pastEvents.length > 0 && (
+      <>
+        <h2 class="text-2xl font-semibold mb-4">Vergangene Anlässe</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {pastEvents.map((event) => (
+            <EventCard event={event} past showWeekday />
+          ))}
+        </div>
+      </>
+    )}
+  </PageSection>
 </PageLayout>

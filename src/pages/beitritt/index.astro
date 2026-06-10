@@ -1,43 +1,37 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
+import PageSection from '~/components/PageSection.astro';
 
 const metadata = { title: 'Beitritt & Mitgliedschaft' };
 ---
 
 <PageLayout metadata={metadata}>
-  <section class="py-16 px-4">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8">Beitritt & Mitgliedschaft</h1>
+  <PageSection title="Beitritt & Mitgliedschaft">
+    <p class="text-muted mb-6">
+      Der Schweizer Klub Norwegen Oslo versteht sich als Begegnungsort für alle, die eine
+      Verbindung zur Schweiz haben. Wir freuen uns über jedes neue Mitglied.
+    </p>
 
-      <p class="text-muted mb-6">
-        Der Schweizer Klub Norwegen Oslo versteht sich als Begegnungsort für alle, die eine
-        Verbindung zur Schweiz haben. Wir freuen uns über jedes neue Mitglied.
-      </p>
-
-      <h2 class="text-2xl font-semibold mb-4">Mitgliederbeiträge</h2>
-      <div class="grid md:grid-cols-2 gap-6 mb-8">
-        <div class="border border-default rounded-lg p-6 text-center">
-          <h3 class="text-lg font-semibold mb-2">Einzelmitglied</h3>
-          <p class="text-3xl font-bold text-primary mb-2">200 NOK</p>
-          <p class="text-sm text-muted">pro Jahr</p>
-        </div>
-        <div class="border border-default rounded-lg p-6 text-center">
-          <h3 class="text-lg font-semibold mb-2">Paar- / Familienmitglied</h3>
-          <p class="text-3xl font-bold text-primary mb-2">400 NOK</p>
-          <p class="text-sm text-muted">pro Jahr</p>
-        </div>
+    <h2 class="text-2xl font-semibold mb-4">Mitgliederbeiträge</h2>
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+      <div class="border border-default rounded-lg p-6 text-center">
+        <h3 class="text-lg font-semibold mb-2">Einzelmitglied</h3>
+        <p class="text-3xl font-bold text-primary mb-2">200 NOK</p>
+        <p class="text-sm text-muted">pro Jahr</p>
       </div>
-
-      <h2 class="text-2xl font-semibold mb-4">Anmeldung</h2>
-      <p class="text-muted mb-4">
-        Interessiert? Melden Sie sich bei uns per E-Mail:
-      </p>
-      <a
-        href="mailto:vorstand@schweizerklub.no"
-        class="text-primary hover:underline font-medium"
-      >
-        vorstand@schweizerklub.no
-      </a>
+      <div class="border border-default rounded-lg p-6 text-center">
+        <h3 class="text-lg font-semibold mb-2">Paar- / Familienmitglied</h3>
+        <p class="text-3xl font-bold text-primary mb-2">400 NOK</p>
+        <p class="text-sm text-muted">pro Jahr</p>
+      </div>
     </div>
-  </section>
+
+    <h2 class="text-2xl font-semibold mb-4">Anmeldung</h2>
+    <p class="text-muted mb-4">
+      Interessiert? Melden Sie sich bei uns per E-Mail:
+    </p>
+    <a href="mailto:vorstand@schweizerklub.no" class="text-primary hover:underline font-medium">
+      vorstand@schweizerklub.no
+    </a>
+  </PageSection>
 </PageLayout>

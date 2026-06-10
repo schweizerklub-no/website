@@ -1,31 +1,26 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
+import PageSection from '~/components/PageSection.astro';
 
 const metadata = { title: 'ASR und ASO' };
 ---
 
 <PageLayout metadata={metadata}>
-  <section class="py-16 px-4">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8">ASR und ASO</h1>
-
-      <h2 class="text-2xl font-semibold mb-4">Auslandschweizerrat (ASR)</h2>
-      <p class="text-muted mb-6">
-        Der Auslandschweizerrat (ASR) ist das Parlament der Auslandschweizer. Er vertritt die
-        Interessen der Schweizerinnen und Schweizer im Ausland gegenüber der Bundesversammlung
-        und dem Bundesrat.
-      </p>
-
-      <h2 class="text-2xl font-semibold mb-4">Auslandschweizer-Organisation (ASO)</h2>
-      <p class="text-muted mb-6">
-        Die Auslandschweizer-Organisation (ASO) ist die offizielle Vertretung der
-        Auslandschweizer. Sie informiert über politische Rechte, Sozialversicherungen, Bildung
-        und Kultur.
-      </p>
-
-      <p class="text-muted">
-        Mehr Informationen zu den Aktivitäten des ASR und der ASO in Norwegen folgen in Kürze.
-      </p>
-    </div>
-  </section>
+  <PageSection title="ASR und ASO">
+    <h2 class="text-2xl font-semibold mb-4">Auslandschweizerrat (ASR)</h2>
+    <p class="text-muted mb-6">
+      Der Auslandschweizerrat (ASR) ist das Parlament der Auslandschweizer. Er vertritt die
+      Interessen der Schweizerinnen und Schweizer im Ausland gegenüber der Bundesversammlung
+      und dem Bundesrat.
+    </p>
+    <h2 class="text-2xl font-semibold mb-4">Auslandschweizer-Organisation (ASO)</h2>
+    <p class="text-muted mb-6">
+      Die Auslandschweizer-Organisation (ASO) ist die offizielle Vertretung der
+      Auslandschweizer. Sie informiert über politische Rechte, Sozialversicherungen, Bildung
+      und Kultur.
+    </p>
+    <p class="text-muted">
+      Mehr Informationen zu den Aktivitäten des ASR und der ASO in Norwegen folgen in Kürze.
+    </p>
+  </PageSection>
 </PageLayout>

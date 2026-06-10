@@ -1,27 +1,22 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
+import PageSection from '~/components/PageSection.astro';
 
 const metadata = { title: 'Interessegruppen' };
 ---
 
 <PageLayout metadata={metadata}>
-  <section class="py-16 px-4">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8">Interessegruppen</h1>
-
-      <p class="text-muted mb-6">
-        Der Schweizer Klub Norwegen Oslo fördert verschiedene Interessegruppen, in denen sich
-        Mitglieder mit gemeinsamen Hobbys und Interessen austauschen können.
-      </p>
-
-      <p class="text-muted mb-6">
-        Haben Sie eine Idee für eine neue Interessegruppe? Wir unterstützen Sie gerne bei der
-        Gründung. Kontaktieren Sie uns per E-Mail.
-      </p>
-
-      <p class="text-muted">
-        Aktuelle Informationen zu den Interessegruppen folgen in Kürze.
-      </p>
-    </div>
-  </section>
+  <PageSection title="Interessegruppen">
+    <p class="text-muted mb-6">
+      Der Schweizer Klub Norwegen Oslo fördert verschiedene Interessegruppen, in denen sich
+      Mitglieder mit gemeinsamen Hobbys und Interessen austauschen können.
+    </p>
+    <p class="text-muted mb-6">
+      Haben Sie eine Idee für eine neue Interessegruppe? Wir unterstützen Sie gerne bei der
+      Gründung. Kontaktieren Sie uns per E-Mail.
+    </p>
+    <p class="text-muted">
+      Aktuelle Informationen zu den Interessegruppen folgen in Kürze.
+    </p>
+  </PageSection>
 </PageLayout>

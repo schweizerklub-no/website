@@ -1,0 +1,18 @@
+---
+export interface Props {
+  title: string;
+  wide?: boolean;
+  bgPage?: boolean;
+}
+
+const { title, wide = false, bgPage = false } = Astro.props;
+---
+
+<section class:list={['py-16 px-4', bgPage && 'bg-page']}>
+  <div class:list={['mx-auto', wide ? 'max-w-7xl' : 'max-w-5xl']}>
+    <h2 class="text-3xl font-bold mb-8 text-center">{title}</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <slot />
+    </div>
+  </div>
+</section>

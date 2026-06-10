@@ -1,0 +1,15 @@
+---
+export interface Props {
+  title?: string;
+  prose?: boolean;
+}
+
+const { title, prose = false } = Astro.props;
+---
+
+<section class="py-16 px-4">
+  <div class:list={['max-w-3xl mx-auto', prose && 'prose dark:prose-invert']}>
+    {title && <h1 class="text-4xl font-bold mb-8">{title}</h1>}
+    <slot />
+  </div>
+</section>

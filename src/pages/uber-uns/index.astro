@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BoardMemberCard from '~/components/BoardMemberCard.astro';
+import PageSection from '~/components/PageSection.astro';
+import CardGrid from '~/components/CardGrid.astro';
 
 const boardMembers = await getCollection('board');
 
@@ -9,34 +11,24 @@ const metadata = { title: 'Über uns' };
 ---
 
 <PageLayout metadata={metadata}>
-  <section class="py-16 px-4">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8">Über uns</h1>
-
-      <p class="text-muted mb-6">
-        Der Schweizer Klub Norwegen Oslo wurde gegründet, um in Norwegen lebenden Schweizerinnen
-        und Schweizern sowie Personen mit einer speziellen Verbindung zur Schweiz eine
-        Begegnungsplattform zu bieten.
-      </p>
-
-      <p class="text-muted mb-6">
-        Unser Klub organisiert regelmässig Anlässe wie die Bundesfeier, Weihnachtsessen und
-        kulturelle Veranstaltungen. Wir pflegen den Austausch und die Gemeinschaft unter unseren
-        Mitgliedern.
-      </p>
-    </div>
-  </section>
+  <PageSection title="Über uns">
+    <p class="text-muted mb-6">
+      Der Schweizer Klub Norwegen Oslo wurde gegründet, um in Norwegen lebenden Schweizerinnen
+      und Schweizern sowie Personen mit einer speziellen Verbindung zur Schweiz eine
+      Begegnungsplattform zu bieten.
+    </p>
+    <p class="text-muted mb-6">
+      Unser Klub organisiert regelmässig Anlässe wie die Bundesfeier, Weihnachtsessen und
+      kulturelle Veranstaltungen. Wir pflegen den Austausch und die Gemeinschaft unter unseren
+      Mitgliedern.
+    </p>
+  </PageSection>
 
   {boardMembers.length > 0 && (
-    <section class="pb-16 px-4">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-8 text-center">Vorstand</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          {boardMembers.map((member) => (
-            <BoardMemberCard member={member} showEmail />
-          ))}
-        </div>
-      </div>
-    </section>
+    <CardGrid title="Vorstand">
+      {boardMembers.map((member) => (
+        <BoardMemberCard member={member} showEmail />
+      ))}
+    </CardGrid>
   )}
 </PageLayout>
