@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events
+    .filter((e) => e.body?.trim())
+    .map((event) => ({
+      params: { slug: event.id },
+      props: { entry: event },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const metadata = { title: entry.data.title };
+---
+
+<PageLayout metadata={metadata}>
+  <article class="py-16 px-4">
+    <div class="max-w-3xl mx-auto">
+      {entry.data.image && (
+        <img
+          src={entry.data.image}
+          alt={entry.data.title}
+          class="w-full rounded-lg mb-8 max-h-96 object-cover"
+        />
+      )}
+
+      <time
+        class="text-sm text-muted"
+        datetime={entry.data.date.toISOString()}
+      >
+        {entry.data.date.toLocaleDateString('de-DE', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+        })}
+      </time>
+
+      <h1 class="text-4xl font-bold mt-2 mb-4">{entry.data.title}</h1>
+
+      {entry.data.description && (
+        <p class="text-xl text-muted mb-6">{entry.data.description}</p>
+      )}
+
+      {entry.data.location && (
+        <p class="text-sm text-muted mb-6">📍 {entry.data.location}</p>
+      )}
+
+      <div class="prose dark:prose-invert max-w-none">
+        <Content />
+      </div>
+    </div>
+  </article>
+</PageLayout>

@@ -36,25 +36,46 @@ const metadata = {
       <div class="max-w-7xl mx-auto">
         <h2 class="text-3xl font-bold mb-8 text-center">Nächste Anlässe</h2>
         <div class="grid md:grid-cols-3 gap-6">
-          {upcomingEvents.map((event) => (
-            <article class="border border-default rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-              {event.data.image && (
-                <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />
-              )}
-              <div class="p-6">
-                <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>
-                  {event.data.date.toLocaleDateString('de-DE', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                  })}
-                </time>
-                <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
-                {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
-                {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+          {upcomingEvents.map((event) => {
+            const hasDetails = event.body?.trim();
+            return hasDetails ? (
+              <a href={`/anlasse/${event.id}/`} class="block border border-default rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                {event.data.image && (
+                  <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />
+                )}
+                <div class="p-6">
+                  <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>
+                    {event.data.date.toLocaleDateString('de-DE', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </time>
+                  <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
+                  {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
+                  {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+                </div>
+              </a>
+            ) : (
+              <div class="border border-default rounded-lg overflow-hidden">
+                {event.data.image && (
+                  <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />
+                )}
+                <div class="p-6">
+                  <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>
+                    {event.data.date.toLocaleDateString('de-DE', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </time>
+                  <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
+                  {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
+                  {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+                </div>
               </div>
-            </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
