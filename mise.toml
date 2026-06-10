@@ -11,29 +11,14 @@ outputs = ["node_modules/.modules.yaml"]
 [tasks.dev]
 description = "Run in development mode"
 depends = "install"
-run = "pnpm run site:dev"
+run = "pnpm run dev"
 
 [tasks.build]
 description = "Build the project"
 depends = "install"
-run = "pnpm run site:build"
+run = "pnpm run build"
 
 [tasks.preview]
 description = "Preview the production build"
 depends = "build"
-run = "pnpm run site:preview"
-
-[tasks.lint]
-description = "Run linter with fixing enabled"
-depends = ["install"]
-run = "pnpm run lint:fix"
-
-[tasks.format]
-description = "Run formatter with fixing enabled"
-depends = ["install"]
-run = "pnpm run format:fix"
-
-[tasks.check]
-description = "Run lint and formatter checks"
-depends = ["install"]
-run = "pnpm run check:fix"
+run = "pnpm run preview"
