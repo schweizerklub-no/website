@@ -1,19 +1,97 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+const events = await getCollection('events');
+const upcomingEvents = events
+  .filter((e) => !e.data.visibilityEnd || e.data.visibilityEnd >= new Date())
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
+  .slice(0, 3);
+
+const boardMembers = await getCollection('board');
 
 const metadata = {
   title: 'Schweizer Klub Norwegen Oslo',
 };
 ---
 
-<Layout metadata={metadata}>
-  <section class="py-24 flex flex-col items-center justify-center text-center px-4">
-    <h1 class="text-4xl font-bold tracking-tight sm:text-6xl mb-4">
-      Herzlich willkommen
-    </h1>
-    <p class="text-xl text-muted max-w-2xl">
-      Der Schweizer Klub Norwegen Oslo verbindet in Norwegen lebende SchweizerInnen
-      und Personen mit einer speziellen Verbindung zur Schweiz.
-    </p>
+<PageLayout metadata={metadata}>
+  <HeroText
+    title="Herzlich willkommen"
+    subtitle="Der Schweizer Klub Norwegen Oslo verbindet in Norwegen lebende SchweizerInnen und Personen mit einer speziellen Verbindung zur Schweiz."
+    tagline="Schweizer Klub Norwegen Oslo"
+    callToAction={{
+      text: 'Mitglied werden',
+      href: '/beitritt/',
+    }}
+    callToAction2={{
+      text: 'Nächste Anlässe',
+      href: '/anlasse/',
+    }}
+  />
+
+  {upcomingEvents.length > 0 && (
+    <section class="py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center">Nächste Anlässe</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {upcomingEvents.map((event) => (
+            <article class="border border-default rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+              {event.data.image && (
+                <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />
+              )}
+              <div class="p-6">
+                <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>
+                  {event.data.date.toLocaleDateString('de-DE', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  })}
+                </time>
+                <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
+                {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
+                {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {boardMembers.length > 0 && (
+    <section class="py-16 px-4 bg-page">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center">Der Vorstand</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {boardMembers.map((member) => (
+            <article class="text-center p-6">
+              <div class="w-24 h-24 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center">
+                <span class="text-2xl font-bold text-primary">{member.data.name.charAt(0)}</span>
+              </div>
+              <h3 class="text-lg font-semibold">{member.data.name}</h3>
+              <p class="text-sm text-muted">{member.data.role}</p>
+              {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Mitglied werden</h2>
+      <p class="text-muted mb-6">
+        Werden Sie Teil des Schweizer Klub Norwegen Oslo. Wir freuen uns auf Sie!
+      </p>
+      <a
+        href="/beitritt/"
+        class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
+      >
+        Beitritt & Mitgliedschaft
+      </a>
+    </div>
   </section>
-</Layout>
+</PageLayout>

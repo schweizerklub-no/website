@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const boardMembers = await getCollection('board');
+
+const metadata = { title: 'Über uns' };
+---
+
+<PageLayout metadata={metadata}>
+  <section class="py-16 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8">Über uns</h1>
+
+      <p class="text-muted mb-6">
+        Der Schweizer Klub Norwegen Oslo wurde gegründet, um in Norwegen lebenden Schweizerinnen
+        und Schweizern sowie Personen mit einer speziellen Verbindung zur Schweiz eine
+        Begegnungsplattform zu bieten.
+      </p>
+
+      <p class="text-muted mb-6">
+        Unser Klub organisiert regelmässig Anlässe wie die Bundesfeier, Weihnachtsessen und
+        kulturelle Veranstaltungen. Wir pflegen den Austausch und die Gemeinschaft unter unseren
+        Mitgliedern.
+      </p>
+    </div>
+  </section>
+
+  {boardMembers.length > 0 && (
+    <section class="pb-16 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center">Vorstand</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {boardMembers.map((member) => (
+            <div class="text-center p-6 border border-default rounded-lg">
+              <div class="w-20 h-20 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center">
+                <span class="text-3xl font-bold text-primary">{member.data.name.charAt(0)}</span>
+              </div>
+              <h3 class="text-lg font-semibold">{member.data.name}</h3>
+              <p class="text-sm text-muted">{member.data.role}</p>
+              {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
+              {member.data.email && (
+                <a href={`mailto:${member.data.email}`} class="text-xs text-primary hover:underline mt-2 block">
+                  {member.data.email}
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</PageLayout>

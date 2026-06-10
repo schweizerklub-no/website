@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const events = await getCollection('events');
+const upcomingEvents = events
+  .filter((e) => !e.data.visibilityEnd || e.data.visibilityEnd >= new Date())
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+
+const pastEvents = events
+  .filter((e) => e.data.visibilityEnd && e.data.visibilityEnd < new Date())
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const metadata = { title: 'Anlässe' };
+---
+
+<PageLayout metadata={metadata}>
+  <section class="py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8">Anlässe</h1>
+
+      {upcomingEvents.length > 0 ? (
+        <>
+          <h2 class="text-2xl font-semibold mb-4">Bevorstehende Anlässe</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {upcomingEvents.map((event) => (
+              <article class="border border-default rounded-lg overflow-hidden">
+                {event.data.image && (
+                  <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />
+                )}
+                <div class="p-6">
+                  <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>
+                    {event.data.date.toLocaleDateString('de-DE', {
+                      weekday: 'long',
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </time>
+                  <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
+                  {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
+                  {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </>
+      ) : (
+        <p class="text-muted mb-16">Derzeit sind keine Anlässe geplant. Schauen Sie bald wieder vorbei!</p>
+      )}
+
+      {pastEvents.length > 0 && (
+        <>
+          <h2 class="text-2xl font-semibold mb-4">Vergangene Anlässe</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {pastEvents.map((event) => (
+              <article class="border border-default rounded-lg overflow-hidden opacity-60">
+                {event.data.image && (
+                  <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />
+                )}
+                <div class="p-6">
+                  <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>
+                    {event.data.date.toLocaleDateString('de-DE', {
+                      weekday: 'long',
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </time>
+                  <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
+                  {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
+                  {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+</PageLayout>

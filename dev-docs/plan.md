@@ -8,6 +8,25 @@ Replace the current Webflow site with a fast, maintainable static site built wit
 
 **[AstroWind](https://github.com/arthelokyo/astrowind)** — free, MIT-licensed, Astro v6 + Tailwind CSS v4. Ships with dark mode, blog, SEO, image optimization, and responsive layout components.
 
+## Status
+
+| Phase | Status |
+|-------|--------|
+| 0 — Reset & scaffold | ✅ Done |
+| 1 — Content Collections | ✅ Done |
+| 2 — Pages & navigation | ⬜ Pending |
+| 3 — Components | ⬜ Pending |
+| 4 — i18n | ⬜ Pending |
+| 5 — Deployment | ⬜ Pending |
+| 6 — Polish | ⬜ Pending |
+
+## Key decisions
+
+- **Package manager**: pnpm (not npm)
+- **Linting/formatting**: Biome only (no ESLint, no Prettier)
+- **GitHub Actions**: all steps SHA-pinned, Renovate for updates
+- **Template demo content**: stripped; reusable widgets kept for later phases
+
 ## Phases
 
 ### Phase 0 — Reset & scaffold

@@ -1,0 +1,60 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = { title: 'Kontakt' };
+---
+
+<PageLayout metadata={metadata}>
+  <section class="py-16 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8">Kontakt</h1>
+
+      <p class="text-muted mb-8">
+        Haben Sie Fragen, Anregungen oder möchten Sie Mitglied werden? Wir freuen uns auf Ihre
+        Nachricht.
+      </p>
+
+      <div class="border border-default rounded-lg p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Vorstand</h2>
+        <a
+          href="mailto:vorstand@schweizerklub.no"
+          class="text-primary hover:underline font-medium"
+        >
+          vorstand@schweizerklub.no
+        </a>
+      </div>
+
+      <div class="border border-default rounded-lg p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Adresse</h2>
+        <p class="text-muted">
+          Schweizer Klub Norwegen Oslo<br />
+          Postboks 123<br />
+          0150 Oslo<br />
+          Norwegen
+        </p>
+      </div>
+
+      <div class="border border-default rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Soziale Medien</h2>
+        <div class="flex gap-4">
+          <a
+            href="https://www.facebook.com/schweizerklubnorwegen/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:underline"
+          >
+            Facebook
+          </a>
+          <a
+            href="https://www.instagram.com/schweizerklub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:underline"
+          >
+            Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

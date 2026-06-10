@@ -1,1 +1,27 @@
-export const collections = {};
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
+
+const events = defineCollection({
+  loader: glob({ pattern: "*.md", base: "src/content/events" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    visibilityEnd: z.date().optional(),
+    image: z.string().optional(),
+    description: z.string().optional(),
+    location: z.string().optional(),
+  }),
+});
+
+const board = defineCollection({
+  loader: glob({ pattern: "*.md", base: "src/content/board" }),
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    image: z.string().optional(),
+    bio: z.string().optional(),
+    email: z.string().optional(),
+  }),
+});
+
+export const collections = { events, board };
