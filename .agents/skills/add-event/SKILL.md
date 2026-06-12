@@ -1,3 +1,8 @@
+---
+name: add-event
+description: Use when adding a new event content file or event page entry to this website.
+---
+
 # Add a New Event
 
 Checklist for adding an event to the website.

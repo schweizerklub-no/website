@@ -1,3 +1,8 @@
+---
+name: add-locale
+description: Use when adding a new locale, language, or translation files to this website.
+---
+
 # Add a New Locale
 
 Checklist for adding a new language to the project.

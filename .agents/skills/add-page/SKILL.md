@@ -1,3 +1,8 @@
+---
+name: add-page
+description: Use when adding a new page content file or page template to this website.
+---
+
 # Add a New Page
 
 Checklist for adding a new page to the website.
