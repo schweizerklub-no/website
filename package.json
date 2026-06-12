@@ -48,9 +48,5 @@
     "tailwindcss": "^4.3.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.8"
-  },
-  "overrides": {
-    "yaml": ">=2.8.3",
-    "vite": "^7"
   }
 }
