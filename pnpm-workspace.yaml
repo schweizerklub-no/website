@@ -1,6 +1,11 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+
 autoInstallPeers: false
 minimumReleaseAge: 4320
 blockExoticSubdeps: true
 
-allowBuilds:
-  esbuild: false
+overrides:
+  yaml: ">=2.8.3"
+  vite: "^7"

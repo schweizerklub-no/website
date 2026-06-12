@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { contentHref } from '~/utils/locale';
+
+export interface Props {
+  member: CollectionEntry<'board'>;
+  imageSize?: string;
+  avatarTextSize?: string;
+  showEmail?: boolean;
+}
+
+const { member, imageSize = 'w-20 h-20', avatarTextSize = 'text-3xl', showEmail = false } = Astro.props;
+const hasDetails = member.body?.trim();
+const href = contentHref(member, "uber-uns");
+---
+
+{hasDetails ? (
+  <a href={href} class="block text-center p-6 border-2 border-primary/15 dark:border-primary/30 rounded-lg transition-all bg-white dark:bg-neutral-800 hover:bg-primary/5 dark:hover:bg-primary/10 hover:border-primary/40 dark:hover:border-primary/50">
+    {member.data.image ? (
+      <img src={member.data.image} alt={member.data.name} class={`${imageSize} rounded-full object-cover mx-auto mb-4`} />
+    ) : (
+      <div class={`${imageSize} rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center`}>
+        <span class={`${avatarTextSize} font-bold text-primary`}>{member.data.name.charAt(0)}</span>
+      </div>
+    )}
+    <h3 class="text-lg font-semibold">{member.data.name}</h3>
+    <p class="text-sm text-muted">{member.data.role}</p>
+    {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
+    {showEmail && member.data.email && <span class="text-xs text-primary mt-2 block">{member.data.email}</span>}
+  </a>
+) : (
+  <div class="text-center p-6 border-2 border-primary/15 dark:border-primary/30 rounded-lg bg-white dark:bg-neutral-800">
+    {member.data.image ? (
+      <img src={member.data.image} alt={member.data.name} class={`${imageSize} rounded-full object-cover mx-auto mb-4`} />
+    ) : (
+      <div class={`${imageSize} rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center`}>
+        <span class={`${avatarTextSize} font-bold text-primary`}>{member.data.name.charAt(0)}</span>
+      </div>
+    )}
+    <h3 class="text-lg font-semibold">{member.data.name}</h3>
+    <p class="text-sm text-muted">{member.data.role}</p>
+    {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
+    {showEmail && member.data.email && (
+      <a href={`mailto:${member.data.email}`} class="text-xs text-primary hover:underline mt-2 block">{member.data.email}</a>
+    )}
+  </div>
+)}

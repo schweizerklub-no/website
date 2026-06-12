@@ -1,0 +1,24 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import PageSection from '~/components/PageSection.astro';
+import { getPage } from '~/utils/locale';
+
+export interface Props {
+  slug: string;
+  showEmail?: boolean;
+}
+
+const { slug, showEmail } = Astro.props;
+const { entry, Content } = await getPage(Astro.locals.locale, slug);
+const metadata = { title: entry.data.title };
+const { misc: m } = Astro.locals.t;
+---
+
+<PageLayout {metadata}>
+  <PageSection title={entry.data.title} prose>
+    <Content />
+    {showEmail && (
+      <p><a href={`mailto:${m.email}`}>{m.email}</a></p>
+    )}
+  </PageSection>
+</PageLayout>

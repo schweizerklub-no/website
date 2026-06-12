@@ -1,0 +1,14 @@
+---
+import { render } from 'astro:content';
+import EventDetail from '~/components/pages/EventDetail.astro';
+import { Locale } from '~/config';
+import { getDetailPaths } from '~/utils/locale';
+
+export async function getStaticPaths() {
+  return getDetailPaths("events", Locale.De);
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<EventDetail {entry} {Content} />

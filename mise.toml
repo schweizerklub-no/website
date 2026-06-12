@@ -11,29 +11,29 @@ outputs = ["node_modules/.modules.yaml"]
 [tasks.dev]
 description = "Run in development mode"
 depends = "install"
-run = "pnpm run site:dev"
+run = "pnpm run dev"
 
 [tasks.build]
 description = "Build the project"
 depends = "install"
-run = "pnpm run site:build"
+run = "pnpm run build"
 
 [tasks.preview]
 description = "Preview the production build"
 depends = "build"
-run = "pnpm run site:preview"
+run = "pnpm run preview"
 
-[tasks.lint]
-description = "Run linter with fixing enabled"
-depends = ["install"]
-run = "pnpm run lint:fix"
+[tasks.fix]
+description = "Fix lint issues and format code"
+depends = "install"
+run = "pnpm biome check --write --unsafe . && pnpm astro check"
 
-[tasks.format]
-description = "Run formatter with fixing enabled"
-depends = ["install"]
-run = "pnpm run format:fix"
+[tasks.test]
+description = "Run unit tests"
+depends = "install"
+run = "pnpm test"
 
-[tasks.check]
-description = "Run lint and formatter checks"
-depends = ["install"]
-run = "pnpm run check:fix"
+[tasks.verify]
+description = "TypeScript check, lint, test, and build"
+depends = "install"
+run = "pnpm astro check && pnpm biome check . && pnpm test && pnpm build"

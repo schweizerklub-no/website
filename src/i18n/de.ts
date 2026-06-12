@@ -1,0 +1,53 @@
+export const de = {
+  lang: "de",
+  label: "Deutsch",
+  home: {
+    metaTitle: "Schweizer Klub Norwegen Oslo",
+    title: "Herzlich willkommen",
+    tagline: "Schweizer Klub Norwegen Oslo",
+    cta1: "Mitglied werden",
+    cta2: "Über uns",
+    events: "Nächste Anlässe",
+    board: "Der Vorstand",
+  },
+  nav: {
+    anlasse: "Anlässe",
+    beitritt: "Beitritt",
+    uberUns: "Über uns",
+    interessegruppen: "Interessegruppen",
+    asrUndAso: "ASR und ASO",
+    kontakt: "Kontakt",
+  },
+  footer: {
+    tagline:
+      "Schweizer Kultur, Gemeinschaft und Austausch in der Hauptstadt Norwegens.",
+    links: "Links",
+    kontakt: "Kontakt",
+    privacy: "Privacy",
+    copyright: "© All rights reserved — Schweizer Klub Norwegen Oslo",
+  },
+  pages: {
+    anlasse: "Anlässe",
+    anlasseTitle: "Anlässe",
+    backToEvents: "Alle Anlässe",
+    backToBoard: "Über uns",
+    noUpcomingEvents:
+      "Derzeit sind keine Anlässe geplant. Schauen Sie bald wieder vorbei!",
+    upcomingEvents: "Bevorstehende Anlässe",
+    pastEvents: "Vergangene Anlässe",
+    memberFee: "Mitgliederbeiträge",
+    singleMember: "Einzelmitglied",
+    familyMember: "Paar- / Familienmitglied",
+    perYear: "pro Jahr",
+    signup: "Anmeldung",
+    vorstand: "Vorstand",
+    adresse: "Adresse",
+    socialMedia: "Soziale Medien",
+  },
+  misc: {
+    email: "vorstand@schweizerklub.no",
+    addressLine1: "Postboks 123",
+    addressLine2: "0150 Oslo",
+    addressLine3: "Norwegen",
+  },
+} as const;
