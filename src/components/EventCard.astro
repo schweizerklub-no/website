@@ -20,7 +20,7 @@ const localeDate = event.data.date.toLocaleDateString('de-DE', {
 {hasDetails ? (
   <a
     href={`/anlasse/${event.id}/`}
-    class:list={['block border border-default rounded-lg overflow-hidden transition-shadow', past ? 'opacity-60' : 'hover:shadow-lg']}
+    class:list={['block border-2 border-primary/15 dark:border-primary/30 rounded-lg overflow-hidden transition-all', past ? 'opacity-60' : 'hover:bg-primary/5 dark:hover:bg-primary/10 hover:border-primary/40 dark:hover:border-primary/50']}
   >
     {event.data.image && <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />}
     <div class="p-6">
@@ -31,7 +31,7 @@ const localeDate = event.data.date.toLocaleDateString('de-DE', {
     </div>
   </a>
 ) : (
-  <div class:list={['border border-default rounded-lg overflow-hidden', past && 'opacity-60']}>
+  <div class:list={['border-2 border-primary/15 dark:border-primary/30 rounded-lg overflow-hidden', past && 'opacity-60']}>
     {event.data.image && <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />}
     <div class="p-6">
       <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>{localeDate}</time>

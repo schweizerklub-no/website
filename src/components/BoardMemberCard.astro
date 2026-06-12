@@ -13,7 +13,7 @@ const hasDetails = member.body?.trim();
 ---
 
 {hasDetails ? (
-  <a href={`/uber-uns/${member.id}/`} class="block text-center p-6 border border-default rounded-lg hover:shadow-lg transition-shadow">
+  <a href={`/uber-uns/${member.id}/`} class="block text-center p-6 border-2 border-primary/15 dark:border-primary/30 rounded-lg transition-all hover:bg-primary/5 dark:hover:bg-primary/10 hover:border-primary/40 dark:hover:border-primary/50">
     {member.data.image ? (
       <img src={member.data.image} alt={member.data.name} class={`${imageSize} rounded-full object-cover mx-auto mb-4`} />
     ) : (
@@ -27,7 +27,7 @@ const hasDetails = member.body?.trim();
     {showEmail && member.data.email && <span class="text-xs text-primary mt-2 block">{member.data.email}</span>}
   </a>
 ) : (
-  <div class="text-center p-6 border border-default rounded-lg">
+  <div class="text-center p-6 border-2 border-primary/15 dark:border-primary/30 rounded-lg">
     {member.data.image ? (
       <img src={member.data.image} alt={member.data.name} class={`${imageSize} rounded-full object-cover mx-auto mb-4`} />
     ) : (
