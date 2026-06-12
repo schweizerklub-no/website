@@ -79,7 +79,7 @@ const hasBg = !!backgroundImage;
                   {typeof callToAction2 === 'string' ? (
                     <Fragment set:html={callToAction2} />
                   ) : (
-                    <Button variant={hasBg ? 'primary' : 'secondary'} {...callToAction2} />
+                    <Button variant="secondary" class={hasBg ? "bg-white text-gray-900 border-gray-300 hover:bg-red-100 hover:border-red-300 focus-visible:bg-red-100" : ""} {...callToAction2} />
                   )}
                 </div>
               )
