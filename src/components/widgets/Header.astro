@@ -6,7 +6,7 @@ import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
 import LanguageSwitcher from '~/components/common/LanguageSwitcher.astro';
 
-import { trimSlash, getAsset } from '~/utils/permalinks';
+import { trimSlash } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
 import { Locale } from '~/config';
 import { localeUrlPrefix } from '~/utils/locale';
@@ -30,7 +30,6 @@ export interface Props {
   isDark?: boolean;
   isFullWidth?: boolean;
   showToggleTheme?: boolean;
-  showRssFeed?: boolean;
   position?: string;
   locale: Locale;
 }
@@ -43,7 +42,7 @@ const {
   isDark = false,
   isFullWidth = false,
   showToggleTheme = false,
-  showRssFeed = false,
+
   position = 'center',
   locale,
 } = Astro.props;
@@ -145,17 +144,7 @@ const homeHref = `${localeUrlPrefix[locale]}/`;
         <div class="flex gap-2">
           <LanguageSwitcher locale={locale} pathname={currentPath} />
           {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
-          {
-            showRssFeed && (
-              <a
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                aria-label="RSS Feed"
-                href={getAsset('/rss.xml')}
-              >
-                <Icon name="tabler:rss" class="w-5 h-5" />
-              </a>
-            )
-          }
+
         </div>
         {
           actions?.length ? (
