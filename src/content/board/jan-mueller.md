@@ -1,4 +1,5 @@
 ---
+lang: de
 name: Jan Müller
 role: Präsident
 image: /images/board/mueller-jan.jpeg

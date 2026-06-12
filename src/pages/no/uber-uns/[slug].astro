@@ -2,14 +2,13 @@
 import { getCollection, render } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BackLink from '~/components/BackLink.astro';
-import { UI } from '~/i18n';
 
 export async function getStaticPaths() {
-  const board = await getCollection('board');
+  const board = await getCollection("board", ({ data }) => data.lang === "no");
   return board
     .filter((e) => e.body?.trim())
     .map((entry) => ({
-      params: { slug: entry.id },
+      params: { slug: entry.id.replace("no/", "") },
       props: { entry },
     }));
 }
@@ -17,7 +16,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const metadata = { title: entry.data.name };
-const t = UI.no.pages;
+const t = Astro.locals.t.pages;
 ---
 
 <PageLayout metadata={metadata}>

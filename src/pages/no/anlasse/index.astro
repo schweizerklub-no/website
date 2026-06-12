@@ -5,11 +5,11 @@ import EventCard from '~/components/EventCard.astro';
 import PageSection from '~/components/PageSection.astro';
 import CardGrid from '~/components/CardGrid.astro';
 import { getUpcomingEvents, getPastEvents } from '~/utils/events';
-import { UI } from '~/i18n';
 
-const t = UI.no.pages;
-const upcomingEvents = await getUpcomingEvents();
-const pastEvents = await getPastEvents();
+const t = Astro.locals.t.pages;
+const locale = Astro.locals.locale;
+const upcomingEvents = await getUpcomingEvents(locale);
+const pastEvents = await getPastEvents(locale);
 
 const metadata = { title: t.anlasseTitle };
 ---

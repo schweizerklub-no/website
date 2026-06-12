@@ -1,5 +1,5 @@
 ---
-lang: de
+lang: no
 title: Stammtisch
 date: 2026-05-07
 visibilityEnd: 2026-05-08

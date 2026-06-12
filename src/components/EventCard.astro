@@ -9,6 +9,8 @@ export interface Props {
 
 const { event, past = false, showWeekday = false } = Astro.props;
 const hasDetails = event.body?.trim();
+const slug = event.data.lang === "no" ? event.id.replace("no/", "") : event.id;
+const href = event.data.lang === "no" ? `/no/anlasse/${slug}/` : `/anlasse/${slug}/`;
 const localeDate = event.data.date.toLocaleDateString('de-DE', {
   weekday: showWeekday ? 'long' : undefined,
   day: 'numeric',
@@ -19,7 +21,7 @@ const localeDate = event.data.date.toLocaleDateString('de-DE', {
 
 {hasDetails ? (
   <a
-    href={`/anlasse/${event.id}/`}
+    href={href}
     class:list={['block border-2 border-primary/15 dark:border-primary/30 rounded-lg overflow-hidden transition-all bg-white dark:bg-neutral-800', past ? 'opacity-60' : 'hover:bg-primary/5 dark:hover:bg-primary/10 hover:border-primary/40 dark:hover:border-primary/50']}
   >
     {event.data.image && <img src={event.data.image} alt={event.data.title} class="w-full h-40 object-cover" />}

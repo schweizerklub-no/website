@@ -1,4 +1,5 @@
 ---
+lang: de
 title: Bundesfeier
 date: 2026-08-22
 visibilityEnd: 2026-08-23

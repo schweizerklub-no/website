@@ -2,8 +2,9 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 const events = defineCollection({
-  loader: glob({ pattern: "*.md", base: "src/content/events" }),
+  loader: glob({ pattern: "**/*.md", base: "src/content/events" }),
   schema: z.object({
+    lang: z.enum(["de", "no"]).default("de"),
     title: z.string(),
     date: z.date(),
     visibilityEnd: z.date().optional(),
@@ -14,8 +15,9 @@ const events = defineCollection({
 });
 
 const board = defineCollection({
-  loader: glob({ pattern: "*.md", base: "src/content/board" }),
+  loader: glob({ pattern: "**/*.md", base: "src/content/board" }),
   schema: z.object({
+    lang: z.enum(["de", "no"]).default("de"),
     name: z.string(),
     role: z.string(),
     image: z.string().optional(),

@@ -1,10 +1,8 @@
 ---
 import PageSection from '~/components/PageSection.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
-import { UI } from '~/i18n';
 
-const t = UI.de.pages;
-const m = UI.de.misc;
+const { pages: t, misc: m } = Astro.locals.t;
 const metadata = { title: t.privacy };
 ---
 

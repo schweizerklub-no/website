@@ -10,10 +10,12 @@ export interface Props {
 
 const { member, imageSize = 'w-20 h-20', avatarTextSize = 'text-3xl', showEmail = false } = Astro.props;
 const hasDetails = member.body?.trim();
+const slug = member.data.lang === "no" ? member.id.replace("no/", "") : member.id;
+const href = member.data.lang === "no" ? `/no/uber-uns/${slug}/` : `/uber-uns/${slug}/`;
 ---
 
 {hasDetails ? (
-  <a href={`/uber-uns/${member.id}/`} class="block text-center p-6 border-2 border-primary/15 dark:border-primary/30 rounded-lg transition-all bg-white dark:bg-neutral-800 hover:bg-primary/5 dark:hover:bg-primary/10 hover:border-primary/40 dark:hover:border-primary/50">
+  <a href={href} class="block text-center p-6 border-2 border-primary/15 dark:border-primary/30 rounded-lg transition-all bg-white dark:bg-neutral-800 hover:bg-primary/5 dark:hover:bg-primary/10 hover:border-primary/40 dark:hover:border-primary/50">
     {member.data.image ? (
       <img src={member.data.image} alt={member.data.name} class={`${imageSize} rounded-full object-cover mx-auto mb-4`} />
     ) : (
