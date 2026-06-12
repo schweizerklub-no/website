@@ -1,7 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import { PAST_EVENTS_MONTHS } from "~/site-config";
 import { Locale } from "~/config";
+import { PAST_EVENTS_MONTHS } from "~/site-config";
 
 export async function getUpcomingEvents(
   locale: Locale = Locale.De,

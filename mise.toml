@@ -23,7 +23,17 @@ description = "Preview the production build"
 depends = "build"
 run = "pnpm run preview"
 
-[tasks.verify]
-description = "TypeScript check, lint, and build"
+[tasks.fix]
+description = "Fix lint issues and format code"
 depends = "install"
-run = "pnpm astro check && pnpm biome check . && pnpm build"
+run = "pnpm biome check --write --unsafe . && pnpm astro check"
+
+[tasks.test]
+description = "Run unit tests"
+depends = "install"
+run = "pnpm test"
+
+[tasks.verify]
+description = "TypeScript check, lint, test, and build"
+depends = "install"
+run = "pnpm astro check && pnpm biome check . && pnpm test && pnpm build"

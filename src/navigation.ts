@@ -1,7 +1,7 @@
 import { Locale } from "~/config";
 import { UI } from "~/i18n";
-import { getPermalink } from "./utils/permalinks";
 import { localeUrlPrefix } from "~/utils/locale";
+import { getPermalink } from "./utils/permalinks";
 
 export function headerData(locale: Locale = Locale.De) {
   const nav = UI[locale].nav;

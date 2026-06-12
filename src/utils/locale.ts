@@ -1,5 +1,5 @@
-import { getCollection, getEntry, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import { Locale } from "~/config";
 
 export async function getDetailPaths<C extends "events" | "board">(
