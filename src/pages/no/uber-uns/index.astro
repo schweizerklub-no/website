@@ -1,20 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BoardMemberCard from '~/components/BoardMemberCard.astro';
 import PageSection from '~/components/PageSection.astro';
 import CardGrid from '~/components/CardGrid.astro';
 
 const t = Astro.locals.t.pages;
+const entry = (await getEntry("pages", `${Astro.locals.locale}/uber-uns`))!;
+const { Content } = await render(entry);
 const boardMembers = await getCollection("board", ({ data }) => data.lang === Astro.locals.locale);
 
-const metadata = { title: t.uberUns };
+const metadata = { title: entry.data.title };
 ---
 
 <PageLayout metadata={metadata}>
-  <PageSection title={t.uberUns}>
-    <p class="text-muted mb-6">{t.boardIntro1}</p>
-    <p class="text-muted mb-6">{t.boardIntro2}</p>
+  <PageSection title={entry.data.title} prose>
+    <Content />
   </PageSection>
 
   {boardMembers.length > 0 && (

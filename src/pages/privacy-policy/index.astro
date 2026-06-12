@@ -1,25 +1,17 @@
 ---
+import { getEntry, render } from 'astro:content';
 import PageSection from '~/components/PageSection.astro';
 import PageLayout from '~/layouts/PageLayout.astro';
 
-const { pages: t, misc: m } = Astro.locals.t;
-const metadata = { title: t.privacy };
+const { misc: m } = Astro.locals.t;
+const entry = (await getEntry("pages", `${Astro.locals.locale}/privacy-policy`))!;
+const { Content } = await render(entry);
+const metadata = { title: entry.data.title };
 ---
 
 <PageLayout metadata={metadata}>
   <PageSection prose>
-    <h1>{t.privacy}</h1>
-
-    <p>{t.privacyIntro}</p>
-
-    <h2>{t.privacyHeading1}</h2>
-    <p>{t.privacyData}</p>
-
-    <h2>{t.privacyHeading2}</h2>
-    <p>{t.privacyCookies}</p>
-
-    <h2>{t.privacyHeading3}</h2>
-    <p>{t.privacyContact}</p>
+    <Content />
     <p>
       <a href={`mailto:${m.email}`}>{m.email}</a>
     </p>

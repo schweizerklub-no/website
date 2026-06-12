@@ -15,6 +15,15 @@ const events = defineCollection({
   }),
 });
 
+const pages = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "src/content/pages" }),
+  schema: z.object({
+    lang: z.enum(["de", "no"]).default("de"),
+    title: z.string(),
+    description: z.string().optional(),
+  }),
+});
+
 const board = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "src/content/board" }),
   schema: z.object({
@@ -27,4 +36,4 @@ const board = defineCollection({
   }),
 });
 
-export const collections = { events, board };
+export const collections = { events, board, pages };

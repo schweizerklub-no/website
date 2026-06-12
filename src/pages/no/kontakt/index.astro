@@ -1,16 +1,21 @@
 ---
+import { getEntry, render } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import PageSection from '~/components/PageSection.astro';
 
 const { pages: t, misc: m } = Astro.locals.t;
-const metadata = { title: t.kontakt };
+const entry = (await getEntry("pages", `${Astro.locals.locale}/kontakt`))!;
+const { Content } = await render(entry);
+const metadata = { title: entry.data.title };
 ---
 
 <PageLayout metadata={metadata}>
-  <PageSection title={t.kontakt}>
-    <p class="text-muted mb-8">{t.contactIntro}</p>
+  <PageSection title={entry.data.title}>
+    <div class="prose dark:prose-invert max-w-none prose-a:text-primary dark:prose-a:text-primary">
+      <Content />
+    </div>
 
-    <div class="border border-default rounded-lg p-6 mb-8">
+    <div class="border border-default rounded-lg p-6 mb-8 mt-8">
       <h2 class="text-xl font-semibold mb-4">{t.vorstand}</h2>
       <a href={`mailto:${m.email}`} class="text-primary hover:underline font-medium">
         {m.email}
