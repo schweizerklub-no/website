@@ -1,5 +1,5 @@
-import { APP_BLOG, SITE } from "astrowind:config";
 import slugify from "limax";
+import { SITE } from "~/config";
 
 import { trim } from "~/utils/utils";
 
@@ -20,13 +20,11 @@ export const cleanSlug = (text = "") =>
     .map((slug) => slugify(slug))
     .join("/");
 
-export const BLOG_BASE = cleanSlug(APP_BLOG?.list?.pathname);
-export const CATEGORY_BASE = cleanSlug(APP_BLOG?.category?.pathname);
-export const TAG_BASE = cleanSlug(APP_BLOG?.tag?.pathname) || "tag";
+export const BLOG_BASE = "blog";
+export const CATEGORY_BASE = "category";
+export const TAG_BASE = "tag";
 
-export const POST_PERMALINK_PATTERN = trimSlash(
-  APP_BLOG?.post?.permalink || `${BLOG_BASE}/%slug%`,
-);
+export const POST_PERMALINK_PATTERN = trimSlash("blog/%slug%");
 
 /** */
 export const getCanonical = (path = ""): string | URL => {

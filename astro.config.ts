@@ -2,10 +2,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
-import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import type { AstroIntegration } from "astro";
 import { defineConfig } from "astro/config";
 import compress from "astro-compress";
 import icon from "astro-icon";
@@ -13,22 +11,14 @@ import {
   readingTimeRemarkPlugin,
   responsiveTablesRehypePlugin,
 } from "./src/utils/frontmatter";
-import astrowind from "./vendor/integration";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const hasExternalScripts = false;
-const whenExternalScripts = (
-  items: (() => AstroIntegration) | (() => AstroIntegration)[] = [],
-) =>
-  hasExternalScripts
-    ? Array.isArray(items)
-      ? items.map((item) => item())
-      : [items()]
-    : [];
-
 export default defineConfig({
   output: "static",
+  site: "https://www.schweizerklub.no",
+  base: "/",
+  trailingSlash: "always",
 
   integrations: [
     sitemap(),
@@ -38,12 +28,6 @@ export default defineConfig({
         tabler: ["*"],
       },
     }),
-
-    ...whenExternalScripts(() =>
-      partytown({
-        config: { forward: ["dataLayer.push"] },
-      }),
-    ),
 
     compress({
       CSS: true,
@@ -56,10 +40,6 @@ export default defineConfig({
       JavaScript: true,
       SVG: false,
       Logger: 1,
-    }),
-
-    astrowind({
-      config: "./src/config.yaml",
     }),
   ],
 
