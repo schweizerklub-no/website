@@ -1,10 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
-import PageLayout from '~/layouts/PageLayout.astro';
-import EventCard from '~/components/EventCard.astro';
-import PageSection from '~/components/PageSection.astro';
-import CardGrid from '~/components/CardGrid.astro';
-import { getUpcomingEvents, getPastEvents } from '~/utils/events';
+import PageLayout from "~/layouts/PageLayout.astro";
+import EventCard from "~/components/EventCard.astro";
+import PageSection from "~/components/PageSection.astro";
+import { getUpcomingEvents, getPastEvents } from "~/utils/events";
 
 const t = Astro.locals.t.pages;
 const locale = Astro.locals.locale;
@@ -16,28 +14,32 @@ const metadata = { title: t.anlasseTitle };
 
 <PageLayout metadata={metadata}>
   <PageSection title={t.anlasse}>
-    {upcomingEvents.length > 0 ? (
-      <>
-        <h2 class="text-2xl font-semibold mb-4">{t.upcomingEvents}</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {upcomingEvents.map((event) => (
-            <EventCard event={event} showWeekday />
-          ))}
-        </div>
-      </>
-    ) : (
-      <p class="text-muted mb-16">{t.noUpcomingEvents}</p>
-    )}
+    {
+      upcomingEvents.length > 0 ? (
+        <>
+          <h2 class="text-2xl font-semibold mb-4">{t.upcomingEvents}</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {upcomingEvents.map((event) => (
+              <EventCard event={event} showWeekday />
+            ))}
+          </div>
+        </>
+      ) : (
+        <p class="text-muted mb-16">{t.noUpcomingEvents}</p>
+      )
+    }
 
-    {pastEvents.length > 0 && (
-      <>
-        <h2 class="text-2xl font-semibold mb-4">{t.pastEvents}</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {pastEvents.map((event) => (
-            <EventCard event={event} past showWeekday />
-          ))}
-        </div>
-      </>
-    )}
+    {
+      pastEvents.length > 0 && (
+        <>
+          <h2 class="text-2xl font-semibold mb-4">{t.pastEvents}</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {pastEvents.map((event) => (
+              <EventCard event={event} past showWeekday />
+            ))}
+          </div>
+        </>
+      )
+    }
   </PageSection>
 </PageLayout>

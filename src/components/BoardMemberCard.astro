@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { contentHref } from '~/utils/locale';
 
 export interface Props {
   member: CollectionEntry<'board'>;
@@ -10,8 +11,7 @@ export interface Props {
 
 const { member, imageSize = 'w-20 h-20', avatarTextSize = 'text-3xl', showEmail = false } = Astro.props;
 const hasDetails = member.body?.trim();
-const slug = member.data.lang === "no" ? member.id.replace("no/", "") : member.id;
-const href = member.data.lang === "no" ? `/no/uber-uns/${slug}/` : `/uber-uns/${slug}/`;
+const href = contentHref(member, "uber-uns");
 ---
 
 {hasDetails ? (

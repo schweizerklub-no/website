@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { contentHref, dateLocale } from '~/utils/locale';
 
 export interface Props {
   event: CollectionEntry<'events'>;
@@ -9,9 +10,8 @@ export interface Props {
 
 const { event, past = false, showWeekday = false } = Astro.props;
 const hasDetails = event.body?.trim();
-const slug = event.data.lang === "no" ? event.id.replace("no/", "") : event.id;
-const href = event.data.lang === "no" ? `/no/anlasse/${slug}/` : `/anlasse/${slug}/`;
-const localeDate = event.data.date.toLocaleDateString('de-DE', {
+const href = contentHref(event, "anlasse");
+const localeDate = event.data.date.toLocaleDateString(dateLocale[event.data.lang], {
   weekday: showWeekday ? 'long' : undefined,
   day: 'numeric',
   month: 'long',

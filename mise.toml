@@ -22,3 +22,8 @@ run = "pnpm run build"
 description = "Preview the production build"
 depends = "build"
 run = "pnpm run preview"
+
+[tasks.verify]
+description = "TypeScript check, lint, and build"
+depends = "install"
+run = "pnpm astro check && pnpm biome check . && pnpm build"

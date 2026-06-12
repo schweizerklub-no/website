@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BackLink from '~/components/BackLink.astro';
+import { dateLocale } from '~/utils/locale';
 
 export async function getStaticPaths() {
   const events = await getCollection("events", ({ data }) => data.lang === "de");
@@ -29,7 +30,7 @@ const t = Astro.locals.t.pages;
       )}
 
       <time class="text-sm text-muted" datetime={entry.data.date.toISOString()}>
-        {entry.data.date.toLocaleDateString('de-DE', {
+        {entry.data.date.toLocaleDateString(dateLocale[entry.data.lang], {
           weekday: 'long',
           day: 'numeric',
           month: 'long',
