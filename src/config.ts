@@ -12,6 +12,8 @@ export const Locale = {
 
 export type Locale = (typeof Locale)[keyof typeof Locale];
 
+export const LOCALE_VALUES = Object.values(Locale);
+
 export interface I18NConfig {
   defaultLocale: Locale;
   locales: Locale[];

@@ -7,6 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import compress from "astro-compress";
 import icon from "astro-icon";
+import { LOCALE_VALUES, Locale } from "./src/config";
 import {
   readingTimeRemarkPlugin,
   responsiveTablesRehypePlugin,
@@ -21,8 +22,8 @@ export default defineConfig({
   trailingSlash: "always",
 
   i18n: {
-    defaultLocale: "de",
-    locales: ["de", "no"],
+    defaultLocale: Locale.De,
+    locales: LOCALE_VALUES,
     routing: {
       prefixDefaultLocale: false,
     },
