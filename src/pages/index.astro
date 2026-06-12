@@ -1,56 +1,64 @@
 ---
-import { getCollection } from 'astro:content';
-import PageLayout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import EventCard from '~/components/EventCard.astro';
-import BoardMemberCard from '~/components/BoardMemberCard.astro';
-import CardGrid from '~/components/CardGrid.astro';
-import { getUpcomingEvents } from '~/utils/events';
+import { getCollection } from "astro:content";
+import PageLayout from "~/layouts/PageLayout.astro";
+import HeroText from "~/components/widgets/HeroText.astro";
+import EventCard from "~/components/EventCard.astro";
+import BoardMemberCard from "~/components/BoardMemberCard.astro";
+import CardGrid from "~/components/CardGrid.astro";
+import { getUpcomingEvents } from "~/utils/events";
 
 const upcomingEvents = await getUpcomingEvents(3);
-const boardMembers = await getCollection('board');
+const boardMembers = await getCollection("board");
 
 const metadata = {
-  title: 'Schweizer Klub Norwegen Oslo',
+  title: "Schweizer Klub Norwegen Oslo",
 };
 ---
 
 <PageLayout metadata={metadata}>
   <HeroText
     title="Herzlich willkommen"
-    subtitle="Der Schweizer Klub Norwegen Oslo verbindet in Norwegen lebende SchweizerInnen und Personen mit einer speziellen Verbindung zur Schweiz."
     tagline="Schweizer Klub Norwegen Oslo"
     callToAction={{
-      text: 'Mitglied werden',
-      href: '/beitritt/',
+      text: "Mitglied werden",
+      href: "/beitritt/",
     }}
     callToAction2={{
-      text: 'Nächste Anlässe',
-      href: '/anlasse/',
+      text: "Nächste Anlässe",
+      href: "/anlasse/",
     }}
   />
 
-  {upcomingEvents.length > 0 && (
-    <CardGrid title="Nächste Anlässe" wide>
-      {upcomingEvents.map((event) => (
-        <EventCard event={event} />
-      ))}
-    </CardGrid>
-  )}
+  {
+    upcomingEvents.length > 0 && (
+      <CardGrid title="Nächste Anlässe" wide>
+        {upcomingEvents.map((event) => (
+          <EventCard event={event} />
+        ))}
+      </CardGrid>
+    )
+  }
 
-  {boardMembers.length > 0 && (
-    <CardGrid title="Der Vorstand" wide bgPage>
-      {boardMembers.map((member) => (
-        <BoardMemberCard member={member} imageSize="w-24 h-24" avatarTextSize="text-2xl" />
-      ))}
-    </CardGrid>
-  )}
+  {
+    boardMembers.length > 0 && (
+      <CardGrid title="Der Vorstand" wide bgPage>
+        {boardMembers.map((member) => (
+          <BoardMemberCard
+            member={member}
+            imageSize="w-24 h-24"
+            avatarTextSize="text-2xl"
+          />
+        ))}
+      </CardGrid>
+    )
+  }
 
   <section class="py-16 px-4">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-4">Mitglied werden</h2>
       <p class="text-muted mb-6">
-        Werden Sie Teil des Schweizer Klub Norwegen Oslo. Wir freuen uns auf Sie!
+        Werden Sie Teil des Schweizer Klub Norwegen Oslo. Wir freuen uns auf
+        Sie!
       </p>
       <a
         href="/beitritt/"
