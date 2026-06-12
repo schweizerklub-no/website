@@ -1,9 +1,10 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { PAST_EVENTS_MONTHS } from "~/site-config";
+import { Locale } from "~/config";
 
 export async function getUpcomingEvents(
-  locale: string = "de",
+  locale: Locale = Locale.De,
   limit?: number,
 ): Promise<CollectionEntry<"events">[]> {
   const events = await getCollection(
@@ -17,7 +18,7 @@ export async function getUpcomingEvents(
 }
 
 export async function getPastEvents(
-  locale: string = "de",
+  locale: Locale = Locale.De,
 ): Promise<CollectionEntry<"events">[]> {
   const events = await getCollection(
     "events",

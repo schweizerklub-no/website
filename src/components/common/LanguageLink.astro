@@ -1,0 +1,19 @@
+---
+export interface Props {
+  href: string;
+  label: string;
+  lang: string;
+}
+
+const { href, label, lang: hreflang } = Astro.props;
+---
+
+<a
+  {href}
+  class="block text-xs font-semibold uppercase tracking-widest text-muted hover:text-primary dark:hover:text-primary bg-page border border-primary/15 dark:border-primary/30 rounded px-2 py-1.5 whitespace-nowrap transition-colors duration-150 hover:bg-primary/5"
+  aria-label={label}
+  rel="alternate"
+  {hreflang}
+>
+  {label}
+</a>

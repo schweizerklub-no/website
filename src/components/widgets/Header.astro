@@ -6,10 +6,10 @@ import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
 import LanguageSwitcher from '~/components/common/LanguageSwitcher.astro';
 
-import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
-import type { Locale } from '~/config';
+import { Locale } from '~/config';
+import { localeUrlPrefix } from '~/utils/locale';
 
 interface Link {
   text?: string;
@@ -49,7 +49,7 @@ const {
 } = Astro.props;
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
-const homeHref = locale === 'no' ? '/no/' : getHomePermalink();
+const homeHref = `${localeUrlPrefix[locale]}/`;
 ---
 
 <header

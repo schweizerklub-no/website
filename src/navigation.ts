@@ -1,10 +1,11 @@
-import type { Locale } from "~/i18n";
+import { Locale } from "~/config";
 import { UI } from "~/i18n";
 import { getPermalink } from "./utils/permalinks";
+import { localeUrlPrefix } from "~/utils/locale";
 
-export function headerData(locale: Locale = "de") {
+export function headerData(locale: Locale = Locale.De) {
   const nav = UI[locale].nav;
-  const prefix = locale === "de" ? "" : "/no";
+  const prefix = localeUrlPrefix[locale];
   return {
     links: [
       { text: nav.anlasse, href: getPermalink(`${prefix}/anlasse`) },
@@ -21,9 +22,9 @@ export function headerData(locale: Locale = "de") {
   };
 }
 
-export function footerData(locale: Locale = "de") {
+export function footerData(locale: Locale = Locale.De) {
   const t = UI[locale].footer;
-  const prefix = locale === "de" ? "" : "/no";
+  const prefix = localeUrlPrefix[locale];
   return {
     links: [
       {

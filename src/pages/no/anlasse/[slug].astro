@@ -1,17 +1,12 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BackLink from '~/components/BackLink.astro';
-import { dateLocale } from '~/utils/locale';
+import { Locale } from '~/config';
+import { dateLocale, getDetailPaths } from '~/utils/locale';
 
 export async function getStaticPaths() {
-  const events = await getCollection("events", ({ data }) => data.lang === "no");
-  return events
-    .filter((e) => e.body?.trim())
-    .map((event) => ({
-      params: { slug: event.id.replace("no/", "") },
-      props: { entry: event },
-    }));
+  return getDetailPaths("events", Locale.No);
 }
 
 const { entry } = Astro.props;

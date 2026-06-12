@@ -1,9 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { SITE } from '~/config';
-import { getHomePermalink } from '~/utils/permalinks';
+import { localeUrlPrefix } from '~/utils/locale';
 import { UI } from '~/i18n';
-import type { Locale } from '~/config';
+import { Locale } from '~/config';
 
 interface Link {
   text?: string;
@@ -28,7 +28,7 @@ export interface Props {
 
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light', locale } = Astro.props;
 const t = UI[locale].footer;
-const homeHref = locale === 'no' ? '/no/' : getHomePermalink();
+const homeHref = `${localeUrlPrefix[locale]}/`;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'not-prose border-t border-primary/15 dark:border-primary/30']}>

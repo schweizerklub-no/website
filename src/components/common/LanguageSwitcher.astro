@@ -1,6 +1,8 @@
 ---
 import { UI } from "~/i18n";
+import { localeUrlPrefix } from "~/utils/locale";
 import type { Locale } from "~/config";
+import LanguageLink from "~/components/common/LanguageLink.astro";
 
 export interface Props {
   locale: Locale;
@@ -9,10 +11,14 @@ export interface Props {
 
 const { locale, pathname } = Astro.props;
 
-const otherLocale: Locale = locale === "de" ? "no" : "de";
+const basePath = pathname.replace(localeUrlPrefix[locale], "") || "/";
 
-const basePath = locale === "no" ? pathname.replace(/^\/no(?:\/|$)/, "/") : pathname;
-const otherPath = (otherLocale === "no" ? `/no${basePath}` : basePath).replace(/\/?$/, "/");
+const links = (Object.keys(localeUrlPrefix) as Locale[])
+  .filter((l) => l !== locale)
+  .map((l) => {
+    const href = `${localeUrlPrefix[l]}${basePath}`.replace(/\/?$/, "/");
+    return { href, label: UI[l].label, lang: l };
+  });
 ---
 
 <div class="relative group">
@@ -23,14 +29,6 @@ const otherPath = (otherLocale === "no" ? `/no${basePath}` : basePath).replace(/
     </svg>
   </span>
   <div class="absolute right-0 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150 z-50">
-    <a
-      href={otherPath}
-      class="block text-xs font-semibold uppercase tracking-widest text-muted hover:text-primary dark:hover:text-primary bg-page border border-primary/15 dark:border-primary/30 rounded px-2 py-1.5 whitespace-nowrap transition-colors duration-150 hover:bg-primary/5"
-      aria-label={otherLocale === "de" ? "Auf Deutsch" : "Switch to Norwegian"}
-      rel="alternate"
-      hreflang={otherLocale}
-    >
-      {UI[otherLocale].label}
-    </a>
+    {links.map((link) => <LanguageLink {...link} />)}
   </div>
 </div>

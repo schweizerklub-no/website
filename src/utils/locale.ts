@@ -1,5 +1,27 @@
-import { getEntry, render } from "astro:content";
-import type { Locale } from "~/config";
+import { getCollection, getEntry, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { Locale } from "~/config";
+
+export async function getDetailPaths<C extends "events" | "board">(
+  collectionName: C,
+  locale: Locale,
+): Promise<
+  {
+    params: { slug: string };
+    props: { entry: CollectionEntry<C> };
+  }[]
+> {
+  const items = await getCollection(
+    collectionName,
+    ({ data }) => data.lang === locale,
+  );
+  return items
+    .filter((e) => e.body?.trim())
+    .map((entry) => ({
+      params: { slug: stripLocalePrefix(entry.id, entry.data.lang) },
+      props: { entry: entry as CollectionEntry<C> },
+    }));
+}
 
 export async function getPage(locale: Locale, slug: string) {
   const entry = await getEntry("pages", `${locale}/${slug}`);
@@ -45,5 +67,5 @@ export function detectLocale(pathname: string): Locale {
       return locale;
     }
   }
-  return "de";
+  return Locale.De;
 }

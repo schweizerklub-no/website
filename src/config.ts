@@ -5,7 +5,12 @@ export interface SiteConfig {
   trailingSlash?: boolean;
 }
 
-export type Locale = "de" | "no";
+export const Locale = {
+  De: "de",
+  No: "no",
+} as const;
+
+export type Locale = (typeof Locale)[keyof typeof Locale];
 
 export interface I18NConfig {
   defaultLocale: Locale;
@@ -41,8 +46,8 @@ export const SITE: SiteConfig = {
 };
 
 export const I18N: I18NConfig = {
-  defaultLocale: "de",
-  locales: ["de", "no"],
+  defaultLocale: Locale.De,
+  locales: [Locale.De, Locale.No],
   textDirection: "ltr",
 };
 
