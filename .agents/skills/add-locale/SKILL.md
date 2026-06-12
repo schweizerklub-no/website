@@ -70,19 +70,7 @@ import { fr } from "./fr";
 export const UI = { de, no, fr } as const;
 ```
 
-## 5. Configure Astro i18n
-
-In `astro.config.ts`, add the locale to the i18n config:
-
-```ts
-i18n: {
-  defaultLocale: "de",
-  locales: ["de", "no", "fr"],
-  routing: { prefixDefaultLocale: false },
-},
-```
-
-## 6. Create content directories
+## 5. Create content directories
 
 ```
 src/content/events/fr/
@@ -92,6 +80,6 @@ src/content/pages/fr/
 
 Add at least one sample file per collection with `lang: "fr"` in frontmatter.
 
-## 7. Verify
+## 6. Verify
 
 Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and update the i18n parity test if needed.
