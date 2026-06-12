@@ -1,30 +1,29 @@
 ---
 import '~/assets/styles/tailwind.css';
 
-import { I18N } from '~/config';
-
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
 import CustomStyles from '~/components/CustomStyles.astro';
 import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import type { Locale } from '~/config';
+import type { MetaData as MetaDataType } from '~/types';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
 
-import type { MetaData as MetaDataType } from '~/types';
-
 export interface Props {
   metadata?: MetaDataType;
+  lang?: Locale;
 }
 
-const { metadata = {} } = Astro.props;
-const { language, textDirection } = I18N;
+const { metadata = {}, lang = 'de' } = Astro.props;
+const textDirection = 'ltr';
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={lang} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <CommonMeta />
     <Favicons />

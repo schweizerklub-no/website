@@ -17,20 +17,20 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const metadata = { title: entry.data.title };
-const t = UI.de.pages;
+const t = UI.no.pages;
 ---
 
 <PageLayout metadata={metadata}>
   <article class="py-16 px-4">
     <div class="max-w-3xl mx-auto">
-      <BackLink href="/anlasse/" label={t.backToEvents} />
+      <BackLink href="/no/anlasse/" label={t.backToEvents} />
 
       {entry.data.image && (
         <img src={entry.data.image} alt={entry.data.title} class="w-full rounded-lg mb-8 max-h-96 object-cover" />
       )}
 
       <time class="text-sm text-muted" datetime={entry.data.date.toISOString()}>
-        {entry.data.date.toLocaleDateString('de-DE', {
+        {entry.data.date.toLocaleDateString('nb-NO', {
           weekday: 'long',
           day: 'numeric',
           month: 'long',

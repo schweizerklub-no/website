@@ -5,8 +5,11 @@ export interface SiteConfig {
   trailingSlash?: boolean;
 }
 
+export type Locale = "de" | "no";
+
 export interface I18NConfig {
-  language: string;
+  defaultLocale: Locale;
+  locales: Locale[];
   textDirection: string;
 }
 
@@ -38,7 +41,8 @@ export const SITE: SiteConfig = {
 };
 
 export const I18N: I18NConfig = {
-  language: "de",
+  defaultLocale: "de",
+  locales: ["de", "no"],
   textDirection: "ltr",
 };
 

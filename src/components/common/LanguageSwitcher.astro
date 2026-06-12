@@ -1,0 +1,28 @@
+---
+import { UI } from "~/i18n";
+import type { Locale } from "~/config";
+
+export interface Props {
+  locale: Locale;
+  pathname: string;
+}
+
+const { locale, pathname } = Astro.props;
+
+const otherLocale: Locale = locale === "de" ? "no" : "de";
+
+// Strip /no prefix from path to get base path, then add /no for Norwegian
+const basePath = locale === "no" ? pathname.replace(/^\/no(?:\/|$)/, "/") : pathname;
+const otherPath = otherLocale === "no" ? `/no${basePath}` : basePath;
+const cleanOther = otherPath || "/";
+---
+
+<a
+  href={cleanOther}
+  class="text-xs font-semibold uppercase tracking-widest text-muted hover:text-primary dark:hover:text-primary transition-colors duration-150 px-2 py-1 rounded hover:bg-primary/5"
+  aria-label={otherLocale === "de" ? "Auf Deutsch" : "Switch to Norwegian"}
+  rel="alternate"
+  hreflang={otherLocale}
+>
+  {UI[otherLocale].label}
+</a>

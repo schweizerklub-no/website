@@ -2,6 +2,8 @@
 import { Icon } from 'astro-icon/components';
 import { SITE } from '~/config';
 import { getHomePermalink } from '~/utils/permalinks';
+import { UI } from '~/i18n';
+import type { Locale } from '~/config';
 
 interface Link {
   text?: string;
@@ -21,9 +23,12 @@ export interface Props {
   socialLinks: Array<Link>;
   footNote?: string;
   theme?: string;
+  locale: Locale;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light', locale } = Astro.props;
+const t = UI[locale].footer;
+const homeHref = locale === 'no' ? '/no/' : getHomePermalink();
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'not-prose border-t border-primary/15 dark:border-primary/30']}>
@@ -31,11 +36,11 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <div class="grid grid-cols-12 gap-6 py-8 md:py-10">
       <div class="col-span-12 lg:col-span-4">
-        <a class="inline-block font-bold text-lg text-primary" href={getHomePermalink()}>
+        <a class="inline-block font-bold text-lg text-primary" href={homeHref}>
           {SITE?.name}
         </a>
         <p class="text-sm text-muted mt-1 max-w-xs">
-          Schweizer Kultur, Gemeinschaft und Austausch in der Hauptstadt Norwegens.
+          {t.tagline}
         </p>
         <div class="flex gap-3 mt-4">
           {socialLinks.map(({ ariaLabel, href, icon }) => (

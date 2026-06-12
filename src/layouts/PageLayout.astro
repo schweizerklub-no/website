@@ -5,7 +5,8 @@ import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
 
 import { headerData, footerData } from '~/navigation';
-
+import { UI } from '~/i18n';
+import type { Locale } from '~/config';
 import type { MetaData } from '~/types';
 
 export interface Props {
@@ -13,19 +14,25 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const locale: Locale = pathname.startsWith('/no/') ? 'no' : 'de';
+const header = headerData(locale);
+const footer = footerData(locale);
+const ui = UI[locale];
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} lang={locale}>
   <slot name="announcement">
     <Announcement />
   </slot>
   <slot name="header">
-    <Header {...headerData} isSticky showToggleTheme />
+    <Header {...header} locale={locale} links={header.links} showToggleTheme />
   </slot>
   <main>
     <slot />
   </main>
   <slot name="footer">
-    <Footer {...footerData} />
+    <Footer {...footer} locale={locale} />
   </slot>
 </Layout>

@@ -20,6 +20,14 @@ export default defineConfig({
   base: "/",
   trailingSlash: "always",
 
+  i18n: {
+    defaultLocale: "de",
+    locales: ["de", "no"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   integrations: [
     sitemap(),
     mdx(),
