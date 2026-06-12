@@ -1,18 +1,4 @@
 ---
-import PageSection from '~/components/PageSection.astro';
-import PageLayout from '~/layouts/PageLayout.astro';
-import { getPage } from '~/utils/locale';
-
-const { misc: m } = Astro.locals.t;
-const { entry, Content } = await getPage(Astro.locals.locale, "privacy-policy");
-const metadata = { title: entry.data.title };
+import ProsePage from '~/components/pages/ProsePage.astro';
 ---
-
-<PageLayout metadata={metadata}>
-  <PageSection prose>
-    <Content />
-    <p>
-      <a href={`mailto:${m.email}`}>{m.email}</a>
-    </p>
-  </PageSection>
-</PageLayout>
+<ProsePage slug="privacy-policy" showEmail />

@@ -43,9 +43,9 @@ If the page should appear in the nav, add it in `src/navigation.ts`:
 
 Also add the `yourKey` to both `nav` sections in `src/i18n/{de,no}.ts`.
 
-## 4. Create Astro template (mixed pages only)
+## 4. Create shared component (mixed pages only)
 
-Create `src/pages/{locale}/{slug}/index.astro`:
+Create `src/components/pages/{YourPage}.astro`:
 
 ```astro
 ---
@@ -65,9 +65,30 @@ const metadata = { title: entry.data.title };
 </PageLayout>
 ```
 
-For prose-only pages, the existing `/asr-und-aso/` or `/interessegruppen/` templates can be copied (they import `getPage`, render `Content`, no extra sections).
+Then create two thin wrapper files:
 
-Prose-only pages don't need a locale-specific template if the content is purely markdown-driven — the existing template at `src/pages/{slug}/index.astro` handles both cases via `getPage(Astro.locals.locale, "{slug}")`.
+`src/pages/{slug}/index.astro`:
+```astro
+---
+import YourPage from '~/components/pages/YourPage.astro';
+---
+<YourPage />
+```
+
+`src/pages/no/{slug}/index.astro`:
+```astro
+---
+import YourPage from '~/components/pages/YourPage.astro';
+---
+<YourPage />
+```
+
+### Prose-only pages
+
+If the page is pure Markdown (no structured sections), use the existing `ProsePage` component — no new template needed:
+
+`src/pages/{slug}/index.astro` → `<ProsePage slug="{slug}" />`
+`src/pages/no/{slug}/index.astro` → `<ProsePage slug="{slug}" />`
 
 ## 5. Verify
 

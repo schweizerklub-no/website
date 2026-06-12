@@ -1,9 +1,8 @@
 ---
 import { render } from 'astro:content';
-import PageLayout from '~/layouts/PageLayout.astro';
-import BackLink from '~/components/BackLink.astro';
+import EventDetail from '~/components/pages/EventDetail.astro';
 import { Locale } from '~/config';
-import { dateLocale, getDetailPaths } from '~/utils/locale';
+import { getDetailPaths } from '~/utils/locale';
 
 export async function getStaticPaths() {
   return getDetailPaths("events", Locale.De);
@@ -11,36 +10,5 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const metadata = { title: entry.data.title };
-const t = Astro.locals.t.pages;
 ---
-
-<PageLayout metadata={metadata}>
-  <article class="py-16 px-4">
-    <div class="max-w-3xl mx-auto">
-      <BackLink href="/anlasse/" label={t.backToEvents} />
-
-      {entry.data.image && (
-        <img src={entry.data.image} alt={entry.data.title} class="w-full rounded-lg mb-8 max-h-96 object-cover" />
-      )}
-
-      <time class="text-sm text-muted" datetime={entry.data.date.toISOString()}>
-        {entry.data.date.toLocaleDateString(dateLocale[entry.data.lang], {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        })}
-      </time>
-
-      <h1 class="text-4xl font-bold mt-2 mb-4">{entry.data.title}</h1>
-
-      {entry.data.description && <p class="text-xl text-muted mb-6">{entry.data.description}</p>}
-      {entry.data.location && <p class="text-sm text-muted mb-6">📍 {entry.data.location}</p>}
-
-      <div class="prose dark:prose-invert max-w-none prose-a:text-primary dark:prose-a:text-primary">
-        <Content />
-      </div>
-    </div>
-  </article>
-</PageLayout>
+<EventDetail {entry} {Content} />

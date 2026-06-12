@@ -1,14 +1,4 @@
 ---
-import PageLayout from '~/layouts/PageLayout.astro';
-import PageSection from '~/components/PageSection.astro';
-import { getPage } from '~/utils/locale';
-
-const { entry, Content } = await getPage(Astro.locals.locale, "asr-und-aso");
-const metadata = { title: entry.data.title };
+import ProsePage from '~/components/pages/ProsePage.astro';
 ---
-
-<PageLayout metadata={metadata}>
-  <PageSection title={entry.data.title} prose>
-    <Content />
-  </PageSection>
-</PageLayout>
+<ProsePage slug="asr-und-aso" />

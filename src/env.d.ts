@@ -9,7 +9,7 @@ type UIType = typeof import("~/i18n").UI[keyof typeof import("~/i18n").UI];
 
 declare namespace App {
   interface Locals {
-    locale: "de" | "no";
+    locale: import("~/config").Locale;
     t: UIType;
   }
 }
