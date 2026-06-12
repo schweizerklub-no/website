@@ -17,6 +17,10 @@ mise tasks
 
 lists all available tasks.
 
+### AI-assisted development
+
+This repo includes agent instructions (`AGENTS.md`) and checklists for common workflows (`.agents/skills/`). These are tooling for AI coding assistants — not relevant for manual development.
+
 ## Credits
 
 Based on [AstroWind](https://github.com/arthelokyo/astrowind), MIT License. Copyright (c) 2024 Arthelokyo.
