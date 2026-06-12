@@ -1,17 +1,22 @@
 # Schweizer Klub Norwegen Oslo
 
 [![CI](https://github.com/schweizerklub-no/website/actions/workflows/ci.yaml/badge.svg)](https://github.com/schweizerklub-no/website/actions/workflows/ci.yaml)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Built with Astro](https://img.shields.io/badge/built%20with-Astro-ff5a03.svg)](https://astro.build)
+[![Astro](https://img.shields.io/badge/Astro-ff5a03.svg)](https://astro.build)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06b6d4.svg)](https://tailwindcss.com)
+[![Biome](https://img.shields.io/badge/Biome-60a5fa.svg)](https://biomejs.dev)
 
-Website for [schweizerklub.no](https://www.schweizerklub.no).
+Website repo for [schweizerklub.no](https://www.schweizerklub.no).
 
-Built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+## Development
 
-Based on [AstroWind](https://github.com/arthelokyo/astrowind), MIT License. Copyright (c) 2024 Arthelokyo.
-
-## Tasks
+This repo uses [mise](https://mise.jdx.dev) for tools and task management.
 
 ```sh
 mise tasks
 ```
+
+lists all available tasks.
+
+## Credits
+
+Based on [AstroWind](https://github.com/arthelokyo/astrowind), MIT License. Copyright (c) 2024 Arthelokyo.
