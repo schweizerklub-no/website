@@ -142,9 +142,9 @@ const homeHref = `${localeUrlPrefix[locale]}/`;
       ]}
     >
       <div class="items-center flex justify-between w-full md:w-auto">
-        <div class="flex">
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
+        <div class="flex gap-2">
           <LanguageSwitcher locale={locale} pathname={currentPath} />
+          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
           {
             showRssFeed && (
               <a
