@@ -110,6 +110,17 @@
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
 }
 
+.prose a {
+  transition: background-color 0.15s ease-in-out;
+  border-radius: 0.125rem;
+}
+.prose a:hover {
+  background-color: rgb(213 31 39 / 8%);
+}
+.dark .prose a:hover {
+  background-color: rgb(239 68 68 / 15%);
+}
+
 .dd *:first-child {
   margin-top: 0;
 }

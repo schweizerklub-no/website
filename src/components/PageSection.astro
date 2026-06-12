@@ -8,7 +8,7 @@ const { title, prose = false } = Astro.props;
 ---
 
 <section class="py-16 px-4">
-  <div class:list={['max-w-3xl mx-auto', prose && 'prose dark:prose-invert']}>
+  <div class:list={['max-w-3xl mx-auto', prose && 'prose dark:prose-invert prose-a:text-primary dark:prose-a:text-primary']}>
     {title && <h1 class="text-4xl font-bold mb-8">{title}</h1>}
     <slot />
   </div>
