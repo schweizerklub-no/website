@@ -1,4 +1,12 @@
+import { getEntry, render } from "astro:content";
 import type { Locale } from "~/config";
+
+export async function getPage(locale: Locale, slug: string) {
+  const entry = await getEntry("pages", `${locale}/${slug}`);
+  if (!entry) throw new Error(`Page content not found: ${locale}/${slug}`);
+  const { Content } = await render(entry);
+  return { entry, Content };
+}
 
 export const dateLocale: Record<Locale, string> = {
   de: "de-DE",

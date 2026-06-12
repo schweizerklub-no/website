@@ -1,11 +1,10 @@
 ---
-import { getEntry, render } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import PageSection from '~/components/PageSection.astro';
+import { getPage } from '~/utils/locale';
 
 const { pages: t, misc: m } = Astro.locals.t;
-const entry = (await getEntry("pages", `${Astro.locals.locale}/beitritt`))!;
-const { Content } = await render(entry);
+const { entry, Content } = await getPage(Astro.locals.locale, "beitritt");
 const metadata = { title: entry.data.title };
 ---
 
