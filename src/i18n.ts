@@ -5,6 +5,7 @@ export const UI = {
     lang: "de" as Locale,
     label: "Deutsch",
     home: {
+      metaTitle: "Schweizer Klub Norwegen Oslo",
       title: "Herzlich willkommen",
       tagline: "Schweizer Klub Norwegen Oslo",
       cta1: "Mitglied werden",
@@ -96,6 +97,7 @@ export const UI = {
     lang: "no" as Locale,
     label: "Norsk",
     home: {
+      metaTitle: "Sveitsisk Klubb Norge Oslo",
       title: "Velkommen",
       tagline: "Sveitsisk Klubb Norge Oslo",
       cta1: "Bli medlem",
