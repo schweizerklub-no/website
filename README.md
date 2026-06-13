@@ -21,6 +21,10 @@ lists all available tasks.
 
 This repo includes agent instructions (`AGENTS.md`) and checklists for common workflows (`.agents/skills/`). These are tooling for AI coding assistants — not relevant for manual development.
 
+## Architecture
+
+See [ADR-0001](docs/adrs/0001-migrate-from-webflow-to-astro.md) for the decision to migrate from Webflow to Astro.
+
 ## Credits
 
 Based on [AstroWind](https://github.com/arthelokyo/astrowind), MIT License. Copyright (c) 2024 Arthelokyo.
