@@ -25,6 +25,10 @@ This repo includes agent instructions (`AGENTS.md`) and checklists for common wo
 
 See [ADR-0001](docs/adrs/0001-migrate-from-webflow-to-astro.md) for the decision to migrate from Webflow to Astro.
 
+## License
+
+[MIT](LICENSE) — schweizerklub-no
+
 ## Credits
 
 Based on [AstroWind](https://github.com/arthelokyo/astrowind), MIT License. Copyright (c) 2024 Arthelokyo.
