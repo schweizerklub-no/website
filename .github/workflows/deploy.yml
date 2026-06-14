@@ -42,11 +42,11 @@ jobs:
 
       - name: Run semantic-release
         run: |
-          npm install --no-audit --no-fund --no-save semantic-release \
+          npm install --global --no-audit --no-fund semantic-release \
             @semantic-release/commit-analyzer \
             @semantic-release/release-notes-generator \
             @semantic-release/github
-          npx semantic-release
+          semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
