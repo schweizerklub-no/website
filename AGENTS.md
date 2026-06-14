@@ -47,7 +47,7 @@ All action steps MUST use SHA-pinned versions (no semver tags). Use `step-securi
 
 ### Deployment & Versioning
 
-See [`docs/deployment.md`](docs/deployment.md) for the full picture.
+See [`docs/development/deployment.md`](docs/development/deployment.md) for the full picture.
 
 - Push to `main` triggers the **Tag, Build & Deploy** workflow: semantic-release → build (`PUBLIC_APP_VERSION`) → deploy to Cloudflare Pages
 - Version bumps follow conventional commits: `fix:` → patch, `feat:` → minor, `BREAKING` → major
