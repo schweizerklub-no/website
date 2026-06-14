@@ -5,13 +5,18 @@ import EventCard from "~/components/EventCard.astro";
 import BoardMemberCard from "~/components/BoardMemberCard.astro";
 import CardGrid from "~/components/CardGrid.astro";
 import PageLayout from "~/layouts/PageLayout.astro";
+import Button from "~/components/ui/Button.astro";
+import { EventConfig } from "~/site-config";
 import { getUpcomingEvents } from "~/utils/events";
 import { localeUrlPrefix } from "~/utils/locale";
 
 const t = Astro.locals.t;
 const locale = Astro.locals.locale;
-const upcomingEvents = await getUpcomingEvents(locale, 3);
-const boardMembers = await getCollection("board", ({ data }) => data.lang === locale);
+const upcomingEvents = await getUpcomingEvents(locale, EventConfig.HOMEPAGE_EVENTS_MAX + 1);
+const boardMembers = await getCollection(
+  "board",
+  ({ data }) => data.lang === locale,
+);
 
 const metadata = {
   title: t.home.metaTitle,
@@ -36,9 +41,18 @@ const metadata = {
   {
     upcomingEvents.length > 0 && (
       <CardGrid title={t.home.events} wide>
-        {upcomingEvents.map((event) => (
+        {upcomingEvents.slice(0, EventConfig.HOMEPAGE_EVENTS_MAX).map((event) => (
           <EventCard event={event} />
         ))}
+        {upcomingEvents.length > EventConfig.HOMEPAGE_EVENTS_MAX && (
+          <div class="col-span-full flex justify-center mt-8">
+            <Button
+              variant="secondary"
+              text={t.pages.backToEvents}
+              href={`${localeUrlPrefix[locale]}/anlasse/`}
+            />
+          </div>
+        )}
       </CardGrid>
     )
   }

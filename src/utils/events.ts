@@ -1,7 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { Locale } from "~/config";
-import { PAST_EVENTS_MONTHS } from "~/site-config";
+import { EventConfig } from "~/site-config";
 
 export async function getUpcomingEvents(
   locale: Locale = Locale.De,
@@ -25,7 +25,7 @@ export async function getPastEvents(
     ({ data }) => data.lang === locale,
   );
   const cutoffDate = new Date();
-  cutoffDate.setMonth(cutoffDate.getMonth() - PAST_EVENTS_MONTHS);
+  cutoffDate.setMonth(cutoffDate.getMonth() - EventConfig.PAST_EVENTS_MONTHS);
   return events
     .filter(
       (e) =>
