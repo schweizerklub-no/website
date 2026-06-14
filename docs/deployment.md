@@ -4,10 +4,11 @@
 
 The repo has two workflows:
 
-| Workflow     | Triggers                            | What it does                                          |
-| ------------ | ----------------------------------- | ----------------------------------------------------- |
-| `ci.yaml`    | pull requests, push to `main`       | Quality checks: `astro check`, `biome check`, `test`  |
-| `deploy.yml` | push to `main`, `workflow_dispatch` | Semantic-release → build → deploy to Cloudflare Pages |
+| Workflow         | Triggers                            | What it does                                          |
+| ---------------- | ----------------------------------- | ----------------------------------------------------- |
+| `ci.yaml`        | pull requests, push to `main`       | Quality checks: `astro check`, `biome check`, `test`  |
+| `auto-merge.yml` | `pull_request_target`               | Auto-merges Dependabot PRs (minor+patch only)         |
+| `deploy.yml`     | push to `main`, `workflow_dispatch` | Semantic-release → build → deploy to Cloudflare Pages |
 
 ## Deploy workflow
 
@@ -30,6 +31,12 @@ Version bumps are determined by commit message prefixes:
 | `chore:`, `docs:`, `refactor:`, `test:` | **no release**        | `chore(deps): bump astro to 6.4.0`       |
 
 Dependency updates from Dependabot use `chore(deps):` — they deploy without creating a new version or GitHub Release.
+
+## Dependabot auto-merge
+
+Dependabot PRs are auto-approved and auto-merged (squash) when CI passes, but only for **minor and patch** updates. Major version bumps skip the auto-merge workflow and require manual review.
+
+The workflow (`auto-merge.yml`) uses `pull_request_target` with a `dependabot/fetch-metadata` step to determine the update type.
 
 ## Version in the UI
 
