@@ -29,6 +29,7 @@ export interface Props {
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light', locale } = Astro.props;
 const t = UI[locale].footer;
 const homeHref = `${localeUrlPrefix[locale]}/`;
+const version = import.meta.env.PUBLIC_APP_VERSION || '0.0.0-dev';
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'not-prose border-t border-primary/15 dark:border-primary/30']}>
@@ -82,13 +83,23 @@ const homeHref = `${localeUrlPrefix[locale]}/`;
     </div>
 
     <div class="flex flex-col sm:flex-row items-center justify-between py-4 border-t border-primary/15 dark:border-primary/30 gap-2">
-      <div class="text-xs text-muted">
+      <div class="text-xs text-muted flex flex-wrap items-center gap-x-2">
         {secondaryLinks.map(({ text, href }, i) => (
-          <>
-            {i > 0 && <span class="mx-2">·</span>}
+          <span>
+            {i > 0 && <span class="mx-1">·</span>}
             <a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href={href}>{text}</a>
-          </>
+          </span>
         ))}
+        <a
+          class="text-muted hover:text-primary dark:hover:text-primary transition-colors duration-150 inline-flex items-center"
+          href="https://github.com/schweizerklub-no/website"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <Icon name="tabler:brand-github" class="w-3.5 h-3.5" />
+        </a>
+        <span class="text-muted/60">{version}</span>
       </div>
       <div class="text-xs text-muted" set:html={footNote} />
     </div>

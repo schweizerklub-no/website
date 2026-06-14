@@ -11,6 +11,8 @@ Website repo for [schweizerklub.no](https://www.schweizerklub.no).
 
 This repo uses [mise](https://mise.jdx.dev) for tools and task management.
 
+See [Deployment & Versioning](docs/deployment.md) for how CI/CD and version bumps work.
+
 ```sh
 mise tasks
 ```

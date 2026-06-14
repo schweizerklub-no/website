@@ -28,6 +28,8 @@ Every utility function MUST have a Vitest test file (`*.test.ts`) co-located in 
 
 Use **pnpm** only. Never npm, never yarn.
 
+pnpm version is auto-detected from the `packageManager` field in `package.json` — no need to specify it in CI. Node version is always read from `.nvmrc`.
+
 ### Linting and formatting
 
 Use **Biome** (not ESLint, not Prettier). Biome is configured in `biome.json`.
@@ -42,6 +44,17 @@ Use **Biome** (not ESLint, not Prettier). Biome is configured in `biome.json`.
 ### GitHub Actions
 
 All action steps MUST use SHA-pinned versions (no semver tags). Use `step-security/harden-runner` where possible.
+
+### Deployment & Versioning
+
+See [`docs/deployment.md`](docs/deployment.md) for the full picture.
+
+- Push to `main` triggers the **Tag, Build & Deploy** workflow: semantic-release → build (`PUBLIC_APP_VERSION`) → deploy to Cloudflare Pages
+- Version bumps follow conventional commits: `fix:` → patch, `feat:` → minor, `BREAKING` → major
+- `chore:`, `docs:`, `refactor:`, `test:` — **no version bump** (no GitHub Release created, but deploy still runs)
+- Dependabot auto-merges with `chore(deps:)` → deploys without a version bump
+- The version appears in the footer as `import.meta.env.PUBLIC_APP_VERSION` (falls back to `0.0.0-dev` locally)
+- Manual deploy: use `workflow_dispatch` on the **Tag, Build & Deploy** action
 
 ## Project Conventions
 
