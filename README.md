@@ -9,9 +9,11 @@ Website repo for [schweizerklub.no](https://www.schweizerklub.no).
 
 ## Development
 
+See [Getting Started](docs/development/getting-started.md) to set up your dev environment.
+
 This repo uses [mise](https://mise.jdx.dev) for tools and task management.
 
-See [Deployment & Versioning](docs/deployment.md) for how CI/CD and version bumps work.
+See [Deployment & Versioning](docs/development/deployment.md) for how CI/CD and version bumps work.
 
 ```sh
 mise tasks
