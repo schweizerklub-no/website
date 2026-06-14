@@ -4,6 +4,7 @@ import { SITE } from '~/config';
 import { localeUrlPrefix } from '~/utils/locale';
 import { UI } from '~/i18n';
 import { Locale } from '~/config';
+import VersionLink from '~/components/ui/VersionLink.astro';
 
 interface Link {
   text?: string;
@@ -29,7 +30,7 @@ export interface Props {
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light', locale } = Astro.props;
 const t = UI[locale].footer;
 const homeHref = `${localeUrlPrefix[locale]}/`;
-const version = import.meta.env.PUBLIC_APP_VERSION || '0.0.0-dev';
+
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'not-prose border-t border-primary/15 dark:border-primary/30']}>
@@ -99,7 +100,7 @@ const version = import.meta.env.PUBLIC_APP_VERSION || '0.0.0-dev';
         >
           <Icon name="tabler:brand-github" class="w-3.5 h-3.5" />
         </a>
-        <span class="text-muted/60">{version}</span>
+        <VersionLink />
       </div>
       <div class="text-xs text-muted" set:html={footNote} />
     </div>
