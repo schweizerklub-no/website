@@ -52,7 +52,7 @@ See [`docs/deployment.md`](docs/deployment.md) for the full picture.
 - Push to `main` triggers the **Tag, Build & Deploy** workflow: semantic-release → build (`PUBLIC_APP_VERSION`) → deploy to Cloudflare Pages
 - Version bumps follow conventional commits: `fix:` → patch, `feat:` → minor, `BREAKING` → major
 - `chore:`, `docs:`, `refactor:`, `test:` — **no version bump** (no GitHub Release created, but deploy still runs)
-- Dependabot auto-merges with `chore(deps:)` → deploys without a version bump
+- Dependabot PRs are auto-merged via `auto-merge.yml` (minor+patch only) — `chore(deps:)` deploys without a version bump
 - The version appears in the footer as `import.meta.env.PUBLIC_APP_VERSION` (falls back to `0.0.0-dev` locally)
 - Manual deploy: use `workflow_dispatch` on the **Tag, Build & Deploy** action
 
