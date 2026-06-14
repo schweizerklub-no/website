@@ -2,13 +2,15 @@
 
 ## CI/CD Pipeline
 
-The repo has two workflows:
+The repo has these workflows:
 
-| Workflow         | Triggers                            | What it does                                          |
-| ---------------- | ----------------------------------- | ----------------------------------------------------- |
-| `ci.yaml`        | pull requests, push to `main`       | Quality checks: `astro check`, `biome check`, `test`  |
-| `auto-merge.yml` | `pull_request_target`               | Auto-merges Dependabot PRs (minor+patch only)         |
-| `deploy.yml`     | push to `main`, `workflow_dispatch` | Semantic-release → build → deploy to Cloudflare Pages |
+| Workflow            | Triggers                            | What it does                                                             |
+| ------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
+| `ci.yaml`           | pull requests, push to `main`       | Quality checks: `astro check`, `biome check`, `test`                     |
+| `auto-merge.yml`    | `pull_request_target`               | Auto-merges Dependabot PRs (minor+patch only)                            |
+| `deploy.yml`        | push to `main`, `workflow_dispatch` | Semantic-release → build → deploy to Cloudflare Pages                    |
+| `daily-rebuild.yml` | `schedule` (00:00 UTC)              | Redeploys with current version, no new release                           |
+| `build-deploy.yml`  | `workflow_call` (reusable)          | Shared build + deploy steps used by `deploy.yml` and `daily-rebuild.yml` |
 
 ## Deploy workflow
 
@@ -16,8 +18,10 @@ On every push to `main` (or manual trigger via `workflow_dispatch`):
 
 1. **semantic-release** analyzes commits since the last tag
 2. **Version** is determined from conventional commits
-3. **Build** runs with `PUBLIC_APP_VERSION` set to the derived version
+3. **Build** runs via `build-deploy.yml` with `PUBLIC_APP_VERSION` set to the derived version
 4. **Deploy** pushes the `dist/` directory to Cloudflare Pages (`schweizerklub-no` project)
+
+The `build-deploy.yml` reusable workflow contains the shared build + deploy logic used by both `deploy.yml` and `daily-rebuild.yml`.
 
 ## Conventional commits
 
@@ -59,3 +63,9 @@ Trigger a deploy without pushing code:
 3. Select `main` branch
 
 semantic-release will skip creating a new tag if no new commits exist, but the build and deploy still run.
+
+## Daily rebuild
+
+The `daily-rebuild.yml` workflow runs every night at 00:00 UTC (01:00–02:00 CET/CEST in Norway). It derives the current version from git tags and calls `build-deploy.yml` to rebuild and redeploy without running semantic-release.
+
+This ensures event future/past categorization stays accurate — `new Date()` is re-evaluated each morning, so expired events move to "past" within ~12 hours of ending.
