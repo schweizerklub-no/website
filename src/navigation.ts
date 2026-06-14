@@ -39,8 +39,8 @@ export function footerData(locale: Locale = Locale.De) {
             href: "https://www.swisscommunity.org/de/",
           },
           {
-            text: "Wahlen & Abstimmungen",
-            href: "https://www.bk.admin.ch/aktuell/abstimmung/index.html?lang=de",
+            text: "Abstimmungen & Wahlen",
+            href: "https://www.ch.ch/de/abstimmungen-und-wahlen/abstimmungen/abstimmungs-und-wahlkalender/",
           },
           { text: "swissinfo.ch", href: "https://www.swissinfo.ch/ger" },
         ],
