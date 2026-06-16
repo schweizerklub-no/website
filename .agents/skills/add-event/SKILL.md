@@ -17,7 +17,7 @@ lang: "de"
 title: "Event Title"
 date: 2026-12-25
 visibilityEnd: 2026-12-26
-image: "/images/events/your-image.jpg"
+image: "~/assets/images/events/your-image.jpg"
 description: "A short description shown on the event card."
 location: "Oslo"
 ---
@@ -33,7 +33,7 @@ Markdown body for the event detail page.
 | `title` | yes | Event name |
 | `date` | yes | ISO date `YYYY-MM-DD` |
 | `visibilityEnd` | no | After this date, event is hidden from listings |
-| `image` | no | Path relative to `public/` |
+| `image` | no | Path using `~/assets/images/...` alias |
 | `description` | no | Shown on card and detail page header |
 | `location` | no | Displayed on detail page |
 
@@ -49,7 +49,7 @@ If the event should also appear on the Norwegian site, create a parallel file at
 
 ## 4. Image (optional)
 
-Place images in `public/images/events/`. Reference them as `/images/events/your-image.jpg`.
+Place images in `src/assets/images/events/`. Reference them as `~/assets/images/events/your-image.jpg`.
 
 ## 5. Verify
 
