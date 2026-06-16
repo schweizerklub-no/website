@@ -25,3 +25,8 @@ Bist du SchweizerIn und lebst in Norwegen? Hast du Lust, ab und zu ein Stückche
 - September: Pilztour
 - Oktober: Herbstfest (mit Fondue)
 - Dezember: Samichlous
+
+## So wirst du Mitglied
+
+1. Beitrag via Bank oder Vipps überweisen (siehe unten)
+2. Mitgliederformular ausfüllen
