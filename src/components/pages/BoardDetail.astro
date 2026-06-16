@@ -14,7 +14,6 @@ export interface Props {
       role: string;
       image?: string | ImageMetadata;
       email?: string;
-      bio?: string;
       lang: Locale;
     };
   };
@@ -32,7 +31,7 @@ const t = Astro.locals.t.pages;
     <div class="max-w-3xl mx-auto">
       <BackLink href={`${localeUrlPrefix[entry.data.lang]}/uber-uns/`} label={t.backToBoard} />
 
-      <div class="flex flex-col md:flex-row gap-8 items-start">
+      <div class="flex flex-col md:flex-row gap-8 items-start mb-10">
         {image ? (
           <Image src={image as ImageMetadata} alt={entry.data.name} class="w-48 h-48 rounded-full object-cover shrink-0" />
         ) : (
@@ -51,8 +50,6 @@ const t = Astro.locals.t.pages;
           )}
         </div>
       </div>
-
-      {entry.data.bio && <p class="text-muted mt-8 mb-6">{entry.data.bio}</p>}
 
       <div class="prose dark:prose-invert max-w-none prose-a:text-primary dark:prose-a:text-primary">
         <Content />

@@ -2,8 +2,8 @@
 lang: de
 name: Jan Müller
 role: Präsident
+order: 1
 image: ~/assets/images/board/mueller-jan.jpeg
-bio: "Präsident des Schweizer Klub Norwegen Oslo"
 email: jan.mueller@schweizerklub.no
 ---
 
