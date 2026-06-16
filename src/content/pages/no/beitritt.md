@@ -25,3 +25,8 @@ Er du sveitser og bor i Norge? Har du lyst til å oppleve et stykke Sveits innim
 - September: Sopptur
 - Oktober: Høstfest (med fondue)
 - Desember: Samichlous
+
+## Slik blir du medlem
+
+1. Betal via bank eller Vipps (se nedover)
+2. Fyll ut medlemsskjema
