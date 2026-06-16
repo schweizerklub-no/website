@@ -45,6 +45,15 @@ Use **Biome** (not ESLint, not Prettier). Biome is configured in `biome.json`.
 
 All action steps MUST use SHA-pinned versions (no semver tags). Use `step-security/harden-runner` where possible.
 
+#### Workflows
+
+- `ci.yaml` — fast quality checks (`astro check`, `biome check`, `test`, `build`), required status check
+- `codeql.yml` — CodeQL security analysis (`javascript-typescript` + `actions`), runs separately from CI so it doesn't block the feedback loop
+- `auto-merge.yml` — auto-merges Dependabot minor+patch PRs
+- `deploy.yml` — semantic-release + deploy to Cloudflare Pages (push to `main`)
+- `daily-rebuild.yml` — scheduled redeploy to refresh event categories
+- `build-deploy.yml` — reusable shared build+deploy steps
+
 ### Deployment & Versioning
 
 See [`docs/development/deployment.md`](docs/development/deployment.md) for the full picture.
