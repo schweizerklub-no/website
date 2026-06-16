@@ -82,6 +82,12 @@ export const METADATA: MetaDataConfig = {
   },
 };
 
+export const BANK_ACCOUNT = {
+  name: "Schweizer Klub Norge Oslo",
+  number: "0530.28.57050",
+  message: "Medlemskap [Name]",
+} as const;
+
 export const UI: UIConfig = {
   theme: "system",
 };
