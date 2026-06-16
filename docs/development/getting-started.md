@@ -126,6 +126,7 @@ Open a [GitHub issue](https://github.com/schweizerklub-no/website/issues/new) an
 
 ## What's next?
 
+- [Content Editor Guide](../content-editor-guide.md) — edit content via GitHub web UI (no dev setup required)
 - [Deployment & Versioning](deployment.md) — how CI/CD, version bumps, and deploys work
 - `.agents/skills/add-event/SKILL.md` — adding a new event
 - `.agents/skills/add-page/SKILL.md` — adding a new page
