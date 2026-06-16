@@ -3,15 +3,23 @@ lang: de
 title: Datenschutzerklärung
 ---
 
-Der Schweizer Klub Norwegen Oslo nimmt den Schutz Ihrer persönlichen Daten ernst. Wir erheben, verarbeiten und nutzen personenbezogene Daten nur im Rahmen der gesetzlichen Bestimmungen.
+Verantwortlicher für die Datenverarbeitung ist der Schweizer Klub Norwegen Oslo.
 
-## Erhebung und Verarbeitung
+## Datenerhebung
 
-Diese Website dient ausschliesslich Informationszwecken. Es werden keine personenbezogenen Daten erhoben, sofern Sie nicht aktiv Kontakt mit uns aufnehmen (z. B. per E-Mail).
+Diese Website dient rein informativen Zwecken. Es werden keine personenbezogenen Daten erhoben. Es kommen keine Analyse- oder Tracking-Dienste zum Einsatz.
 
 ## Cookies
 
-Diese Website verwendet keine Cookies von Drittanbietern. Ein technisch notwendiger Cookie kann für die Speicherung der Theme-Einstellung (Hell/Dunkel) gesetzt werden.
+Es werden keine Drittanbieter-Cookies verwendet. Ein lokaler Speichereintrag kann für die Theme-Einstellung (Hell/Dunkel) gesetzt werden.
+
+## Externe Dienste
+
+Für Mitgliederverwaltung und Anmeldungen nutzen wir externe Dienste. Deren Datenschutzbestimmungen gelten gesondert.
+
+## Ihre Rechte
+
+Sie haben die gesetzlichen Rechte auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten.
 
 ## Kontakt
 
