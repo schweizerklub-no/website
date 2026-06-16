@@ -3,7 +3,6 @@ lang: de
 name: André Wittwer
 role: Kassier
 image: ~/assets/images/board/wittwer-andre.jpg
-bio: "Kassier des Schweizer Klub Norwegen Oslo"
 email: andre@schweizerklub.no
 ---
 

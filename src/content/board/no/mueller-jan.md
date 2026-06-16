@@ -3,7 +3,6 @@ lang: no
 name: Jan Müller
 role: President
 image: ~/assets/images/board/mueller-jan.jpeg
-bio: "President for Sveitsisk Klubb Norge Oslo"
 email: jan.mueller@schweizerklub.no
 ---
 

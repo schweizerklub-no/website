@@ -3,7 +3,6 @@ lang: no
 name: Marina Hauser
 role: Sekretær
 image: ~/assets/images/board/hauser-marina.jpg
-bio: "Sekretær for Sveitsisk Klubb Norge Oslo"
 ---
 
 Jeg heter Marina Hauser og er 33 år gammel. Jeg vokste opp i Zürcher Oberland, men tok bachelorgraden min i USA og masterstudiene mine i København og Trondheim. 

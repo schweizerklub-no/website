@@ -31,7 +31,6 @@ const board = defineCollection({
     name: z.string(),
     role: z.string(),
     image: z.string().optional(),
-    bio: z.string().optional(),
     email: z.string().optional(),
   }),
 });

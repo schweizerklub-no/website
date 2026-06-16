@@ -3,7 +3,6 @@ lang: no
 name: André Wittwer
 role: Kasser
 image: ~/assets/images/board/wittwer-andre.jpg
-bio: "Kasser for Sveitsisk Klubb Norge Oslo"
 email: andre@schweizerklub.no
 ---
 Jeg vokste opp i den vakre byen Thun. Etter læretiden som kontormedarbeider fullførte jeg, ved siden av jobb, både studiekompetanse (BMS) og en bachelorgrad med fordypning i **Computer Perception Virtual Reality**.

@@ -3,7 +3,6 @@ lang: de
 name: Marina Hauser
 role: Sekretärin
 image: ~/assets/images/board/hauser-marina.jpg
-bio: "Sekretärin des Schweizer Klub Norwegen Oslo"
 ---
 
 Ich heisse Marina Hauser und bin 33 Jahre alt. Ich bin im Zürcher Oberland aufgewachsen, habe dann aber meinen Bachelor in den USA gemacht und war für meinen Master in Kopenhagen und in Trondheim. 
