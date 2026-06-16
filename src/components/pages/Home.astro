@@ -9,13 +9,13 @@ import Button from "~/components/ui/Button.astro";
 import { EventConfig } from "~/site-config";
 import { getUpcomingEvents } from "~/utils/events";
 import { localeUrlPrefix } from "~/utils/locale";
+import { sortBoardMembers } from "~/utils/board";
 
 const t = Astro.locals.t;
 const locale = Astro.locals.locale;
 const upcomingEvents = await getUpcomingEvents(locale, EventConfig.HOMEPAGE_EVENTS_MAX + 1);
-const boardMembers = await getCollection(
-  "board",
-  ({ data }) => data.lang === locale,
+const boardMembers = sortBoardMembers(
+  await getCollection("board", ({ data }) => data.lang === locale),
 );
 
 const metadata = {

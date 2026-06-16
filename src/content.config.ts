@@ -30,8 +30,8 @@ const board = defineCollection({
     lang: z.enum(["de", "no"]).default("de"),
     name: z.string(),
     role: z.string(),
+    order: z.number().optional(),
     image: z.string().optional(),
-    bio: z.string().optional(),
     email: z.string().optional(),
   }),
 });

@@ -29,7 +29,6 @@ const image = member.data.image ? await findImage(member.data.image) : undefined
     )}
     <h3 class="text-lg font-semibold">{member.data.name}</h3>
     <p class="text-sm text-muted">{member.data.role}</p>
-    {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
     {showEmail && member.data.email && <span class="text-xs text-primary mt-2 block">{member.data.email}</span>}
   </a>
 ) : (
@@ -43,7 +42,6 @@ const image = member.data.image ? await findImage(member.data.image) : undefined
     )}
     <h3 class="text-lg font-semibold">{member.data.name}</h3>
     <p class="text-sm text-muted">{member.data.role}</p>
-    {member.data.bio && <p class="text-xs text-muted mt-2">{member.data.bio}</p>}
     {showEmail && member.data.email && (
       <a href={`mailto:${member.data.email}`} class="text-xs text-primary hover:underline mt-2 block">{member.data.email}</a>
     )}
