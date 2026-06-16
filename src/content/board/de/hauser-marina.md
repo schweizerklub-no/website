@@ -2,6 +2,7 @@
 lang: de
 name: Marina Hauser
 role: Sekretärin
+order: 3
 image: ~/assets/images/board/hauser-marina.jpg
 ---
 

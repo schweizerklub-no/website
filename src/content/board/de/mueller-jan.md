@@ -2,6 +2,7 @@
 lang: de
 name: Jan Müller
 role: Präsident
+order: 1
 image: ~/assets/images/board/mueller-jan.jpeg
 email: jan.mueller@schweizerklub.no
 ---

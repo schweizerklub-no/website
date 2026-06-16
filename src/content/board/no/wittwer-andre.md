@@ -2,6 +2,7 @@
 lang: no
 name: André Wittwer
 role: Kasser
+order: 4
 image: ~/assets/images/board/wittwer-andre.jpg
 email: andre@schweizerklub.no
 ---
