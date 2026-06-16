@@ -68,7 +68,7 @@ export const METADATA: MetaDataConfig = {
     site_name: "Schweizer Klub Norwegen Oslo",
     images: [
       {
-        url: "/images/default.png",
+        url: "~/assets/images/default.png",
         width: 1200,
         height: 628,
       },

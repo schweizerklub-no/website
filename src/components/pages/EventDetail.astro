@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BackLink from '~/components/BackLink.astro';
 import type { Locale } from '~/config';
+import { findImage } from '~/utils/images';
 import { dateLocale, localeUrlPrefix } from '~/utils/locale';
 
 export interface Props {
@@ -9,7 +12,7 @@ export interface Props {
     data: {
       title: string;
       date: Date;
-      image?: string;
+      image?: string | ImageMetadata;
       description?: string;
       location?: string;
       lang: Locale;
@@ -19,6 +22,7 @@ export interface Props {
 }
 
 const { entry, Content } = Astro.props;
+const image = entry.data.image ? await findImage(entry.data.image) : undefined;
 const metadata = { title: entry.data.title };
 const t = Astro.locals.t.pages;
 ---
@@ -28,8 +32,8 @@ const t = Astro.locals.t.pages;
     <div class="max-w-3xl mx-auto">
       <BackLink href={`${localeUrlPrefix[entry.data.lang]}/anlasse/`} label={t.backToEvents} />
 
-      {entry.data.image && (
-        <img src={entry.data.image} alt={entry.data.title} class="w-full rounded-lg mb-8 max-h-96 object-cover" />
+      {image && (
+        <Image src={image as ImageMetadata} alt={entry.data.title} class="w-full rounded-lg mb-8 max-h-96 object-cover" />
       )}
 
       <time class="text-sm text-muted" datetime={entry.data.date.toISOString()}>

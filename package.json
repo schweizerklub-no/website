@@ -29,8 +29,7 @@
     "astro-icon": "^1.1.5",
     "astro-seo": "^1.1.0",
     "limax": "4.2.3",
-    "lodash.merge": "^4.6.2",
-    "unpic": "^4.2.2"
+    "lodash.merge": "^4.6.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
