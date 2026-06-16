@@ -7,6 +7,10 @@
 
 Website repo for [schweizerklub.no](https://www.schweizerklub.no).
 
+## For content editors
+
+No technical skills needed — see the [Content Editor Guide](docs/content-editor-guide.md) to edit pages, events, and board members using the GitHub web interface.
+
 ## Development
 
 See [Getting Started](docs/development/getting-started.md) to set up your dev environment.
