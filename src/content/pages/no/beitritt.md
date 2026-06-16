@@ -1,8 +1,27 @@
 ---
 lang: no
-title: Medlemskap
+title: Bli medlem nå!
 ---
 
 Sveitsisk Klubb Norge Oslo er et møtested for alle som har en tilknytning til Sveits. Vi ser frem til nye medlemmer.
 
-Interessert? Ta kontakt på e-post:
+## Hvorfor bli medlem?
+
+Er du sveitser og bor i Norge? Har du lyst til å oppleve et stykke Sveits innimellom og feire tradisjoner med likesinnede? Eller er du nordmann med en sterk tilknytning til Sveits? Da er Sveitsisk Klubb noe for deg!
+
+**Dine fordeler som medlem av Sveitsisk Klubb:**
+
+- Du blir en del av et større sveitsisk nettverk i Osloregionen.
+- Du får muligheten til å engasjere deg i ulike grupper og delta på arrangementer.
+- Du blir informert om aktuelle kulturelle begivenheter, ofte i samarbeid med den sveitsiske ambassaden.
+- Har du interesse for å delta på den årlige utenlandssveitserkongressen i Sveits? Eller ønsker barna / barnebarna dine å delta på en ungdomsleir organisert av utenlandssveitserorganisasjonen? Da kan du søke om økonomisk støtte annethvert år.
+- Med medlemskontingenten din bidrar du også til å finansiere den norske delegasjonen i utenlandssveitserrådet (eget parlament for utenlandssveitsere som ivaretar utenlandssveitsernes interesser).
+
+**Her er en liten oversikt over årlige arrangementer:**
+
+- Mars: Årsmøte og stamtreff
+- Mai: Piknik i den sveitsiske ambassaden
+- August: Bundesfeier (nasjonaldagsfeiring)
+- September: Sopptur
+- Oktober: Høstfest (med fondue)
+- Desember: Samichlous

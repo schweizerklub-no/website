@@ -2,35 +2,60 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import PageSection from '~/components/PageSection.astro';
 import { getPage } from '~/utils/locale';
+import { BANK_ACCOUNT } from '~/config';
 
-const { pages: t, misc: m } = Astro.locals.t;
+const { pages: t } = Astro.locals.t;
 const { entry, Content } = await getPage(Astro.locals.locale, "beitritt");
 const metadata = { title: entry.data.title };
 ---
 
 <PageLayout metadata={metadata}>
   <PageSection title={entry.data.title}>
-    <div class="prose dark:prose-invert max-w-none prose-a:text-primary dark:prose-a:text-primary">
+    <div class="prose dark:prose-invert max-w-none prose-a:text-primary dark:prose-a:text-primary mb-12">
       <Content />
     </div>
 
-    <h2 class="text-2xl font-semibold mb-4 mt-10">{t.memberFee}</h2>
-    <div class="grid md:grid-cols-2 gap-6 mb-8">
-      <div class="border border-default rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold mb-2">{t.singleMember}</h3>
-        <p class="text-3xl font-bold text-primary mb-2">200 NOK</p>
-        <p class="text-sm text-muted">{t.perYear}</p>
-      </div>
-      <div class="border border-default rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold mb-2">{t.familyMember}</h3>
-        <p class="text-3xl font-bold text-primary mb-2">400 NOK</p>
-        <p class="text-sm text-muted">{t.perYear}</p>
+    <h2 class="text-2xl font-semibold mb-4">{t.howToSignUp}</h2>
+    <div class="space-y-2 text-muted mb-12">
+      <p>{t.step1}</p>
+      <p>{t.step2}</p>
+    </div>
+
+    <h3 class="text-lg font-semibold mb-3">{t.bankTransfer}</h3>
+    <div class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-5 mb-8">
+      <div class="space-y-1.5">
+        <p class="text-sm">
+          <span class="font-semibold">{t.accountName}</span> {BANK_ACCOUNT.name}
+        </p>
+        <p class="text-sm">
+          <span class="font-semibold">{t.accountNumber}</span> {BANK_ACCOUNT.number}
+        </p>
+        <p class="text-sm">
+          <span class="font-semibold">{t.accountMessage}</span> {BANK_ACCOUNT.message}
+        </p>
       </div>
     </div>
 
-    <h2 class="text-2xl font-semibold mb-4">{t.signup}</h2>
-    <a href={`mailto:${m.email}`} class="text-primary hover:underline font-medium">
-      {m.email}
-    </a>
+    <h3 class="text-lg font-semibold mb-3">Vipps Bezahlung</h3>
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      <div class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-6 text-center">
+        <h3 class="text-lg font-semibold mb-2">{t.singleMember}</h3>
+        <p class="text-3xl font-bold text-primary mb-4">200 NOK</p>
+        <img
+          src="/images/membership/qr-code-102059-membership-single.png"
+          alt="Vipps 200 NOK"
+          class="w-40 h-40 mx-auto"
+        />
+      </div>
+      <div class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-6 text-center">
+        <h3 class="text-lg font-semibold mb-2">{t.familyMember}</h3>
+        <p class="text-3xl font-bold text-primary mb-4">400 NOK</p>
+        <img
+          src="/images/membership/qr-code-102059-membership-family.png"
+          alt="Vipps 400 NOK"
+          class="w-40 h-40 mx-auto"
+        />
+      </div>
+    </div>
   </PageSection>
 </PageLayout>
