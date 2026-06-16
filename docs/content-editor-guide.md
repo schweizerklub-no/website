@@ -64,7 +64,7 @@ lang: de
 title: Winterfest
 date: 2026-11-15
 visibilityEnd: 2026-11-16
-image: /images/events/your-image.jpg
+image: ~/assets/images/events/your-image.jpg
 description: Location, address
 ---
 
@@ -76,12 +76,12 @@ Your event description here.
    - `title` — the event name (shows on the event card)
    - `date` — the event date in `YYYY-MM-DD` format
    - `visibilityEnd` — the date after which the event moves to "past events" (usually the day after)
-   - `image` — path to an image in the `public/images/events/` folder (optional)
+    - `image` — path to an image in the `src/assets/images/events/` folder (optional)
    - `description` — short info (shows on the event card)
    - Below the `---` line: the full event description (supports **bold**, links, and lists)
 7. Scroll down and commit (as described in section 2)
 
-**Important:** If you want to use an image, ask a developer to add it to the `public/images/events/` folder first. You can also leave out the `image` line entirely.
+**Important:** If you want to use an image, ask a developer to add it to the `src/assets/images/events/` folder first. You can also leave out the `image` line entirely.
 
 ---
 
@@ -101,7 +101,7 @@ Your event description here.
 lang: de
 name: Anna Muster
 role: Kassiererin
-image: /images/board/anna-muster.jpg
+image: ~/assets/images/board/anna-muster.jpg
 bio: "Short role description"
 email: anna.muster@schweizerklub.no
 ---
@@ -114,12 +114,12 @@ board overview page. The full text appears on the member's detail page.
    - `lang` — `de` or `no`
    - `name` — full name
    - `role` — board position (e.g., Präsident, Kassiererin, Sekretär)
-   - `image` — path to a photo in `public/images/board/` (required)
+    - `image` — path to a photo in `src/assets/images/board/` (required)
    - `bio` — a short role description in quotes
    - `email` — contact email address
    - Below the `---` line: the longer biography
 6. Commit the file (as described in section 2)
-7. Ask a developer to add the photo to `public/images/board/`
+7. Ask a developer to add the photo to `src/assets/images/board/`
 
 ---
 
