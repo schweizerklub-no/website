@@ -23,8 +23,8 @@ export const de = {
       "Schweizer Kultur, Gemeinschaft und Austausch in der Hauptstadt Norwegens.",
     links: "Links",
     kontakt: "Kontakt",
-    privacy: "Privacy",
-    copyright: "© All rights reserved — Schweizer Klub Norwegen Oslo",
+    privacy: "Datenschutz",
+    copyright: "© Alle Rechte vorbehalten — Schweizer Klub Norwegen Oslo",
   },
   pages: {
     anlasse: "Anlässe",

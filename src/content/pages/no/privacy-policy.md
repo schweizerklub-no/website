@@ -3,15 +3,23 @@ lang: no
 title: Personvernerklæring
 ---
 
-Sveitsisk Klubb Norge Oslo tar beskyttelsen av dine personopplysninger på alvor. Vi samler inn, behandler og bruker personopplysninger kun innenfor rammen av lovbestemmelsene.
+Sveitsisk Klubb Norge Oslo er ansvarlig for databehandlingen.
 
-## Datainnsamling og behandling
+## Datainnsamling
 
-Denne nettsiden er kun til informasjonsformål. Ingen personopplysninger samles inn med mindre du aktivt tar kontakt med oss (f.eks. via e-post).
+Denne nettsiden er kun til informasjonsformål. Ingen personopplysninger samles inn. Ingen analyse- eller sporingsverktøy benyttes.
 
 ## Informasjonskapsler
 
-Denne nettsiden bruker ingen tredjeparts informasjonskapsler. En teknisk nødvendig informasjonskapsel kan settes for å lagre temainnstillingen (lys/mørk).
+Ingen tredjeparts informasjonskapsler brukes. En lokal lagringspost kan settes for temainnstillingen (lys/mørk).
+
+## Eksterne tjenester
+
+For medlemsadministrasjon og påmeldinger bruker vi eksterne tjenester. Deres personvernbestemmelser gjelder særskilt.
+
+## Dine rettigheter
+
+Du har lovfestet rett til innsyn, retting, sletting og begrensning av behandling av dine data.
 
 ## Kontakt
 
