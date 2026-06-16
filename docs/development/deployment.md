@@ -10,6 +10,7 @@ The repo has these workflows:
 | `auto-merge.yml`    | `pull_request_target`               | Auto-merges Dependabot PRs (minor+patch only)                            |
 | `deploy.yml`        | push to `main`, `workflow_dispatch` | Semantic-release → build → deploy to Cloudflare Pages                    |
 | `daily-rebuild.yml` | `schedule` (00:00 UTC)              | Redeploys with current version, no new release                           |
+| `codeql.yml`        | pull requests, push to `main`       | CodeQL security analysis (`javascript-typescript`, `actions`)            |
 | `build-deploy.yml`  | `workflow_call` (reusable)          | Shared build + deploy steps used by `deploy.yml` and `daily-rebuild.yml` |
 
 ## Deploy workflow
