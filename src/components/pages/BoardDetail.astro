@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BackLink from '~/components/BackLink.astro';
 import type { Locale } from '~/config';
+import { findImage } from '~/utils/images';
 import { localeUrlPrefix } from '~/utils/locale';
 
 export interface Props {
@@ -9,7 +12,7 @@ export interface Props {
     data: {
       name: string;
       role: string;
-      image?: string;
+      image?: string | ImageMetadata;
       email?: string;
       bio?: string;
       lang: Locale;
@@ -19,6 +22,7 @@ export interface Props {
 }
 
 const { entry, Content } = Astro.props;
+const image = entry.data.image ? await findImage(entry.data.image) : undefined;
 const metadata = { title: entry.data.name };
 const t = Astro.locals.t.pages;
 ---
@@ -29,8 +33,8 @@ const t = Astro.locals.t.pages;
       <BackLink href={`${localeUrlPrefix[entry.data.lang]}/uber-uns/`} label={t.backToBoard} />
 
       <div class="flex flex-col md:flex-row gap-8 items-start">
-        {entry.data.image ? (
-          <img src={entry.data.image} alt={entry.data.name} class="w-48 h-48 rounded-full object-cover shrink-0" />
+        {image ? (
+          <Image src={image as ImageMetadata} alt={entry.data.name} class="w-48 h-48 rounded-full object-cover shrink-0" />
         ) : (
           <div class="w-48 h-48 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
             <span class="text-6xl font-bold text-primary">{entry.data.name.charAt(0)}</span>
