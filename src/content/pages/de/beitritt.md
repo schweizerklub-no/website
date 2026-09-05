@@ -16,15 +16,7 @@ Bist du SchweizerIn und lebst in Norwegen? Hast du Lust, ab und zu ein Stückche
 - Du wirst informiert über aktuelle kulturelle Ereignisse, häufig in Zusammenarbeit mit der Schweizer Botschaft.
 - Hast du Interesse, am jährlichen Auslandschweizer-Kongress in der Schweiz teilzunehmen? Oder möchten deine Kinder / Enkelkinder an einem Jugendlager der Auslandschweizer-Organisation teilnehmen? Dann kannst du jedes zweite Jahr finanzielle Unterstützung beantragen.
 - Mit deinem Mitgliederbeitrag hilfst du auch, die norwegische Delegation im Auslandschweizerrat (eigenes Parlament für Auslandschweizer, welches die Interessen der Auslandschweizer vertritt) zu finanzieren.
-
-**Hier ein kleiner Überblick über alljährliche Anlässe:**
-
-- März: GV und Stammtisch
-- Mai: Pick-Nick in der Schweizer Botschaft
-- August: Bundesfeier
-- September: Pilztour
-- Oktober: Herbstfest (mit Fondue)
-- Dezember: Samichlous
+- Du bist bei unseren [Anlässen](/anlasse/) herzlich willkommen – melde dich an und lerne den Klub kennen.
 
 ## So wirst du Mitglied
 
