@@ -5,7 +5,7 @@ import { getPage } from '~/utils/locale';
 import { BANK_ACCOUNT } from '~/config';
 
 const { pages: t } = Astro.locals.t;
-const { entry, Content } = await getPage(Astro.locals.locale, "beitritt");
+const { entry, Content } = await getPage(Astro.locals.locale, "mitgliedschaft");
 const metadata = { title: entry.data.title };
 ---
 

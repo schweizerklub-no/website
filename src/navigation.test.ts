@@ -13,7 +13,7 @@ describe("headerData", () => {
     const data = headerData("de");
     expect(data.links).toHaveLength(6);
     expect(data.links[0].href).toBe("/anlasse/");
-    expect(data.links[1].href).toBe("/beitritt/");
+    expect(data.links[1].href).toBe("/mitgliedschaft/");
     expect(data.links[2].href).toBe("/uber-uns/");
     expect(data.links[3].href).toBe("/interessegruppen/");
     expect(data.links[4].href).toBe("/asr-und-aso/");
@@ -24,7 +24,7 @@ describe("headerData", () => {
   it("returns Norwegian nav links with /no prefix", () => {
     const data = headerData("no");
     expect(data.links[0].href).toBe("/no/anlasse/");
-    expect(data.links[1].href).toBe("/no/beitritt/");
+    expect(data.links[1].href).toBe("/no/mitgliedschaft/");
     expect(data.links[2].href).toBe("/no/uber-uns/");
     expect(data.links[3].href).toBe("/no/interessegruppen/");
     expect(data.links[4].href).toBe("/no/asr-und-aso/");
