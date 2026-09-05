@@ -5,6 +5,7 @@ updates:
     schedule:
       interval: daily
     open-pull-requests-limit: 5
+    rebase-strategy: auto
     labels:
       - dependencies
     cooldown:
@@ -32,6 +33,7 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    rebase-strategy: auto
     labels:
       - dependencies
     cooldown:
