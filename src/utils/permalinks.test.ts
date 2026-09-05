@@ -40,6 +40,18 @@ describe("getPermalink", () => {
     expect(getPermalink("#section")).toBe("#section");
   });
 
+  it("sanitizes javascript: URLs to the home permalink", () => {
+    expect(getPermalink("javascript:alert(1)")).toBe("/");
+  });
+
+  it("sanitizes data: URLs to the home permalink", () => {
+    expect(getPermalink("data:text/html,<script>alert(1)</script>")).toBe("/");
+  });
+
+  it("sanitizes vbscript: URLs to the home permalink", () => {
+    expect(getPermalink("vbscript:msgbox(1)")).toBe("/");
+  });
+
   it("creates permalink for a path", () => {
     expect(getPermalink("anlasse")).toBe("/anlasse/");
   });
