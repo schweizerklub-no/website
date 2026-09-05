@@ -35,7 +35,7 @@
     "@astrojs/check": "^0.9.10",
     "@astrojs/mdx": "^6.0.3",
     "@biomejs/biome": "2.5.11",
-    "@iconify-json/tabler": "^1.2.35",
+    "@iconify-json/tabler": "^1.2.38",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.3.3",
     "@types/lodash.merge": "^4.6.9",
