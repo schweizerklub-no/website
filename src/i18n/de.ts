@@ -29,6 +29,8 @@ export const de = {
   pages: {
     anlasse: "Anlässe",
     anlasseTitle: "Anlässe",
+    aboutTitle: "Über uns",
+    aboutTagline: "Schweizer Gemeinschaft in Norwegens Hauptstadt",
     backToEvents: "Alle Anlässe",
     backToBoard: "Über uns",
     noUpcomingEvents:

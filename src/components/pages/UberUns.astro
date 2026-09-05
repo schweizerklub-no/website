@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
 import BoardMemberCard from '~/components/BoardMemberCard.astro';
 import PageSection from '~/components/PageSection.astro';
 import CardGrid from '~/components/CardGrid.astro';
@@ -17,7 +18,13 @@ const metadata = { title: entry.data.title };
 ---
 
 <PageLayout metadata={metadata}>
-  <PageSection title={entry.data.title} prose>
+  <HeroText
+    title={t.aboutTitle}
+    tagline={t.aboutTagline}
+    backgroundImage="/images/about-hero.jpg"
+  />
+
+  <PageSection prose>
     <Content />
   </PageSection>
 
