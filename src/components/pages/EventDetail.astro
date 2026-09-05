@@ -6,6 +6,7 @@ import BackLink from '~/components/BackLink.astro';
 import type { Locale } from '~/config';
 import { findImage } from '~/utils/images';
 import { dateLocale, localeUrlPrefix } from '~/utils/locale';
+import { pageSegment } from '~/utils/pages';
 
 export interface Props {
   entry: {
@@ -30,7 +31,7 @@ const t = Astro.locals.t.pages;
 <PageLayout metadata={metadata}>
   <article class="py-16 px-4">
     <div class="max-w-3xl mx-auto">
-      <BackLink href={`${localeUrlPrefix[entry.data.lang]}/anlasse/`} label={t.backToEvents} />
+      <BackLink href={`${localeUrlPrefix[entry.data.lang]}/${pageSegment(entry.data.lang, "anlasse")}/`} label={t.backToEvents} />
 
       {image && (
         <Image src={image as ImageMetadata} alt={entry.data.title} class="w-full rounded-lg mb-8 max-h-96 object-cover" />

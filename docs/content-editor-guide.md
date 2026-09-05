@@ -44,6 +44,8 @@ That's it. The website will update automatically within 1–2 minutes.
 | Board member | `src/content/board/de/`  | `src/content/board/no/`  |
 | Page         | `src/content/pages/de/`  | `src/content/pages/no/`  |
 
+Norwegian page files have Norwegian names (e.g. `om-oss.md`, `medlemskap.md`, `personvern.md`), German ones use German names (e.g. `uber-uns.md`, `mitgliedschaft.md`, `privacy-policy.md`).
+
 ---
 
 ## 3. Add a new event
@@ -132,7 +134,7 @@ Pages like "Über uns", "Mitgliedschaft", or "Kontakt" live in the pages folder.
 1. Go to the correct folder:
    - German: `src/content/pages/de/`
    - Norwegian: `src/content/pages/no/`
-2. Click the page you want to edit (e.g., `uber-uns.md`)
+2. Click the page you want to edit (e.g., `uber-uns.md` in German, `om-oss.md` in Norwegian)
 3. Click the **pencil icon** (✏️)
 4. Edit the text below the `---` lines — the content between the `---` markers is metadata and should usually stay as-is
 5. Commit the changes

@@ -37,6 +37,27 @@ export const dateLocale: Record<Locale, string> = {
 };
 ```
 
+## 2b. Give the new locale its own slugs (REQUIRED)
+
+Every locale gets language-specific slugs (German slugs are only the exception for the default `de` locale).
+
+In `src/utils/pages.ts`, add `fr` to the `segment` (URL) and `contentSlug` (content file) maps for **every** page key:
+
+```ts
+export const PAGE_ROUTES: Record<PageKey, PageRoute> = {
+  anlasse: {
+    segment: { de: "anlasse", no: "arrangementer", fr: "evenements" },
+  },
+  uberUns: {
+    segment: { de: "uber-uns", no: "om-oss", fr: "a-propos" },
+    contentSlug: { de: "uber-uns", no: "om-oss", fr: "a-propos" },
+  },
+  // ... mitgliedschaft, interessegruppen, asrUndAso, kontakt, privacyPolicy
+};
+```
+
+`contentHref`, `navigation.ts`, `pageSegment`, `pageSlug`, and `translatePath` all read from this map — no other code needs locale-specific branches.
+
 ## 3. Create i18n file
 
 Create `src/i18n/fr.ts` with **all keys** matching `src/i18n/de.ts`. Example structure:
@@ -85,6 +106,8 @@ src/content/pages/fr/
 
 Add at least one sample file per collection with `lang: "fr"` in frontmatter.
 
+**Page content files** must use the language-specific file names defined in `PAGE_ROUTES` (step 2b), e.g. `src/content/pages/fr/a-propos.md`, NOT the German names.
+
 ## 6. Verify
 
-Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and update the i18n parity test if needed.
+Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and update the i18n parity test if needed. Also extend `src/utils/pages.test.ts` (new segments/slugs) and `src/utils/language-path.test.ts` (path translation to/from the new locale).

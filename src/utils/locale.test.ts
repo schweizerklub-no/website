@@ -84,16 +84,18 @@ describe("contentHref", () => {
 
   it("generates Norwegian event URL", () => {
     const entry = { id: "no/bundesfeier", data: { lang: Locale.No } };
-    expect(contentHref(entry, "anlasse")).toBe("/no/anlasse/bundesfeier/");
+    expect(contentHref(entry, "anlasse")).toBe(
+      "/no/arrangementer/bundesfeier/",
+    );
   });
 
   it("generates German board member URL", () => {
     const entry = { id: "de/jan-mueller", data: { lang: Locale.De } };
-    expect(contentHref(entry, "uber-uns")).toBe("/uber-uns/jan-mueller/");
+    expect(contentHref(entry, "uberUns")).toBe("/uber-uns/jan-mueller/");
   });
 
   it("generates Norwegian board member URL", () => {
     const entry = { id: "no/jan-mueller", data: { lang: Locale.No } };
-    expect(contentHref(entry, "uber-uns")).toBe("/no/uber-uns/jan-mueller/");
+    expect(contentHref(entry, "uberUns")).toBe("/no/om-oss/jan-mueller/");
   });
 });

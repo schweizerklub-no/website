@@ -28,7 +28,9 @@ description: "Optional description"
 Markdown content here.
 ```
 
-For Norwegian, create `src/content/pages/no/{slug}.md` with matching structure.
+For Norwegian, create `src/content/pages/no/{slug}.md` with matching structure, using the **Norwegian content slug** (see `src/utils/pages.ts` — e.g. `om-oss.md`, `medlemskap.md`, `personvern.md`), not the German slug.
+
+Every locale has its own slugs. Add the page to `PAGE_ROUTES` in `src/utils/pages.ts` (segment + contentSlug per locale) so `navigation.ts`, `contentHref`, and `translatePath` stay in sync.
 
 ## 2. Update i18n
 
@@ -43,10 +45,10 @@ If the page should appear in the nav, add it in `src/navigation.ts`:
 
 ```ts
 // In headerData(), add to the links array:
-{ text: nav.yourKey, href: getPermalink(`${prefix}/your-slug`) },
+{ text: nav.yourKey, href: getPermalink(`${prefix}/${pageSegment(locale, "yourKey")}`) },
 ```
 
-Also add the `yourKey` to both `nav` sections in `src/i18n/{de,no}.ts`.
+Also add the `yourKey` to both `nav` sections in `src/i18n/{de,no}.ts` and to the `PAGE_ROUTES` map in `src/utils/pages.ts`.
 
 ## 4. Create shared component (mixed pages only)
 
@@ -57,8 +59,9 @@ Create `src/components/pages/{YourPage}.astro`:
 import PageLayout from '~/layouts/PageLayout.astro';
 import PageSection from '~/components/PageSection.astro';
 import { getPage } from '~/utils/locale';
+import { pageSlug } from '~/utils/pages';
 
-const { entry, Content } = await getPage(Astro.locals.locale, "{slug}");
+const { entry, Content } = await getPage(Astro.locals.locale, pageSlug(Astro.locals.locale, "{pageKey}"));
 const metadata = { title: entry.data.title };
 ---
 
@@ -80,7 +83,7 @@ import YourPage from '~/components/pages/YourPage.astro';
 <YourPage />
 ```
 
-`src/pages/no/{slug}/index.astro`:
+`src/pages/no/{slug}/index.astro` (use the Norwegian URL segment from `PAGE_ROUTES`):
 ```astro
 ---
 import YourPage from '~/components/pages/YourPage.astro';
@@ -90,10 +93,9 @@ import YourPage from '~/components/pages/YourPage.astro';
 
 ### Prose-only pages
 
-If the page is pure Markdown (no structured sections), use the existing `ProsePage` component — no new template needed:
+If the page is pure Markdown (no structured sections), use the existing `ProsePage` component — no new template needed. Pass the **page key**, resolved against the locale internally:
 
-`src/pages/{slug}/index.astro` → `<ProsePage slug="{slug}" />`
-`src/pages/no/{slug}/index.astro` → `<ProsePage slug="{slug}" />`
+`src/pages/{slug}/index.astro` → `<ProsePage page="{pageKey}" />`
 
 ## 5. Verify
 

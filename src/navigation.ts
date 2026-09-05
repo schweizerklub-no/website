@@ -1,6 +1,7 @@
 import { Locale } from "~/config";
 import { UI } from "~/i18n";
 import { localeUrlPrefix } from "~/utils/locale";
+import { pageSegment } from "~/utils/pages";
 import { getPermalink } from "./utils/permalinks";
 
 export function headerData(locale: Locale = Locale.De) {
@@ -8,18 +9,34 @@ export function headerData(locale: Locale = Locale.De) {
   const prefix = localeUrlPrefix[locale];
   return {
     links: [
-      { text: nav.anlasse, href: getPermalink(`${prefix}/anlasse`) },
+      {
+        text: nav.anlasse,
+        href: getPermalink(`${prefix}/${pageSegment(locale, "anlasse")}`),
+      },
       {
         text: nav.mitgliedschaft,
-        href: getPermalink(`${prefix}/mitgliedschaft`),
+        href: getPermalink(
+          `${prefix}/${pageSegment(locale, "mitgliedschaft")}`,
+        ),
       },
-      { text: nav.uberUns, href: getPermalink(`${prefix}/uber-uns`) },
+      {
+        text: nav.uberUns,
+        href: getPermalink(`${prefix}/${pageSegment(locale, "uberUns")}`),
+      },
       {
         text: nav.interessegruppen,
-        href: getPermalink(`${prefix}/interessegruppen`),
+        href: getPermalink(
+          `${prefix}/${pageSegment(locale, "interessegruppen")}`,
+        ),
       },
-      { text: nav.asrUndAso, href: getPermalink(`${prefix}/asr-und-aso`) },
-      { text: nav.kontakt, href: getPermalink(`${prefix}/kontakt`) },
+      {
+        text: nav.asrUndAso,
+        href: getPermalink(`${prefix}/${pageSegment(locale, "asrUndAso")}`),
+      },
+      {
+        text: nav.kontakt,
+        href: getPermalink(`${prefix}/${pageSegment(locale, "kontakt")}`),
+      },
     ],
     actions: [],
   };
@@ -59,7 +76,10 @@ export function footerData(locale: Locale = Locale.De) {
       },
     ],
     secondaryLinks: [
-      { text: t.privacy, href: getPermalink(`${prefix}/privacy-policy`) },
+      {
+        text: t.privacy,
+        href: getPermalink(`${prefix}/${pageSegment(locale, "privacyPolicy")}`),
+      },
     ],
     socialLinks: [
       {

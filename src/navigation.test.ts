@@ -23,11 +23,11 @@ describe("headerData", () => {
 
   it("returns Norwegian nav links with /no prefix", () => {
     const data = headerData("no");
-    expect(data.links[0].href).toBe("/no/anlasse/");
-    expect(data.links[1].href).toBe("/no/mitgliedschaft/");
-    expect(data.links[2].href).toBe("/no/uber-uns/");
-    expect(data.links[3].href).toBe("/no/interessegruppen/");
-    expect(data.links[4].href).toBe("/no/asr-und-aso/");
+    expect(data.links[0].href).toBe("/no/arrangementer/");
+    expect(data.links[1].href).toBe("/no/medlemskap/");
+    expect(data.links[2].href).toBe("/no/om-oss/");
+    expect(data.links[3].href).toBe("/no/interessegrupper/");
+    expect(data.links[4].href).toBe("/no/asr-og-aso/");
     expect(data.links[5].href).toBe("/no/kontakt/");
   });
 
@@ -45,7 +45,7 @@ describe("footerData", () => {
 
   it("returns Norwegian secondaryLinks with /no prefix", () => {
     const data = footerData("no");
-    expect(data.secondaryLinks[0].href).toBe("/no/privacy-policy/");
+    expect(data.secondaryLinks[0].href).toBe("/no/personvern/");
   });
 
   it("defaults to German", () => {

@@ -1,6 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection, getEntry, render } from "astro:content";
 import { Locale } from "~/config";
+import { PAGE_ROUTES, type PageKey } from "~/utils/pages";
 
 export async function getDetailPaths<C extends "events" | "board">(
   collectionName: C,
@@ -42,10 +43,11 @@ export const localeUrlPrefix: Record<Locale, string> = {
 
 export function contentHref(
   entry: { id: string; data: { lang: Locale } },
-  urlSegment: string,
+  urlSegment: PageKey,
 ): string {
   const slug = stripLocalePrefix(entry.id, entry.data.lang);
-  return `${localeUrlPrefix[entry.data.lang]}/${urlSegment}/${slug}/`;
+  const segment = PAGE_ROUTES[urlSegment].segment[entry.data.lang];
+  return `${localeUrlPrefix[entry.data.lang]}/${segment}/${slug}/`;
 }
 
 export function stripLocalePrefix(id: string, locale: Locale): string {

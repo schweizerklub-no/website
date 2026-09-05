@@ -53,4 +53,4 @@ Place images in `src/assets/images/events/`. Reference them as `~/assets/images/
 
 ## 5. Verify
 
-Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and confirm the event appears at `/anlasse/{slug}/` (DE) and `/no/anlasse/{slug}/` (NO).
+Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and confirm the event appears at `/anlasse/{slug}/` (DE) and `/no/arrangementer/{slug}/` (NO). The listing segment is language-specific (see `PAGE_ROUTES` in `src/utils/pages.ts`); the event slug itself stays locale-neutral.
