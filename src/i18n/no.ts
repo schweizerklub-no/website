@@ -28,6 +28,8 @@ export const no = {
   pages: {
     anlasse: "Arrangementer",
     anlasseTitle: "Arrangementer",
+    aboutTitle: "Om oss",
+    aboutTagline: "Sveitsisk fellesskap i Norges hovedstad",
     backToEvents: "Alle arrangementer",
     backToBoard: "Om oss",
     noUpcomingEvents:
