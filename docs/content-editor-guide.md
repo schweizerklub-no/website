@@ -125,7 +125,7 @@ board overview page. The full text appears on the member's detail page.
 
 ## 5. Edit page content
 
-Pages like "Über uns", "Beitritt", or "Kontakt" live in the pages folder.
+Pages like "Über uns", "Mitgliedschaft", or "Kontakt" live in the pages folder.
 
 ### Step-by-step
 

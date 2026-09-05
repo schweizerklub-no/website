@@ -12,7 +12,7 @@ export const no = {
   },
   nav: {
     anlasse: "Arrangementer",
-    beitritt: "Medlemskap",
+    mitgliedschaft: "Medlemskap",
     uberUns: "Om oss",
     interessegruppen: "Interessegrupper",
     asrUndAso: "ASR og ASO",

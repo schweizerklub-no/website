@@ -13,4 +13,4 @@ Jedes Jahr organisiert der Klub gemeinsame Aktivitäten wie die GV, die 1. Augus
 
 Neben den grösseren Anlässen bietet sich auch die Möglichkeit, an anderen Aktivitäten wie Stammtischen, Filmabenden, dem Jassklub, der Literaturgruppe oder einer Pilztour teilzunehmen. Alle aktuellen Termine und weiteren Aktivitäten findet ihr auf der Seite [Anlässe](/anlasse/). Wir sind offen für neue Ideen und heissen Personen, die neue Projekte auf die Beine stellen möchten, herzlich willkommen.
 
-Möchtest du Teil unserer Gemeinschaft werden? Überlege dir eine [Mitgliedschaft](/beitritt/) – wir freuen uns auf dich!
+Möchtest du Teil unserer Gemeinschaft werden? Überlege dir eine [Mitgliedschaft](/mitgliedschaft/) – wir freuen uns auf dich!

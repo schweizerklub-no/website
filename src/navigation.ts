@@ -9,7 +9,10 @@ export function headerData(locale: Locale = Locale.De) {
   return {
     links: [
       { text: nav.anlasse, href: getPermalink(`${prefix}/anlasse`) },
-      { text: nav.beitritt, href: getPermalink(`${prefix}/beitritt`) },
+      {
+        text: nav.mitgliedschaft,
+        href: getPermalink(`${prefix}/mitgliedschaft`),
+      },
       { text: nav.uberUns, href: getPermalink(`${prefix}/uber-uns`) },
       {
         text: nav.interessegruppen,

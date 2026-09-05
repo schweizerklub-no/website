@@ -10,7 +10,7 @@ Checklist for adding a new page to the website.
 ## Determine page type
 
 - **Prose-only** — body text lives entirely in a Markdown content file. Use this for text-heavy pages (about, privacy policy, etc.).
-- **Mixed** — body text in Markdown, but the template has structured sections (fee tables, address blocks, etc.). Use this for pages like Beitritt or Kontakt.
+- **Mixed** — body text in Markdown, but the template has structured sections (fee tables, address blocks, etc.). Use this for pages like Mitgliedschaft or Kontakt.
 
 Both types use the `pages` content collection.
 

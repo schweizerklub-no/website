@@ -12,7 +12,7 @@ export const de = {
   },
   nav: {
     anlasse: "Anlässe",
-    beitritt: "Beitritt",
+    mitgliedschaft: "Mitgliedschaft",
     uberUns: "Über uns",
     interessegruppen: "Interessegruppen",
     asrUndAso: "ASR und ASO",
