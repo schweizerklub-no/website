@@ -8,14 +8,13 @@ on:
       - 'docs/**'
   workflow_dispatch:
 
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-
 jobs:
   version:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
@@ -60,6 +59,8 @@ jobs:
 
   deploy:
     needs: version
+    permissions:
+      contents: read
     uses: ./.github/workflows/build-deploy.yml
     with:
       app-version: ${{ needs.version.outputs.version }}
