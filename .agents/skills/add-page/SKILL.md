@@ -20,7 +20,7 @@ Create `src/content/pages/{locale}/{slug}.md`:
 
 ```md
 ---
-lang: "de"        # or "no"
+lang: "de"        # locale code, e.g. "no" for Norwegian
 title: "Page Title"
 description: "Optional description"
 ---
@@ -28,16 +28,17 @@ description: "Optional description"
 Markdown content here.
 ```
 
-For Norwegian, create `src/content/pages/no/{slug}.md` with matching structure, using the **Norwegian content slug** (see `src/utils/pages.ts` — e.g. `om-oss.md`, `medlemskap.md`, `personvern.md`), not the German slug.
+For each additional locale, create a parallel content file using that locale's folder and its own language-specific slug — e.g. `src/content/pages/no/om-oss.md` for Norwegian (see `src/utils/pages.ts` for the slug per locale).
 
 Every locale has its own slugs. Add the page to `PAGE_ROUTES` in `src/utils/pages.ts` (segment + contentSlug per locale) so `navigation.ts`, `contentHref`, and `translatePath` stay in sync.
 
 ## 2. Update i18n
 
-If the page title or nav link needs translation, add keys in:
+If the page title or nav link needs translation, add keys in `src/i18n/{locale}.ts` for every supported locale:
 
 - `src/i18n/de.ts` — German text
 - `src/i18n/no.ts` — Norwegian text
+- (+ any future locale)
 
 ## 3. Add navigation link (optional)
 
@@ -48,7 +49,7 @@ If the page should appear in the nav, add it in `src/navigation.ts`:
 { text: nav.yourKey, href: getPermalink(`${prefix}/${pageSegment(locale, "yourKey")}`) },
 ```
 
-Also add the `yourKey` to both `nav` sections in `src/i18n/{de,no}.ts` and to the `PAGE_ROUTES` map in `src/utils/pages.ts`.
+Also add the `yourKey` to the `nav` sections in `src/i18n/{locale}.ts` for every supported locale and to the `PAGE_ROUTES` map in `src/utils/pages.ts`.
 
 ## 4. Create shared component (mixed pages only)
 
@@ -73,7 +74,7 @@ const metadata = { title: entry.data.title };
 </PageLayout>
 ```
 
-Then create two thin wrapper files:
+Then create a thin wrapper file per locale:
 
 `src/pages/{slug}/index.astro`:
 ```astro
@@ -83,7 +84,7 @@ import YourPage from '~/components/pages/YourPage.astro';
 <YourPage />
 ```
 
-`src/pages/no/{slug}/index.astro` (use the Norwegian URL segment from `PAGE_ROUTES`):
+`src/pages/no/{slug}/index.astro` (use the locale-specific URL segment from `PAGE_ROUTES`, e.g. `src/pages/no/om-oss/`):
 ```astro
 ---
 import YourPage from '~/components/pages/YourPage.astro';

@@ -50,6 +50,19 @@ describe("PAGE_ROUTES", () => {
       "personvern",
     ]);
   });
+
+  it("uses kebab-case for all segments and slugs", () => {
+    const kebab = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+    for (const key of keys) {
+      const route = PAGE_ROUTES[key];
+      for (const locale of Object.values(Locale)) {
+        expect(route.segment[locale]).toMatch(kebab);
+        if ("contentSlug" in route) {
+          expect(route.contentSlug[locale]).toMatch(kebab);
+        }
+      }
+    }
+  });
 });
 
 describe("pageSegment", () => {

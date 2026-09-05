@@ -14,7 +14,7 @@ interface PageRoute {
   contentSlug?: Record<Locale, string>;
 }
 
-export const PAGE_ROUTES: Record<PageKey, PageRoute> = {
+export const PAGE_ROUTES = {
   anlasse: {
     segment: { de: "anlasse", no: "arrangementer" },
   },
@@ -42,14 +42,15 @@ export const PAGE_ROUTES: Record<PageKey, PageRoute> = {
     segment: { de: "privacy-policy", no: "personvern" },
     contentSlug: { de: "privacy-policy", no: "personvern" },
   },
-};
+} as const satisfies Record<PageKey, PageRoute>;
 
-export function pageSegment(locale: Locale, key: PageKey): string {
+export function pageSegment(locale: Locale, key: PageKey) {
   return PAGE_ROUTES[key].segment[locale];
 }
 
-export function pageSlug(locale: Locale, key: PageKey): string {
-  const slug = PAGE_ROUTES[key].contentSlug?.[locale];
+export function pageSlug(locale: Locale, key: PageKey) {
+  const route = PAGE_ROUTES[key];
+  const slug = "contentSlug" in route ? route.contentSlug[locale] : undefined;
   if (!slug)
     throw new Error(
       `No content slug for page key "${key}" in locale "${locale}"`,

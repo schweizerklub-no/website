@@ -29,7 +29,7 @@ Markdown body for the event detail page.
 
 | Field | Required | Description |
 |---|---|---|
-| `lang` | yes | `"de"` or `"no"` |
+| `lang` | yes | Locale code — `"de"` or `"no"` (+ any future locale) |
 | `title` | yes | Event name |
 | `date` | yes | ISO date `YYYY-MM-DD` |
 | `visibilityEnd` | no | After this date, event is hidden from listings |
@@ -37,9 +37,9 @@ Markdown body for the event detail page.
 | `description` | no | Shown on card and detail page header |
 | `location` | no | Displayed on detail page |
 
-## 2. Norwegian variant
+## 2. Variants in other languages
 
-If the event should also appear on the Norwegian site, create a parallel file at `src/content/events/no/{slug}.md` with `lang: "no"`.
+If the event should also appear in another language, create a parallel file at `src/content/events/{locale}/{slug}.md` with that locale's `lang` — currently `no` (e.g. `src/content/events/no/{slug}.md` with `lang: "no"`).
 
 ## 3. Date rules
 
@@ -53,4 +53,4 @@ Place images in `src/assets/images/events/`. Reference them as `~/assets/images/
 
 ## 5. Verify
 
-Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and confirm the event appears at `/anlasse/{slug}/` (DE) and `/no/arrangementer/{slug}/` (NO). The listing segment is language-specific (see `PAGE_ROUTES` in `src/utils/pages.ts`); the event slug itself stays locale-neutral.
+Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and confirm the event appears at `/anlasse/{slug}/` (DE) and `/no/arrangementer/{slug}/` (NO) — plus the equivalent URL for any future locale. The listing segment is language-specific (see `PAGE_ROUTES` in `src/utils/pages.ts`); the event slug itself stays locale-neutral.

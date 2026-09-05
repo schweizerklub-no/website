@@ -38,13 +38,13 @@ That's it. The website will update automatically within 1–2 minutes.
 
 ### Where are the files?
 
-| Content type | German files             | Norwegian files          |
-| ------------ | ------------------------ | ------------------------ |
+| Content type | German (`de`) files    | Norwegian (`no`) files  |
+| ------------ | ---------------------- | ----------------------- |
 | Event        | `src/content/events/de/` | `src/content/events/no/` |
 | Board member | `src/content/board/de/`  | `src/content/board/no/`  |
 | Page         | `src/content/pages/de/`  | `src/content/pages/no/`  |
 
-Norwegian page files have Norwegian names (e.g. `om-oss.md`, `medlemskap.md`, `personvern.md`), German ones use German names (e.g. `uber-uns.md`, `mitgliedschaft.md`, `privacy-policy.md`).
+The website currently supports German and Norwegian. More languages can be added later — each language gets its own folder (named by its code) and uses file names in that language. Page files are named in the page's own language (e.g. Norwegian `om-oss.md`, `medlemskap.md`, `personvern.md`; German `uber-uns.md`, `mitgliedschaft.md`, `privacy-policy.md`).
 
 ---
 
@@ -52,7 +52,7 @@ Norwegian page files have Norwegian names (e.g. `om-oss.md`, `medlemskap.md`, `p
 
 ### Step-by-step
 
-1. Go to the correct folder for your language:
+1. Go to the correct folder for your language (currently German or Norwegian):
    - German: `src/content/events/de/`
    - Norwegian: `src/content/events/no/`
 2. Look at the existing event files to see how they're named (e.g., `2026-10-herbstfest.md`)
@@ -74,7 +74,7 @@ Your event description here.
 ```
 
 6. Fill in the fields:
-   - `lang` — `de` for German, `no` for Norwegian
+   - `lang` — the language code: `de` for German, `no` for Norwegian (+ any future locale)
    - `title` — the event name (shows on the event card)
    - `date` — the event date in `YYYY-MM-DD` format
    - `visibilityEnd` — the date after which the event moves to "past events" (usually the day after)
@@ -91,7 +91,7 @@ Your event description here.
 
 ### Step-by-step
 
-1. Go to the correct folder:
+1. Go to the correct folder (currently German or Norwegian):
    - German: `src/content/board/de/`
    - Norwegian: `src/content/board/no/`
 2. Click **Add file** → **Create new file**
@@ -113,7 +113,7 @@ board overview page. The full text appears on the member's detail page.
 ```
 
 5. Fill in the fields:
-   - `lang` — `de` or `no`
+   - `lang` — the language code: `de` or `no` (+ any future locale)
    - `name` — full name
    - `role` — board position (e.g., Präsident, Kassiererin, Sekretär)
     - `image` — path to a photo in `src/assets/images/board/` (required)
@@ -131,7 +131,7 @@ Pages like "Über uns", "Mitgliedschaft", or "Kontakt" live in the pages folder.
 
 ### Step-by-step
 
-1. Go to the correct folder:
+1. Go to the correct folder (currently German or Norwegian):
    - German: `src/content/pages/de/`
    - Norwegian: `src/content/pages/no/`
 2. Click the page you want to edit (e.g., `uber-uns.md` in German, `om-oss.md` in Norwegian)
