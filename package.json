@@ -24,7 +24,7 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.0",
     "@astrojs/sitemap": "^3.7.4",
-    "@fontsource-variable/dm-sans": "^5.2.8",
+    "@fontsource-variable/dm-sans": "^5.3.0",
     "astro": "^6.4.8",
     "astro-icon": "^1.1.5",
     "astro-seo": "^1.2.0",
