@@ -30,9 +30,6 @@ importers:
       astro-seo:
         specifier: ^1.2.0
         version: 1.2.0
-      limax:
-        specifier: 4.2.3
-        version: 4.2.3
       lodash.merge:
         specifier: ^4.6.2
         version: 4.6.2
@@ -64,12 +61,6 @@ importers:
       astro-compress:
         specifier: ^2.4.3
         version: 2.4.3(@types/node@26.4.0)(jiti@2.7.0)(rollup@4.63.1)(yaml@2.9.0)
-      mdast-util-to-string:
-        specifier: ^4.0.0
-        version: 4.0.0
-      reading-time:
-        specifier: ^1.5.0
-        version: 1.5.0
       sharp:
         specifier: 0.35.4
         version: 0.35.4(@types/node@26.4.0)
@@ -1958,10 +1949,6 @@ packages:
   hastscript@9.0.1:
     resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
 
-  hepburn@1.2.2:
-    resolution: {integrity: sha512-DeykBc4XmfAWsnN+Y1Svi9uaQnnz21Q/ARuGWvIBxP1iUFeMIWL41DfVkgTh7tU23LFIbmIBO2Bk17BTPu0kVA==}
-    engines: {node: '>=4'}
-
   html-escaper@3.0.3:
     resolution: {integrity: sha512-RuMffC89BOWQoY0WKGpIhn5gX3iI54O6nRA0yC124NYVtzjmFWBIiFd8M0x+ZdX0P9R4lADg1mgP8C7PxGOWuQ==}
 
@@ -2200,10 +2187,6 @@ packages:
   lightningcss@1.33.0:
     resolution: {integrity: sha512-WkUDrojuJs0xkgGf2udWxa3yGBRxPtxUkB79i6aCZLRgc7PM8fZe9TosfPDcvEpQZbuFASnHYmRLBLUbmLOIIA==}
     engines: {node: '>= 12.0.0'}
-
-  limax@4.2.3:
-    resolution: {integrity: sha512-KJ41cc23/i9rGgFjpLpz4LVFuVHIVUoQX3zJs8qCY+Eo1KReIPD8QTahSErdWuO1Zt7CyjuLdo4vtsH60qau8Q==}
-    engines: {node: '>=14'}
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
@@ -2512,9 +2495,6 @@ packages:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
 
-  pinyin-pro@3.28.1:
-    resolution: {integrity: sha512-oqz8ulwRgtUXRi0vbqEfGNly19zpyCxYrjhkk5TibGcgSW6eNwS5woajCXRwqURi8Ehc2yOFTiB4uNoZ+NJOnA==}
-
   postcss-selector-parser@6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
     engines: {node: '>=4'}
@@ -2548,9 +2528,6 @@ packages:
   readdirp@5.1.1:
     resolution: {integrity: sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA==}
     engines: {node: '>= 20.19.0'}
-
-  reading-time@1.5.0:
-    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
 
   recma-build-jsx@1.0.0:
     resolution: {integrity: sha512-8GtdyqaBcDfva+GUKDr3nev3VpKAhup1+RvkMvUxURHpW7QyIvk9F5wz7Vzo06CEMSilw6uArgRqhpiUcWp8ew==}
@@ -2721,10 +2698,6 @@ packages:
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
-
-  speakingurl@14.0.1:
-    resolution: {integrity: sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==}
-    engines: {node: '>=0.10.0'}
 
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
@@ -5040,8 +5013,6 @@ snapshots:
       property-information: 7.2.0
       space-separated-tokens: 2.0.2
 
-  hepburn@1.2.2: {}
-
   html-escaper@3.0.3: {}
 
   html-minifier-terser@7.2.0:
@@ -5208,12 +5179,6 @@ snapshots:
       lightningcss-linux-x64-musl: 1.33.0
       lightningcss-win32-arm64-msvc: 1.33.0
       lightningcss-win32-x64-msvc: 1.33.0
-
-  limax@4.2.3:
-    dependencies:
-      hepburn: 1.2.2
-      pinyin-pro: 3.28.1
-      speakingurl: 14.0.1
 
   lodash.merge@4.6.2: {}
 
@@ -5794,8 +5759,6 @@ snapshots:
 
   picomatch@4.0.7: {}
 
-  pinyin-pro@3.28.1: {}
-
   postcss-selector-parser@6.0.10:
     dependencies:
       cssesc: 3.0.0
@@ -5820,8 +5783,6 @@ snapshots:
   readdirp@4.1.2: {}
 
   readdirp@5.1.1: {}
-
-  reading-time@1.5.0: {}
 
   recma-build-jsx@1.0.0:
     dependencies:
@@ -6161,8 +6122,6 @@ snapshots:
   source-map@0.7.6: {}
 
   space-separated-tokens@2.0.2: {}
-
-  speakingurl@14.0.1: {}
 
   stackback@0.0.2: {}
 

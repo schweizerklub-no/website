@@ -8,10 +8,7 @@ import { defineConfig } from "astro/config";
 import compress from "astro-compress";
 import icon from "astro-icon";
 import { LOCALE_VALUES, Locale } from "./src/config";
-import {
-  readingTimeRemarkPlugin,
-  responsiveTablesRehypePlugin,
-} from "./src/utils/frontmatter";
+import { responsiveTablesRehypePlugin } from "./src/utils/frontmatter";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -60,7 +57,6 @@ export default defineConfig({
 
   markdown: {
     processor: unified({
-      remarkPlugins: [readingTimeRemarkPlugin],
       rehypePlugins: [responsiveTablesRehypePlugin],
     }),
   },

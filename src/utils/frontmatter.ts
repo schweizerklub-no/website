@@ -1,17 +1,4 @@
-import type { RehypePlugin, RemarkPlugin } from "@astrojs/markdown-remark";
-import { toString as toStringAst } from "mdast-util-to-string";
-import getReadingTime from "reading-time";
-
-export const readingTimeRemarkPlugin: RemarkPlugin = () => {
-  return (tree, file) => {
-    const textOnPage = toStringAst(tree);
-    const readingTime = Math.ceil(getReadingTime(textOnPage).minutes);
-
-    if (typeof file?.data?.astro?.frontmatter !== "undefined") {
-      file.data.astro.frontmatter.readingTime = readingTime;
-    }
-  };
-};
+import type { RehypePlugin } from "@astrojs/markdown-remark";
 
 export const responsiveTablesRehypePlugin: RehypePlugin = () => {
   return (tree) => {
