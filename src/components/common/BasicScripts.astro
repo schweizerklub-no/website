@@ -3,6 +3,7 @@ import { UI } from '~/config';
 ---
 
 <script is:inline define:vars={{ defaultTheme: UI.theme }}>
+  (() => {
   if (window.basic_script) {
     return;
   }
@@ -185,6 +186,7 @@ import { UI } from '~/config';
     onLoad();
     onPageShow();
   });
+  })();
 </script>
 
 <script is:inline>

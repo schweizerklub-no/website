@@ -1,24 +1,11 @@
-import type { RehypePlugin } from "@astrojs/markdown-remark";
+import { defineHastPlugin } from "satteri";
 
-export const responsiveTablesRehypePlugin: RehypePlugin = () => {
-  return (tree) => {
-    if (!tree.children) return;
-
-    for (let i = 0; i < tree.children.length; i++) {
-      const child = tree.children[i];
-
-      if (child.type === "element" && child.tagName === "table") {
-        tree.children[i] = {
-          type: "element",
-          tagName: "div",
-          properties: {
-            style: "overflow:auto",
-          },
-          children: [child],
-        };
-
-        i++;
-      }
-    }
-  };
-};
+export const responsiveTablesHastPlugin = defineHastPlugin({
+  name: "responsive-tables",
+  element: {
+    filter: ["table"],
+    visit(node, ctx) {
+      ctx.wrapNode(node, { raw: '<div style="overflow:auto"></div>' });
+    },
+  },
+});

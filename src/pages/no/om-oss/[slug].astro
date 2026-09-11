@@ -1,5 +1,4 @@
 ---
-import { render } from 'astro:content';
 import BoardDetail from '~/components/pages/BoardDetail.astro';
 import { Locale } from '~/config';
 import { getDetailPaths } from '~/utils/locale';
@@ -9,6 +8,5 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
 ---
-<BoardDetail {entry} {Content} />
+<BoardDetail {entry} />

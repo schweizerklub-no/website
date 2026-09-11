@@ -1,26 +1,18 @@
 ---
 import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import PageLayout from '~/layouts/PageLayout.astro';
 import BackLink from '~/components/BackLink.astro';
-import type { Locale } from '~/config';
-import { findImage } from '~/utils/images';
 import { pageHref } from "~/utils/locale";
+import { findImage } from '~/utils/images';
 
-export interface Props {
-  entry: {
-    data: {
-      name: string;
-      role: string;
-      image?: string | ImageMetadata;
-      email?: string;
-      lang: Locale;
-    };
-  };
-  Content: any;
+interface Props {
+  entry: CollectionEntry<'board'>;
 }
 
-const { entry, Content } = Astro.props;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 const image = entry.data.image ? await findImage(entry.data.image) : undefined;
 const metadata = { title: entry.data.name };
 const t = Astro.locals.t.pages;

@@ -51,8 +51,10 @@ describe("getUpcomingEvents", () => {
   it("returns German events sorted by date ascending", async () => {
     const events = await getUpcomingEvents("de");
     expect(events).toHaveLength(2);
-    expect(events[0].data.title).toBe("bundesfeier");
-    expect(events[1].data.title).toBe("stammtisch");
+    expect(events.map((e) => e.data.title)).toEqual([
+      "bundesfeier",
+      "stammtisch",
+    ]);
   });
 
   it("returns Norwegian events", async () => {
@@ -63,7 +65,7 @@ describe("getUpcomingEvents", () => {
   it("respects limit parameter", async () => {
     const events = await getUpcomingEvents("de", 1);
     expect(events).toHaveLength(1);
-    expect(events[0].data.title).toBe("bundesfeier");
+    expect(events.map((e) => e.data.title)).toEqual(["bundesfeier"]);
   });
 
   it("excludes events with visibilityEnd in the past", async () => {
@@ -78,7 +80,7 @@ describe("getPastEvents", () => {
   it("returns events with past visibilityEnd within the cutoff window", async () => {
     const events = await getPastEvents("de");
     expect(events).toHaveLength(1);
-    expect(events[0].data.title).toBe("hidden-event");
+    expect(events.map((e) => e.data.title)).toEqual(["hidden-event"]);
   });
 
   it("excludes events whose visibilityEnd is older than the cutoff", async () => {
