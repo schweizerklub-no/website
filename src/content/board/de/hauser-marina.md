@@ -10,4 +10,4 @@ Ich heisse Marina Hauser und bin 33 Jahre alt. Ich bin im Zürcher Oberland aufg
 
 Nach einigen Jahren in der Schweiz hat mich der Norden wieder gerufen und ich habe eine Stelle in Norwegen bekommen. Zuerst war ich einen Sommer in Tromsø und nun wohne ich seit fast 5 Jahren in Oslo. 
 
-Ich bin eine sehr aktive Person und spiele unter anderem Curling und auch American Football. In Norwegen habe ich auch das Stricken wieder entdeckt und habe unterdessen eine Anzahl an selbstgestricken Pullovern, perfekt für den Norwegischen Winter.
+Ich bin eine sehr aktive Person und spiele unter anderem Curling und auch American Football. In Norwegen habe ich auch das Stricken wieder entdeckt und habe unterdessen eine Anzahl an selbstgestrickten Pullovern, perfekt für den norwegischen Winter.
