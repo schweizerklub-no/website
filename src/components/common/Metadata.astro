@@ -7,6 +7,7 @@ import type { SEOProps } from 'astro-seo';
 import { SITE, METADATA, I18N } from '~/config';
 import type { MetaData, MetaDataOpenGraph } from '~/types';
 import { getCanonical } from '~/utils/permalinks';
+import { defined } from '~/utils/defined';
 
 import { adaptOpenGraphImages } from '~/utils/images';
 
@@ -51,17 +52,16 @@ function buildOpenGraph(og: MetaDataOpenGraph): SEOProps['openGraph'] | undefine
       title: title || METADATA?.title?.default || '',
       type: og.type || 'website',
       image: imageUrl,
-      url: og.url,
+      ...defined({ url: og.url }),
     },
-    optional: {
+    optional: defined({
       description: description || METADATA?.description,
       locale: og.locale,
       siteName: og.siteName,
-    },
+    }),
     image: {
       url: imageUrl,
-      width: firstImage?.width,
-      height: firstImage?.height,
+      ...defined({ width: firstImage?.width, height: firstImage?.height }),
       alt: title || METADATA?.title?.default || '',
     },
   };
@@ -72,20 +72,23 @@ const mergedTwitter = merge(
     card: (adaptedOg?.images?.length ? 'summary_large_image' : 'summary') as 'summary_large_image' | 'summary',
   },
   METADATA?.twitter
-    ? {
+    ? defined({
         card: METADATA.twitter.cardType as 'summary_large_image' | 'summary' | undefined,
         site: METADATA.twitter.site,
         creator: METADATA.twitter.handle,
-      }
+      })
     : {},
   twitter
-    ? {
+    ? defined({
         card: twitter.cardType as 'summary_large_image' | 'summary' | undefined,
         site: twitter.site,
         creator: twitter.handle,
-      }
+      })
     : {}
 );
+
+const seoDescription = description || METADATA?.description;
+const seoOpenGraph = buildOpenGraph(adaptedOg);
 
 const seoProps: SEOProps = {
   title: title || METADATA?.title?.default || '',
@@ -103,8 +106,7 @@ const seoProps: SEOProps = {
       : typeof METADATA?.robots?.follow !== 'undefined'
         ? !METADATA.robots.follow
         : true,
-  description: description || METADATA?.description,
-  openGraph: buildOpenGraph(adaptedOg),
+  ...defined({ description: seoDescription, openGraph: seoOpenGraph }),
   twitter: mergedTwitter,
   surpressWarnings: true,
 };

@@ -17,7 +17,7 @@ const header = headerData(locale);
 const footer = footerData(locale);
 ---
 
-<Layout metadata={metadata} lang={locale}>
+<Layout {...(metadata ? { metadata } : {})} lang={locale}>
   <slot name="header">
     <Header {...header} locale={locale} links={header.links} showToggleTheme />
   </slot>

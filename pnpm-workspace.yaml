@@ -8,4 +8,3 @@ blockExoticSubdeps: true
 
 overrides:
   yaml: ">=2.8.3"
-  vite: "^7"

@@ -1,6 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { unified } from "@astrojs/markdown-remark";
+import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -8,7 +8,7 @@ import { defineConfig } from "astro/config";
 import compress from "astro-compress";
 import icon from "astro-icon";
 import { LOCALE_VALUES, Locale } from "./src/config";
-import { responsiveTablesRehypePlugin } from "./src/utils/frontmatter";
+import { responsiveTablesHastPlugin } from "./src/utils/frontmatter";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -56,8 +56,8 @@ export default defineConfig({
   },
 
   markdown: {
-    processor: unified({
-      rehypePlugins: [responsiveTablesRehypePlugin],
+    processor: satteri({
+      hastPlugins: [responsiveTablesHastPlugin],
     }),
   },
 

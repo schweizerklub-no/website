@@ -22,17 +22,18 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "^7.3.0",
+    "@astrojs/markdown-satteri": "0.4.0",
     "@astrojs/sitemap": "^3.7.4",
     "@fontsource-variable/dm-sans": "^5.3.0",
-    "astro": "^6.4.8",
+    "astro": "^7.3.1",
     "astro-icon": "^1.2.0",
     "astro-seo": "^1.2.0",
-    "lodash.merge": "^4.6.2"
+    "lodash.merge": "^4.6.2",
+    "satteri": "^0.10.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@astrojs/mdx": "^6.0.3",
+    "@astrojs/mdx": "^8.0.0",
     "@biomejs/biome": "2.5.12",
     "@iconify-json/tabler": "^1.2.38",
     "@tailwindcss/typography": "^0.5.19",
