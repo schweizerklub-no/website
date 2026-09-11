@@ -13,7 +13,7 @@ Bist du SchweizerIn und lebst in Norwegen? Hast du Lust, ab und zu ein Stückche
 
 - Du wirst Teil eines grösseren Schweizer Netzwerks im Grossraum Oslo.
 - Du hast die Möglichkeit, dich in verschiedenen Gruppen zu engagieren und an Veranstaltungen teilzunehmen.
-- Du wirst informiert über aktuelle kulturelle Ereignisse, häufig in Zusammenarbeit mit der Schweizer Botschaft.
+- Du wirst über aktuelle kulturelle Ereignisse informiert, häufig in Zusammenarbeit mit der Schweizer Botschaft.
 - Hast du Interesse, am jährlichen Auslandschweizer-Kongress in der Schweiz teilzunehmen? Oder möchten deine Kinder / Enkelkinder an einem Jugendlager der Auslandschweizer-Organisation teilnehmen? Dann kannst du jedes zweite Jahr finanzielle Unterstützung beantragen.
 - Mit deinem Mitgliederbeitrag hilfst du auch, die norwegische Delegation im Auslandschweizerrat (eigenes Parlament für Auslandschweizer, welches die Interessen der Auslandschweizer vertritt) zu finanzieren.
 - Du bist bei unseren [Anlässen](/anlasse/) herzlich willkommen – melde dich an und lerne den Klub kennen.

@@ -20,5 +20,5 @@ Er du sveitser og bor i Norge? Har du lyst til å oppleve et stykke Sveits innim
 
 ## Slik blir du medlem
 
-1. Betal via bank eller Vipps (se nedover)
+1. Betal via bank eller Vipps (se under)
 2. Fyll ut medlemsskjema
