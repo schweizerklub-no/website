@@ -16,39 +16,41 @@ const keys = Object.keys(PAGE_ROUTES) as PageKey[];
 describe("translatePath", () => {
   it("swaps each page segment between locales", () => {
     for (const key of keys) {
-      expect(
-        translatePath(pageHref(Locale.De, key), Locale.De, Locale.No),
-      ).toBe(pageHref(Locale.No, key));
-      expect(
-        translatePath(pageHref(Locale.No, key), Locale.No, Locale.De),
-      ).toBe(pageHref(Locale.De, key));
+      for (const from of LOCALE_VALUES) {
+        for (const to of LOCALE_VALUES) {
+          if (from === to) continue;
+          expect(translatePath(pageHref(from, key), from, to)).toBe(
+            pageHref(to, key),
+          );
+        }
+      }
     }
   });
 
   it("round-trips between locales", () => {
     for (const key of keys) {
-      const de = pageHref(Locale.De, key);
-      const no = translatePath(de, Locale.De, Locale.No);
-      expect(translatePath(no, Locale.No, Locale.De)).toBe(de);
+      for (const from of LOCALE_VALUES) {
+        for (const to of LOCALE_VALUES) {
+          if (from === to) continue;
+          const original = pageHref(from, key);
+          expect(
+            translatePath(translatePath(original, from, to), to, from),
+          ).toBe(original);
+        }
+      }
     }
   });
 
   it("preserves detail slugs while swapping the segment", () => {
     for (const key of keys) {
-      expect(
-        translatePath(
-          `${pageHref(Locale.De, key)}jan-mueller/`,
-          Locale.De,
-          Locale.No,
-        ),
-      ).toBe(`${pageHref(Locale.No, key)}jan-mueller/`);
-      expect(
-        translatePath(
-          `${pageHref(Locale.No, key)}jan-mueller/`,
-          Locale.No,
-          Locale.De,
-        ),
-      ).toBe(`${pageHref(Locale.De, key)}jan-mueller/`);
+      for (const from of LOCALE_VALUES) {
+        for (const to of LOCALE_VALUES) {
+          if (from === to) continue;
+          expect(
+            translatePath(`${pageHref(from, key)}jan-mueller/`, from, to),
+          ).toBe(`${pageHref(to, key)}jan-mueller/`);
+        }
+      }
     }
   });
 
