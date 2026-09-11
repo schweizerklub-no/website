@@ -8,8 +8,7 @@ import PageLayout from "~/layouts/PageLayout.astro";
 import Button from "~/components/ui/Button.astro";
 import { EventConfig } from "~/site-config";
 import { getUpcomingEvents } from "~/utils/events";
-import { localeUrlPrefix } from "~/utils/locale";
-import { pageSegment } from "~/utils/pages";
+import { pageHref } from "~/utils/locale";
 import { sortBoardMembers } from "~/utils/board";
 
 const t = Astro.locals.t;
@@ -31,11 +30,11 @@ const metadata = {
     backgroundImage="/images/hero-bg.jpg"
     callToAction={{
       text: t.home.cta1,
-      href: `${localeUrlPrefix[locale]}/${pageSegment(locale, "mitgliedschaft")}/`,
+      href: pageHref(locale, "mitgliedschaft"),
     }}
     callToAction2={{
       text: t.home.cta2,
-      href: `${localeUrlPrefix[locale]}/${pageSegment(locale, "uberUns")}/`,
+      href: pageHref(locale, "uberUns"),
     }}
   />
 
@@ -50,7 +49,7 @@ const metadata = {
             <Button
               variant="secondary"
               text={t.pages.backToEvents}
-              href={`${localeUrlPrefix[locale]}/${pageSegment(locale, "anlasse")}/`}
+              href={pageHref(locale, "anlasse")}
             />
           </div>
         )}

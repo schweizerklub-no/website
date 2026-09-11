@@ -12,6 +12,7 @@ import {
   dateLocale,
   detectLocale,
   localeUrlPrefix,
+  pageHref,
   stripLocalePrefix,
 } from "~/utils/locale";
 
@@ -73,6 +74,22 @@ describe("detectLocale", () => {
 
   it("returns no for bare /no", () => {
     expect(detectLocale("/no")).toBe(Locale.No);
+  });
+});
+
+describe("pageHref", () => {
+  it("generates a German page URL", () => {
+    expect(pageHref(Locale.De, "uberUns")).toBe("/uber-uns/");
+    expect(pageHref(Locale.De, "anlasse")).toBe("/anlasse/");
+  });
+
+  it("generates a Norwegian page URL with its own segment", () => {
+    expect(pageHref(Locale.No, "uberUns")).toBe("/no/om-oss/");
+    expect(pageHref(Locale.No, "anlasse")).toBe("/no/arrangementer/");
+  });
+
+  it("generates URLs for pages with identical segments", () => {
+    expect(pageHref(Locale.No, "kontakt")).toBe("/no/kontakt/");
   });
 });
 
