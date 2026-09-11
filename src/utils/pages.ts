@@ -16,31 +16,47 @@ interface PageRoute {
 
 export const PAGE_ROUTES = {
   anlasse: {
-    segment: { de: "anlasse", no: "arrangementer" },
+    segment: { de: "anlasse", no: "arrangementer", fr: "evenements" },
   },
   uberUns: {
-    segment: { de: "uber-uns", no: "om-oss" },
-    contentSlug: { de: "uber-uns", no: "om-oss" },
+    segment: { de: "uber-uns", no: "om-oss", fr: "a-propos" },
+    contentSlug: { de: "uber-uns", no: "om-oss", fr: "a-propos" },
   },
   mitgliedschaft: {
-    segment: { de: "mitgliedschaft", no: "medlemskap" },
-    contentSlug: { de: "mitgliedschaft", no: "medlemskap" },
+    segment: { de: "mitgliedschaft", no: "medlemskap", fr: "adhesion" },
+    contentSlug: { de: "mitgliedschaft", no: "medlemskap", fr: "adhesion" },
   },
   interessegruppen: {
-    segment: { de: "interessegruppen", no: "interessegrupper" },
-    contentSlug: { de: "interessegruppen", no: "interessegrupper" },
+    segment: {
+      de: "interessegruppen",
+      no: "interessegrupper",
+      fr: "groupes-interet",
+    },
+    contentSlug: {
+      de: "interessegruppen",
+      no: "interessegrupper",
+      fr: "groupes-interet",
+    },
   },
   asrUndAso: {
-    segment: { de: "asr-und-aso", no: "asr-og-aso" },
-    contentSlug: { de: "asr-und-aso", no: "asr-og-aso" },
+    segment: { de: "asr-und-aso", no: "asr-og-aso", fr: "asr-et-aso" },
+    contentSlug: { de: "asr-und-aso", no: "asr-og-aso", fr: "asr-et-aso" },
   },
   kontakt: {
-    segment: { de: "kontakt", no: "kontakt" },
-    contentSlug: { de: "kontakt", no: "kontakt" },
+    segment: { de: "kontakt", no: "kontakt", fr: "contact" },
+    contentSlug: { de: "kontakt", no: "kontakt", fr: "contact" },
   },
   privacyPolicy: {
-    segment: { de: "privacy-policy", no: "personvern" },
-    contentSlug: { de: "privacy-policy", no: "personvern" },
+    segment: {
+      de: "privacy-policy",
+      no: "personvern",
+      fr: "politique-confidentialite",
+    },
+    contentSlug: {
+      de: "privacy-policy",
+      no: "personvern",
+      fr: "politique-confidentialite",
+    },
   },
 } as const satisfies Record<PageKey, PageRoute>;
 

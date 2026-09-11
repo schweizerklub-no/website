@@ -46,7 +46,7 @@ describe("footerData", () => {
   });
 
   it("includes social links", () => {
-    const data = footerData("de");
+    const data = footerData(Locale.De);
     expect(data.socialLinks).toHaveLength(2);
     expect(data.socialLinks[0]?.ariaLabel).toBe("Facebook");
     expect(data.socialLinks[1]?.ariaLabel).toBe("Instagram");

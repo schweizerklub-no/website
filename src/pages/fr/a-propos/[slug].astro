@@ -1,0 +1,17 @@
+---
+import { getDetailPaths } from '~/utils/locale';
+import BoardDetail from '~/components/pages/BoardDetail.astro';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  return getDetailPaths('board', 'fr');
+}
+
+interface Props {
+  entry: CollectionEntry<'board'>;
+}
+
+const { entry } = Astro.props;
+---
+
+<BoardDetail {entry} />

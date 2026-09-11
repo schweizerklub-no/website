@@ -8,6 +8,7 @@ export interface SiteConfig {
 export const Locale = {
   De: "de",
   No: "no",
+  Fr: "fr",
 } as const;
 
 export type Locale = (typeof Locale)[keyof typeof Locale];
@@ -49,7 +50,7 @@ export const SITE: SiteConfig = {
 
 export const I18N: I18NConfig = {
   defaultLocale: Locale.De,
-  locales: [Locale.De, Locale.No],
+  locales: [Locale.De, Locale.No, Locale.Fr],
   textDirection: "ltr",
 };
 

@@ -5,7 +5,7 @@ import { z } from "astro/zod";
 const events = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "src/content/events" }),
   schema: z.object({
-    lang: z.enum(["de", "no"]).default("de"),
+    lang: z.enum(["de", "no", "fr"]).default("de"),
     title: z.string(),
     date: z.date(),
     visibilityEnd: z.date().optional(),
@@ -18,7 +18,7 @@ const events = defineCollection({
 const pages = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "src/content/pages" }),
   schema: z.object({
-    lang: z.enum(["de", "no"]).default("de"),
+    lang: z.enum(["de", "no", "fr"]).default("de"),
     title: z.string(),
     description: z.string().optional(),
   }),
@@ -27,7 +27,7 @@ const pages = defineCollection({
 const board = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "src/content/board" }),
   schema: z.object({
-    lang: z.enum(["de", "no"]).default("de"),
+    lang: z.enum(["de", "no", "fr"]).default("de"),
     name: z.string(),
     role: z.string(),
     order: z.number().optional(),
