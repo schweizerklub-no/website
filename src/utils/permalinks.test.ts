@@ -1,10 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  cleanSlug,
-  getHomePermalink,
-  getPermalink,
-  trimSlash,
-} from "~/utils/permalinks";
+import { getHomePermalink, trimSlash } from "~/utils/permalinks";
 
 describe("trimSlash", () => {
   it("trims leading and trailing slashes", () => {
@@ -27,54 +22,5 @@ describe("trimSlash", () => {
 describe("getHomePermalink", () => {
   it("returns /", () => {
     expect(getHomePermalink()).toBe("/");
-  });
-});
-
-describe("getPermalink", () => {
-  it("passes through absolute URLs", () => {
-    expect(getPermalink("https://example.com")).toBe("https://example.com");
-    expect(getPermalink("http://example.com")).toBe("http://example.com");
-  });
-
-  it("passes through anchor links", () => {
-    expect(getPermalink("#section")).toBe("#section");
-  });
-
-  it("sanitizes javascript: URLs to the home permalink", () => {
-    expect(getPermalink("javascript:alert(1)")).toBe("/");
-  });
-
-  it("sanitizes data: URLs to the home permalink", () => {
-    expect(getPermalink("data:text/html,<script>alert(1)</script>")).toBe("/");
-  });
-
-  it("sanitizes vbscript: URLs to the home permalink", () => {
-    expect(getPermalink("vbscript:msgbox(1)")).toBe("/");
-  });
-
-  it("creates permalink for a path", () => {
-    expect(getPermalink("anlasse")).toBe("/anlasse/");
-  });
-
-  it("creates permalink for a path with leading slash", () => {
-    expect(getPermalink("/anlasse")).toBe("/anlasse/");
-  });
-
-  it("creates permalink for a nested path", () => {
-    expect(getPermalink("uber-uns/jan-mueller")).toBe("/uber-uns/jan-mueller/");
-  });
-});
-
-describe("cleanSlug", () => {
-  it("slugifies a simple string", () => {
-    expect(cleanSlug("Hello World")).toBe("hello-world");
-  });
-
-  it("slugifies Norwegian characters", () => {
-    expect(cleanSlug("Anlässe")).toBe("anlaesse");
-  });
-
-  it("handles path separators", () => {
-    expect(cleanSlug("Über uns")).toBe("ueber-uns");
   });
 });

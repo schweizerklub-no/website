@@ -14,7 +14,6 @@
   --color-muted: var(--aw-color-text-muted);
 
   --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'DM Sans Variable', ui-serif, Georgia, serif;
   --font-heading: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
 
   --animate-fade: fadeInUp 1s both;
@@ -37,10 +36,6 @@
 
 @utility bg-dark {
   background-color: var(--aw-color-bg-page-dark);
-}
-
-@utility bg-light {
-  background-color: var(--aw-color-bg-page);
 }
 
 @utility text-page {
@@ -90,14 +85,6 @@
 .dropdown:focus-within .dropdown-menu,
 .dropdown:hover .dropdown-menu {
   display: block;
-}
-
-[astro-icon].icon-light > * {
-  stroke-width: 1.2;
-}
-
-[astro-icon].icon-bold > * {
-  stroke-width: 2.4;
 }
 
 [data-aw-toggle-menu] path {
