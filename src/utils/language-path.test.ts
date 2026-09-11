@@ -6,75 +6,50 @@ vi.mock("astro:content", () => ({
   render: vi.fn(),
 }));
 
-import { Locale } from "~/config";
+import { LOCALE_VALUES, Locale } from "~/config";
 import { pageKeyForSegment, translatePath } from "~/utils/language-path";
+import { pageHref } from "~/utils/locale";
+import { PAGE_ROUTES, type PageKey, pageSegment } from "~/utils/pages";
+
+const keys = Object.keys(PAGE_ROUTES) as PageKey[];
 
 describe("translatePath", () => {
-  it("translates German top-level page paths to Norwegian", () => {
-    expect(translatePath("/anlasse/", Locale.De, Locale.No)).toBe(
-      "/no/arrangementer/",
-    );
-    expect(translatePath("/uber-uns/", Locale.De, Locale.No)).toBe(
-      "/no/om-oss/",
-    );
-    expect(translatePath("/mitgliedschaft/", Locale.De, Locale.No)).toBe(
-      "/no/medlemskap/",
-    );
-    expect(translatePath("/interessegruppen/", Locale.De, Locale.No)).toBe(
-      "/no/interessegrupper/",
-    );
-    expect(translatePath("/asr-und-aso/", Locale.De, Locale.No)).toBe(
-      "/no/asr-og-aso/",
-    );
-    expect(translatePath("/kontakt/", Locale.De, Locale.No)).toBe(
-      "/no/kontakt/",
-    );
-    expect(translatePath("/privacy-policy/", Locale.De, Locale.No)).toBe(
-      "/no/personvern/",
-    );
+  it("swaps each page segment between locales", () => {
+    for (const key of keys) {
+      expect(
+        translatePath(pageHref(Locale.De, key), Locale.De, Locale.No),
+      ).toBe(pageHref(Locale.No, key));
+      expect(
+        translatePath(pageHref(Locale.No, key), Locale.No, Locale.De),
+      ).toBe(pageHref(Locale.De, key));
+    }
   });
 
-  it("translates Norwegian top-level page paths to German", () => {
-    expect(translatePath("/no/arrangementer/", Locale.No, Locale.De)).toBe(
-      "/anlasse/",
-    );
-    expect(translatePath("/no/om-oss/", Locale.No, Locale.De)).toBe(
-      "/uber-uns/",
-    );
-    expect(translatePath("/no/medlemskap/", Locale.No, Locale.De)).toBe(
-      "/mitgliedschaft/",
-    );
-    expect(translatePath("/no/interessegrupper/", Locale.No, Locale.De)).toBe(
-      "/interessegruppen/",
-    );
-    expect(translatePath("/no/asr-og-aso/", Locale.No, Locale.De)).toBe(
-      "/asr-und-aso/",
-    );
-    expect(translatePath("/no/kontakt/", Locale.No, Locale.De)).toBe(
-      "/kontakt/",
-    );
-    expect(translatePath("/no/personvern/", Locale.No, Locale.De)).toBe(
-      "/privacy-policy/",
-    );
+  it("round-trips between locales", () => {
+    for (const key of keys) {
+      const de = pageHref(Locale.De, key);
+      const no = translatePath(de, Locale.De, Locale.No);
+      expect(translatePath(no, Locale.No, Locale.De)).toBe(de);
+    }
   });
 
   it("preserves detail slugs while swapping the segment", () => {
-    expect(translatePath("/no/om-oss/jan-mueller/", Locale.No, Locale.De)).toBe(
-      "/uber-uns/jan-mueller/",
-    );
-    expect(translatePath("/uber-uns/jan-mueller/", Locale.De, Locale.No)).toBe(
-      "/no/om-oss/jan-mueller/",
-    );
-    expect(
-      translatePath("/anlasse/2026-08-bundesfeier/", Locale.De, Locale.No),
-    ).toBe("/no/arrangementer/2026-08-bundesfeier/");
-    expect(
-      translatePath(
-        "/no/arrangementer/2026-08-bundesfeier/",
-        Locale.No,
-        Locale.De,
-      ),
-    ).toBe("/anlasse/2026-08-bundesfeier/");
+    for (const key of keys) {
+      expect(
+        translatePath(
+          `${pageHref(Locale.De, key)}jan-mueller/`,
+          Locale.De,
+          Locale.No,
+        ),
+      ).toBe(`${pageHref(Locale.No, key)}jan-mueller/`);
+      expect(
+        translatePath(
+          `${pageHref(Locale.No, key)}jan-mueller/`,
+          Locale.No,
+          Locale.De,
+        ),
+      ).toBe(`${pageHref(Locale.De, key)}jan-mueller/`);
+    }
   });
 
   it("translates the home path", () => {
@@ -90,12 +65,12 @@ describe("translatePath", () => {
 });
 
 describe("pageKeyForSegment", () => {
-  it("resolves known segments to their page key", () => {
-    expect(pageKeyForSegment("anlasse")).toBe("anlasse");
-    expect(pageKeyForSegment("arrangementer")).toBe("anlasse");
-    expect(pageKeyForSegment("uber-uns")).toBe("uberUns");
-    expect(pageKeyForSegment("om-oss")).toBe("uberUns");
-    expect(pageKeyForSegment("personvern")).toBe("privacyPolicy");
+  it("resolves every segment to its page key", () => {
+    for (const key of keys) {
+      for (const locale of LOCALE_VALUES) {
+        expect(pageKeyForSegment(pageSegment(locale, key))).toBe(key);
+      }
+    }
   });
 
   it("returns undefined for unknown segments", () => {

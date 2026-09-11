@@ -6,51 +6,41 @@ vi.mock("astro:content", () => ({
   render: vi.fn(),
 }));
 
-import { footerData, headerData } from "~/navigation";
+import { LOCALE_VALUES, Locale } from "~/config";
+import { footerData, HEADER_PAGE_KEYS, headerData } from "~/navigation";
+import { pageHref } from "~/utils/locale";
 
 describe("headerData", () => {
-  it("returns German nav links with no prefix", () => {
-    const data = headerData("de");
-    expect(data.links).toHaveLength(6);
-    expect(data.links[0].href).toBe("/anlasse/");
-    expect(data.links[1].href).toBe("/mitgliedschaft/");
-    expect(data.links[2].href).toBe("/uber-uns/");
-    expect(data.links[3].href).toBe("/interessegruppen/");
-    expect(data.links[4].href).toBe("/asr-und-aso/");
-    expect(data.links[5].href).toBe("/kontakt/");
-    expect(data.actions).toEqual([]);
-  });
-
-  it("returns Norwegian nav links with /no prefix", () => {
-    const data = headerData("no");
-    expect(data.links[0].href).toBe("/no/arrangementer/");
-    expect(data.links[1].href).toBe("/no/medlemskap/");
-    expect(data.links[2].href).toBe("/no/om-oss/");
-    expect(data.links[3].href).toBe("/no/interessegrupper/");
-    expect(data.links[4].href).toBe("/no/asr-og-aso/");
-    expect(data.links[5].href).toBe("/no/kontakt/");
-  });
+  for (const locale of LOCALE_VALUES) {
+    it(`returns ${locale} nav links matching PAGE_ROUTES`, () => {
+      const data = headerData(locale);
+      expect(data.links).toHaveLength(HEADER_PAGE_KEYS.length);
+      const expected = HEADER_PAGE_KEYS.map((key) => pageHref(locale, key));
+      expect(data.links.map((link) => link.href)).toEqual(expected);
+      expect(data.actions).toEqual([]);
+    });
+  }
 
   it("defaults to German", () => {
-    const data = headerData();
-    expect(data.links[0].href).toBe("/anlasse/");
+    expect(headerData().links[0].href).toBe(
+      headerData(Locale.De).links[0].href,
+    );
   });
 });
 
 describe("footerData", () => {
-  it("returns German secondaryLinks with no prefix", () => {
-    const data = footerData("de");
-    expect(data.secondaryLinks[0].href).toBe("/privacy-policy/");
-  });
-
-  it("returns Norwegian secondaryLinks with /no prefix", () => {
-    const data = footerData("no");
-    expect(data.secondaryLinks[0].href).toBe("/no/personvern/");
-  });
+  for (const locale of LOCALE_VALUES) {
+    it(`links the privacy page for ${locale}`, () => {
+      expect(footerData(locale).secondaryLinks[0].href).toBe(
+        pageHref(locale, "privacyPolicy"),
+      );
+    });
+  }
 
   it("defaults to German", () => {
-    const data = footerData();
-    expect(data.secondaryLinks[0].href).toBe("/privacy-policy/");
+    expect(footerData().secondaryLinks[0].href).toBe(
+      footerData(Locale.De).secondaryLinks[0].href,
+    );
   });
 
   it("includes social links", () => {

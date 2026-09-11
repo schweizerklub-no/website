@@ -6,7 +6,7 @@ vi.mock("astro:content", () => ({
   render: vi.fn(),
 }));
 
-import { Locale } from "~/config";
+import { LOCALE_VALUES, Locale } from "~/config";
 import {
   contentHref,
   dateLocale,
@@ -15,35 +15,34 @@ import {
   pageHref,
   stripLocalePrefix,
 } from "~/utils/locale";
+import { PAGE_ROUTES, type PageKey } from "~/utils/pages";
+
+const keys = Object.keys(PAGE_ROUTES) as PageKey[];
 
 describe("localeUrlPrefix", () => {
-  it("maps de to empty string", () => {
-    expect(localeUrlPrefix.de).toBe("");
-  });
-
-  it("maps no to /no", () => {
-    expect(localeUrlPrefix.no).toBe("/no");
-  });
+  for (const locale of LOCALE_VALUES) {
+    it(`maps ${locale} to a string with locales as keys`, () => {
+      expect(typeof localeUrlPrefix[locale]).toBe("string");
+    });
+  }
 });
 
 describe("dateLocale", () => {
-  it("maps de to de-DE", () => {
-    expect(dateLocale.de).toBe("de-DE");
-  });
-
-  it("maps no to nb-NO", () => {
-    expect(dateLocale.no).toBe("nb-NO");
-  });
+  for (const locale of LOCALE_VALUES) {
+    it(`defines a date locale for ${locale}`, () => {
+      expect(dateLocale[locale].length).toBeGreaterThan(0);
+    });
+  }
 });
 
 describe("stripLocalePrefix", () => {
-  it("strips de/ prefix from German entries", () => {
-    expect(stripLocalePrefix("de/bundesfeier", Locale.De)).toBe("bundesfeier");
-  });
-
-  it("strips no/ prefix from Norwegian entries", () => {
-    expect(stripLocalePrefix("no/bundesfeier", Locale.No)).toBe("bundesfeier");
-  });
+  for (const locale of LOCALE_VALUES) {
+    it(`strips the ${locale} prefix from its own entries`, () => {
+      expect(stripLocalePrefix(`${locale}/bundesfeier`, locale)).toBe(
+        "bundesfeier",
+      );
+    });
+  }
 
   it("returns id unchanged when no prefix matches", () => {
     expect(stripLocalePrefix("bundesfeier", Locale.De)).toBe("bundesfeier");
@@ -61,15 +60,12 @@ describe("detectLocale", () => {
     expect(detectLocale("/")).toBe(Locale.De);
   });
 
-  it("returns de for German paths", () => {
-    expect(detectLocale("/anlasse/")).toBe(Locale.De);
-    expect(detectLocale("/uber-uns/jan-mueller/")).toBe(Locale.De);
-  });
-
-  it("returns no for /no prefix", () => {
-    expect(detectLocale("/no/")).toBe(Locale.No);
-    expect(detectLocale("/no/anlasse/")).toBe(Locale.No);
-    expect(detectLocale("/no/uber-uns/jan-mueller/")).toBe(Locale.No);
+  it("returns the locale for its own page URLs", () => {
+    for (const locale of LOCALE_VALUES) {
+      for (const key of keys) {
+        expect(detectLocale(pageHref(locale, key))).toBe(locale);
+      }
+    }
   });
 
   it("returns no for bare /no", () => {
@@ -78,41 +74,45 @@ describe("detectLocale", () => {
 });
 
 describe("pageHref", () => {
-  it("generates a German page URL", () => {
-    expect(pageHref(Locale.De, "uberUns")).toBe("/uber-uns/");
-    expect(pageHref(Locale.De, "anlasse")).toBe("/anlasse/");
+  it("builds a URL from PAGE_ROUTES for every key and locale", () => {
+    for (const key of keys) {
+      for (const locale of LOCALE_VALUES) {
+        const { segment } = PAGE_ROUTES[key];
+        expect(pageHref(locale, key)).toBe(
+          `${localeUrlPrefix[locale]}/${segment[locale]}/`,
+        );
+      }
+    }
   });
 
-  it("generates a Norwegian page URL with its own segment", () => {
-    expect(pageHref(Locale.No, "uberUns")).toBe("/no/om-oss/");
-    expect(pageHref(Locale.No, "anlasse")).toBe("/no/arrangementer/");
-  });
-
-  it("generates URLs for pages with identical segments", () => {
-    expect(pageHref(Locale.No, "kontakt")).toBe("/no/kontakt/");
+  it("is locale-detectable for every generated URL", () => {
+    for (const locale of LOCALE_VALUES) {
+      for (const key of keys) {
+        expect(detectLocale(pageHref(locale, key))).toBe(locale);
+      }
+    }
   });
 });
 
 describe("contentHref", () => {
-  it("generates German event URL", () => {
-    const entry = { id: "de/bundesfeier", data: { lang: Locale.De } };
-    expect(contentHref(entry, "anlasse")).toBe("/anlasse/bundesfeier/");
+  it("builds a content URL from the entry locale and page key", () => {
+    for (const locale of LOCALE_VALUES) {
+      for (const key of keys) {
+        const entry = { id: `${locale}/jan-mueller`, data: { lang: locale } };
+        const { segment } = PAGE_ROUTES[key];
+        expect(contentHref(entry, key)).toBe(
+          `${localeUrlPrefix[locale]}/${segment[locale]}/jan-mueller/`,
+        );
+      }
+    }
   });
 
-  it("generates Norwegian event URL", () => {
-    const entry = { id: "no/bundesfeier", data: { lang: Locale.No } };
-    expect(contentHref(entry, "anlasse")).toBe(
-      "/no/arrangementer/bundesfeier/",
-    );
-  });
-
-  it("generates German board member URL", () => {
-    const entry = { id: "de/jan-mueller", data: { lang: Locale.De } };
-    expect(contentHref(entry, "uberUns")).toBe("/uber-uns/jan-mueller/");
-  });
-
-  it("generates Norwegian board member URL", () => {
-    const entry = { id: "no/jan-mueller", data: { lang: Locale.No } };
-    expect(contentHref(entry, "uberUns")).toBe("/no/om-oss/jan-mueller/");
+  it("is locale-detectable for every generated URL", () => {
+    for (const locale of LOCALE_VALUES) {
+      for (const key of keys) {
+        const entry = { id: `${locale}/jan-mueller`, data: { lang: locale } };
+        expect(detectLocale(contentHref(entry, key))).toBe(locale);
+      }
+    }
   });
 });

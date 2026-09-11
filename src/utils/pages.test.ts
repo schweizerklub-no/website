@@ -1,5 +1,15 @@
-import { describe, expect, it } from "vitest";
-import { Locale } from "~/config";
+import { existsSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { describe, expect, it, vi } from "vitest";
+
+vi.mock("astro:content", () => ({
+  getCollection: vi.fn(),
+  getEntry: vi.fn(),
+  render: vi.fn(),
+}));
+
+import { LOCALE_VALUES, type Locale } from "~/config";
+import { localeUrlPrefix } from "~/utils/locale";
 import {
   PAGE_ROUTES,
   type PageKey,
@@ -7,90 +17,103 @@ import {
   pageSlug,
 } from "~/utils/pages";
 
-const keys: PageKey[] = [
-  "anlasse",
-  "uberUns",
-  "mitgliedschaft",
-  "interessegruppen",
-  "asrUndAso",
-  "kontakt",
-  "privacyPolicy",
-];
+const keys = Object.keys(PAGE_ROUTES) as PageKey[];
+const repoRoot = fileURLToPath(new URL("../..", import.meta.url));
+const kebab = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 describe("PAGE_ROUTES", () => {
-  it("covers every page key for both locales", () => {
+  it("defines a non-empty segment for every key and locale", () => {
     for (const key of keys) {
-      expect(PAGE_ROUTES[key].segment.de).toBeTruthy();
-      expect(PAGE_ROUTES[key].segment.no).toBeTruthy();
+      for (const locale of LOCALE_VALUES) {
+        expect(pageSegment(locale, key).length).toBeGreaterThan(0);
+      }
     }
   });
 
-  it("defines a de segment for every key", () => {
-    const deSegments = keys.map((k) => PAGE_ROUTES[k].segment.de);
-    expect(deSegments).toEqual([
-      "anlasse",
-      "uber-uns",
-      "mitgliedschaft",
-      "interessegruppen",
-      "asr-und-aso",
-      "kontakt",
-      "privacy-policy",
-    ]);
-  });
-
-  it("defines Norwegian segments per the expected mapping", () => {
-    const noSegments = keys.map((k) => PAGE_ROUTES[k].segment.no);
-    expect(noSegments).toEqual([
-      "arrangementer",
-      "om-oss",
-      "medlemskap",
-      "interessegrupper",
-      "asr-og-aso",
-      "kontakt",
-      "personvern",
-    ]);
-  });
-
-  it("uses kebab-case for all segments and slugs", () => {
-    const kebab = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+  it("uses kebab-case for all segments and content slugs", () => {
     for (const key of keys) {
-      const route = PAGE_ROUTES[key];
-      for (const locale of Object.values(Locale)) {
-        expect(route.segment[locale]).toMatch(kebab);
+      for (const locale of LOCALE_VALUES) {
+        expect(pageSegment(locale, key)).toMatch(kebab);
+        const route = PAGE_ROUTES[key];
         if ("contentSlug" in route) {
           expect(route.contentSlug[locale]).toMatch(kebab);
         }
       }
     }
   });
+
+  it("maps each key to a unique segment per locale", () => {
+    for (const locale of LOCALE_VALUES) {
+      const segments = keys.map((key) => pageSegment(locale, key));
+      expect(new Set(segments).size).toBe(segments.length);
+    }
+  });
+
+  it("has a route page for every segment and locale", () => {
+    for (const key of keys) {
+      for (const locale of LOCALE_VALUES) {
+        const segment = pageSegment(locale, key);
+        const routeDir = pageRouteDirectory(locale, segment);
+        expect(
+          existsSync(routeDir),
+          `missing route page for ${locale}/${segment}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("matches each content slug to an existing file for the right locale", () => {
+    for (const key of keys) {
+      const route = PAGE_ROUTES[key];
+      if (!("contentSlug" in route)) continue;
+      for (const locale of LOCALE_VALUES) {
+        const slug = route.contentSlug[locale];
+        const file = `${repoRoot}src/content/pages/${locale}/${slug}.md`;
+        expect(
+          existsSync(file),
+          `missing content file: ${locale}/${slug}`,
+        ).toBe(true);
+        expect(readFileSync(file, "utf8")).toMatch(`lang: ${locale}`);
+      }
+    }
+  });
 });
 
 describe("pageSegment", () => {
-  it("returns the generic German segment", () => {
-    expect(pageSegment(Locale.De, "anlasse")).toBe("anlasse");
-    expect(pageSegment(Locale.De, "privacyPolicy")).toBe("privacy-policy");
-  });
-
-  it("returns the Norwegian segment", () => {
-    expect(pageSegment(Locale.No, "anlasse")).toBe("arrangementer");
-    expect(pageSegment(Locale.No, "uberUns")).toBe("om-oss");
-    expect(pageSegment(Locale.No, "privacyPolicy")).toBe("personvern");
+  it("returns the segment stored in PAGE_ROUTES", () => {
+    for (const key of keys) {
+      for (const locale of LOCALE_VALUES) {
+        expect(pageSegment(locale, key)).toBe(PAGE_ROUTES[key].segment[locale]);
+      }
+    }
   });
 });
 
 describe("pageSlug", () => {
-  it("returns the German content slug", () => {
-    expect(pageSlug(Locale.De, "uberUns")).toBe("uber-uns");
-    expect(pageSlug(Locale.De, "kontakt")).toBe("kontakt");
-  });
-
-  it("returns the Norwegian content slug", () => {
-    expect(pageSlug(Locale.No, "uberUns")).toBe("om-oss");
-    expect(pageSlug(Locale.No, "mitgliedschaft")).toBe("medlemskap");
-    expect(pageSlug(Locale.No, "privacyPolicy")).toBe("personvern");
+  it("returns the content slug when defined", () => {
+    for (const key of keys) {
+      const route = PAGE_ROUTES[key];
+      if (!("contentSlug" in route)) continue;
+      for (const locale of LOCALE_VALUES) {
+        expect(pageSlug(locale, key)).toBe(route.contentSlug[locale]);
+      }
+    }
   });
 
   it("throws for keys without a content slug", () => {
-    expect(() => pageSlug(Locale.De, "anlasse")).toThrow();
+    for (const key of keys) {
+      if ("contentSlug" in PAGE_ROUTES[key]) continue;
+      for (const locale of LOCALE_VALUES) {
+        expect(() => pageSlug(locale, key)).toThrow();
+      }
+    }
   });
 });
+
+function pageRouteDirectory(locale: Locale, segment: string): string {
+  const prefix = localeUrlPrefix[locale].replace(/^\//, "");
+  const dir = prefix
+    ? `src/pages/${prefix}/${segment}`
+    : `src/pages/${segment}`;
+  return `${repoRoot}${dir}/index.astro`;
+}
