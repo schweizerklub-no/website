@@ -1,0 +1,17 @@
+---
+import { getDetailPaths } from '~/utils/locale';
+import EventDetail from '~/components/pages/EventDetail.astro';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  return getDetailPaths('events', 'fr');
+}
+
+interface Props {
+  entry: CollectionEntry<'events'>;
+}
+
+const { entry } = Astro.props;
+---
+
+<EventDetail {entry} />

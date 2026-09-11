@@ -34,11 +34,13 @@ export async function getPage(locale: Locale, slug: string) {
 export const dateLocale: Record<Locale, string> = {
   de: "de-DE",
   no: "nb-NO",
+  fr: "fr-FR",
 };
 
 export const localeUrlPrefix: Record<Locale, string> = {
   de: "",
   no: "/no",
+  fr: "/fr",
 };
 
 export function pageHref(locale: Locale, key: PageKey): string {
