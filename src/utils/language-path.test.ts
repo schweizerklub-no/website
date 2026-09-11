@@ -13,45 +13,43 @@ import { PAGE_ROUTES, type PageKey, pageSegment } from "~/utils/pages";
 
 const keys = Object.keys(PAGE_ROUTES) as PageKey[];
 
-describe("translatePath", () => {
-  it("swaps each page segment between locales", () => {
-    for (const key of keys) {
-      for (const from of LOCALE_VALUES) {
-        for (const to of LOCALE_VALUES) {
-          if (from === to) continue;
-          expect(translatePath(pageHref(from, key), from, to)).toBe(
-            pageHref(to, key),
-          );
-        }
+function forEachKeyPair(
+  callback: (key: PageKey, from: Locale, to: Locale) => void,
+) {
+  for (const key of keys) {
+    for (const from of LOCALE_VALUES) {
+      for (const to of LOCALE_VALUES) {
+        if (from === to) continue;
+        callback(key, from, to);
       }
     }
+  }
+}
+
+describe("translatePath", () => {
+  it("swaps each page segment between locales", () => {
+    forEachKeyPair((key, from, to) => {
+      expect(translatePath(pageHref(from, key), from, to)).toBe(
+        pageHref(to, key),
+      );
+    });
   });
 
   it("round-trips between locales", () => {
-    for (const key of keys) {
-      for (const from of LOCALE_VALUES) {
-        for (const to of LOCALE_VALUES) {
-          if (from === to) continue;
-          const original = pageHref(from, key);
-          expect(
-            translatePath(translatePath(original, from, to), to, from),
-          ).toBe(original);
-        }
-      }
-    }
+    forEachKeyPair((key, from, to) => {
+      const original = pageHref(from, key);
+      expect(translatePath(translatePath(original, from, to), to, from)).toBe(
+        original,
+      );
+    });
   });
 
   it("preserves detail slugs while swapping the segment", () => {
-    for (const key of keys) {
-      for (const from of LOCALE_VALUES) {
-        for (const to of LOCALE_VALUES) {
-          if (from === to) continue;
-          expect(
-            translatePath(`${pageHref(from, key)}jan-mueller/`, from, to),
-          ).toBe(`${pageHref(to, key)}jan-mueller/`);
-        }
-      }
-    }
+    forEachKeyPair((key, from, to) => {
+      expect(
+        translatePath(`${pageHref(from, key)}jan-mueller/`, from, to),
+      ).toBe(`${pageHref(to, key)}jan-mueller/`);
+    });
   });
 
   it("translates the home path", () => {
