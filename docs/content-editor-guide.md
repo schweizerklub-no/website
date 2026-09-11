@@ -52,7 +52,7 @@ The website currently supports German and Norwegian. More languages can be added
 
 ### Step-by-step
 
-1. Go to the correct folder for your language:
+1. Go to the correct folder in the chosen language:
    - German: `src/content/events/de/`
    - Norwegian: `src/content/events/no/`
 2. Look at the existing event files to see how they're named (e.g., `2026-10-herbstfest.md`)
@@ -91,7 +91,7 @@ Your event description here.
 
 ### Step-by-step
 
-1. Go to the correct folder:
+1. Go to the correct folder in the chosen language:
    - German: `src/content/board/de/`
    - Norwegian: `src/content/board/no/`
 2. Click **Add file** → **Create new file**
@@ -131,7 +131,7 @@ Pages like "Über uns", "Mitgliedschaft", or "Kontakt" live in the pages folder.
 
 ### Step-by-step
 
-1. Go to the correct folder:
+1. Go to the correct folder in the chosen language:
    - German: `src/content/pages/de/`
    - Norwegian: `src/content/pages/no/`
 2. Click the page you want to edit (e.g., `uber-uns.md` in German, `om-oss.md` in Norwegian)
