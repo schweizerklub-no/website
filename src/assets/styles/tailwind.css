@@ -9,6 +9,7 @@
 @theme {
   --color-primary: var(--aw-color-primary);
   --color-secondary: var(--aw-color-secondary);
+  --color-accent: var(--aw-color-accent);
   --color-default: var(--aw-color-text-default);
   --color-muted: var(--aw-color-text-muted);
 
