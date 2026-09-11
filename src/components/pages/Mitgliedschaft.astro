@@ -2,10 +2,11 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import PageSection from '~/components/PageSection.astro';
 import { getPage } from '~/utils/locale';
+import { pageSlug } from '~/utils/pages';
 import { BANK_ACCOUNT } from '~/config';
 
 const { pages: t } = Astro.locals.t;
-const { entry, Content } = await getPage(Astro.locals.locale, "mitgliedschaft");
+const { entry, Content } = await getPage(Astro.locals.locale, pageSlug(Astro.locals.locale, "mitgliedschaft"));
 const metadata = { title: entry.data.title };
 ---
 

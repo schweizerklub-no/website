@@ -14,7 +14,7 @@ export interface Props {
 
 const { member, imageSize = 'w-20 h-20', avatarTextSize = 'text-3xl', showEmail = false } = Astro.props;
 const hasDetails = member.body?.trim();
-const href = contentHref(member, "uber-uns");
+const href = contentHref(member, "uberUns");
 const image = member.data.image ? await findImage(member.data.image) : undefined;
 ---
 

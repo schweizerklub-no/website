@@ -2,14 +2,15 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import PageSection from '~/components/PageSection.astro';
 import { getPage } from '~/utils/locale';
+import { pageSlug, type PageKey } from '~/utils/pages';
 
 export interface Props {
-  slug: string;
+  page: PageKey;
   showEmail?: boolean;
 }
 
-const { slug, showEmail } = Astro.props;
-const { entry, Content } = await getPage(Astro.locals.locale, slug);
+const { page, showEmail } = Astro.props;
+const { entry, Content } = await getPage(Astro.locals.locale, pageSlug(Astro.locals.locale, page));
 const metadata = { title: entry.data.title };
 const { misc: m } = Astro.locals.t;
 ---

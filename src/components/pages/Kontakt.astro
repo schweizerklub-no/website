@@ -2,9 +2,10 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import PageSection from '~/components/PageSection.astro';
 import { getPage } from '~/utils/locale';
+import { pageSlug } from '~/utils/pages';
 
 const { pages: t, misc: m } = Astro.locals.t;
-const { entry, Content } = await getPage(Astro.locals.locale, "kontakt");
+const { entry, Content } = await getPage(Astro.locals.locale, pageSlug(Astro.locals.locale, "kontakt"));
 const metadata = { title: entry.data.title };
 ---
 

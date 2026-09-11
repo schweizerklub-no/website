@@ -1,33 +1,30 @@
 import { Locale } from "~/config";
 import { UI } from "~/i18n";
-import { localeUrlPrefix } from "~/utils/locale";
-import { getPermalink } from "./utils/permalinks";
+import { pageHref } from "~/utils/locale";
+import type { PageKey } from "~/utils/pages";
+
+export const HEADER_PAGE_KEYS = [
+  "anlasse",
+  "mitgliedschaft",
+  "uberUns",
+  "interessegruppen",
+  "asrUndAso",
+  "kontakt",
+] as const satisfies readonly PageKey[];
 
 export function headerData(locale: Locale = Locale.De) {
   const nav = UI[locale].nav;
-  const prefix = localeUrlPrefix[locale];
   return {
-    links: [
-      { text: nav.anlasse, href: getPermalink(`${prefix}/anlasse`) },
-      {
-        text: nav.mitgliedschaft,
-        href: getPermalink(`${prefix}/mitgliedschaft`),
-      },
-      { text: nav.uberUns, href: getPermalink(`${prefix}/uber-uns`) },
-      {
-        text: nav.interessegruppen,
-        href: getPermalink(`${prefix}/interessegruppen`),
-      },
-      { text: nav.asrUndAso, href: getPermalink(`${prefix}/asr-und-aso`) },
-      { text: nav.kontakt, href: getPermalink(`${prefix}/kontakt`) },
-    ],
+    links: HEADER_PAGE_KEYS.map((key) => ({
+      text: nav[key],
+      href: pageHref(locale, key),
+    })),
     actions: [],
   };
 }
 
 export function footerData(locale: Locale = Locale.De) {
   const t = UI[locale].footer;
-  const prefix = localeUrlPrefix[locale];
   return {
     links: [
       {
@@ -59,7 +56,10 @@ export function footerData(locale: Locale = Locale.De) {
       },
     ],
     secondaryLinks: [
-      { text: t.privacy, href: getPermalink(`${prefix}/privacy-policy`) },
+      {
+        text: t.privacy,
+        href: pageHref(locale, "privacyPolicy"),
+      },
     ],
     socialLinks: [
       {

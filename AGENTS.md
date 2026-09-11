@@ -79,9 +79,9 @@ See [`docs/development/deployment.md`](docs/development/deployment.md) for the f
 ### i18n
 
 - Default locale: German (`de`), no URL prefix
-- Norwegian at `/no/` prefix
+- Every other locale gets its own URL prefix (Norwegian: `/no/`) and its own language-specific slugs (see `src/utils/pages.ts`)
 - Adding a locale: follow `.agents/skills/add-locale/SKILL.md`
-- All UI text lives in `src/i18n/{de,no}.ts`, exported from `src/i18n/index.ts` as `UI`
+- All UI text lives in `src/i18n/{de,no}.ts` (one file per locale), exported from `src/i18n/index.ts` as `UI`
 - Type of all UI text is `UIType` (inferred from `UI.de`)
 - Access via `Astro.locals.t` (set by middleware in `src/middleware.ts`)
 - `Astro.locals.locale` is `"de" | "no"`

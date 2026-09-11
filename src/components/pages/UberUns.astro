@@ -6,10 +6,11 @@ import BoardMemberCard from '~/components/BoardMemberCard.astro';
 import PageSection from '~/components/PageSection.astro';
 import CardGrid from '~/components/CardGrid.astro';
 import { getPage } from '~/utils/locale';
+import { pageSlug } from '~/utils/pages';
 import { sortBoardMembers } from '~/utils/board';
 
 const t = Astro.locals.t.pages;
-const { entry, Content } = await getPage(Astro.locals.locale, "uber-uns");
+const { entry, Content } = await getPage(Astro.locals.locale, pageSlug(Astro.locals.locale, "uberUns"));
 const boardMembers = sortBoardMembers(
   await getCollection("board", ({ data }) => data.lang === Astro.locals.locale),
 );

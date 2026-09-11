@@ -2,6 +2,7 @@
 import { UI } from "~/i18n";
 import { localeUrlPrefix } from "~/utils/locale";
 import type { Locale } from "~/config";
+import { translatePath } from "~/utils/language-path";
 import LanguageLink from "~/components/common/LanguageLink.astro";
 
 export interface Props {
@@ -11,12 +12,10 @@ export interface Props {
 
 const { locale, pathname } = Astro.props;
 
-const basePath = pathname.replace(localeUrlPrefix[locale], "") || "/";
-
 const links = (Object.keys(localeUrlPrefix) as Locale[])
   .filter((l) => l !== locale)
   .map((l) => {
-    const href = `${localeUrlPrefix[l]}${basePath}`.replace(/\/?$/, "/");
+    const href = translatePath(pathname, locale, l);
     return { href, label: UI[l].label, lang: l };
   });
 ---
