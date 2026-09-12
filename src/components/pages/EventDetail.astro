@@ -24,7 +24,13 @@ const t = Astro.locals.t.pages;
       <BackLink href={pageHref(entry.data.lang, "anlasse")} label={t.backToEvents} />
 
       {image && (
-        <Image src={image as ImageMetadata} alt={entry.data.title} class="w-full rounded-lg mb-8 max-h-96 object-cover" />
+        <Image
+          src={image as ImageMetadata}
+          alt={entry.data.title}
+          widths={[400, 768, 1152]}
+          sizes="(min-width: 768px) 768px, 100vw"
+          class="w-full rounded-lg mb-8 max-h-96 object-cover"
+        />
       )}
 
       <time class="text-sm text-muted" datetime={entry.data.date.toISOString()}>

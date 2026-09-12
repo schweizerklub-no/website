@@ -43,6 +43,7 @@ import { UI } from '~/config';
 
   function closeMobileMenu() {
     document.querySelector('[data-aw-toggle-menu]')?.classList.remove('expanded');
+    document.querySelector('[data-aw-toggle-menu]')?.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('overflow-hidden');
     document.getElementById('header')?.classList.remove('h-screen');
     document.getElementById('header')?.classList.remove('expanded');
@@ -61,6 +62,7 @@ import { UI } from '~/config';
 
     attachEvent('[data-aw-toggle-menu]', 'click', function (_, elem) {
       elem.classList.toggle('expanded');
+      elem.setAttribute('aria-expanded', String(elem.classList.contains('expanded')));
       document.body.classList.toggle('overflow-hidden');
       document.getElementById('header')?.classList.toggle('h-screen');
       document.getElementById('header')?.classList.toggle('expanded');
@@ -74,21 +76,29 @@ import { UI } from '~/config';
       const dropdown = elem.parentElement.querySelector('[data-lang-dropdown]');
       if (dropdown) {
         dropdown.classList.toggle('hidden');
+        elem.setAttribute('aria-expanded', String(!dropdown.classList.contains('hidden')));
       }
     });
 
     attachEvent([document], 'click', function (e) {
       document.querySelectorAll('[data-lang-wrapper]').forEach(function (wrapper) {
         const dropdown = wrapper.querySelector('[data-lang-dropdown]');
-        if (dropdown && !dropdown.classList.contains('hidden') && !wrapper.contains(e.target)) {
+        const toggle = wrapper.querySelector('[data-lang-toggle]');
+        if (dropdown && toggle && !dropdown.classList.contains('hidden') && !wrapper.contains(e.target)) {
           dropdown.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
         }
       });
     });
 
     attachEvent('[data-lang-dropdown] a', 'click', function () {
-      document.querySelectorAll('[data-lang-dropdown]').forEach(function (dd) {
-        dd.classList.add('hidden');
+      document.querySelectorAll('[data-lang-wrapper]').forEach(function (wrapper) {
+        const dropdown = wrapper.querySelector('[data-lang-dropdown]');
+        const toggle = wrapper.querySelector('[data-lang-toggle]');
+        if (dropdown && toggle) {
+          dropdown.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
       });
       closeMobileMenu();
     });

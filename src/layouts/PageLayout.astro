@@ -19,10 +19,16 @@ const footer = footerData(locale);
 ---
 
 <Layout {...defined({ metadata })} lang={locale}>
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:font-semibold focus:text-white"
+  >
+    {Astro.locals.t.nav.skipToContent}
+  </a>
   <slot name="header">
     <Header {...header} locale={locale} links={header.links} showToggleTheme />
   </slot>
-  <main>
+  <main id="main">
     <slot />
   </main>
   <slot name="footer">

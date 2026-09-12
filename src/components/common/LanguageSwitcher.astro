@@ -21,7 +21,7 @@ const links = (Object.keys(localeUrlPrefix) as Locale[])
 ---
 
 <div class="relative" data-lang-wrapper>
-  <button type="button" data-lang-toggle class="flex items-center gap-1 text-sm font-semibold uppercase tracking-widest text-muted bg-page px-3 py-3 rounded cursor-pointer select-none">
+  <button type="button" data-lang-toggle aria-haspopup="true" aria-expanded="false" class="flex items-center gap-1 text-sm font-semibold uppercase tracking-widest text-muted bg-page px-3 py-3 rounded cursor-pointer select-none">
     {locale}
     <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M6 9l6 6 6-6" />

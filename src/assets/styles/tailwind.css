@@ -8,6 +8,8 @@
 
 @theme {
   --color-primary: var(--aw-color-primary);
+  --color-primary-solid: var(--aw-color-primary-solid);
+  --color-primary-solid-hover: var(--aw-color-primary-solid-hover);
   --color-secondary: var(--aw-color-secondary);
   --color-accent: var(--aw-color-accent);
   --color-default: var(--aw-color-text-default);
@@ -46,12 +48,23 @@
   color: var(--aw-color-text-muted);
 }
 
+@layer base {
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(213 31 39), 0 0 0 6px rgb(255 255 255);
+  }
+
+  .dark :focus-visible {
+    box-shadow: 0 0 0 2px rgb(239 68 68), 0 0 0 6px rgb(26 26 26);
+  }
+}
+
 @utility btn {
-  @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-primary focus:ring-2 focus:ring-offset-2 hover:bg-primary/10 hover:border-primary/30 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-primary/15 dark:hover:border-primary/40 cursor-pointer;
+  @apply inline-flex items-center justify-center rounded-full border border-primary/80 dark:border-primary/80 bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-primary focus:ring-2 focus:ring-offset-2 hover:bg-primary/15 hover:border-primary hover:text-primary dark:hover:bg-primary/15 dark:hover:border-primary dark:hover:text-primary cursor-pointer;
 }
 
 @utility btn-primary {
-  @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+  @apply btn font-semibold bg-primary-solid text-white border-primary-solid hover:bg-primary-solid-hover hover:border-primary-solid-hover hover:text-white dark:text-white dark:bg-primary-solid dark:border-primary-solid dark:hover:bg-primary-solid-hover dark:hover:border-primary-solid-hover dark:hover:text-white;
 }
 
 @utility btn-secondary {
