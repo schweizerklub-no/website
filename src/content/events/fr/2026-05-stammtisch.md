@@ -1,6 +1,6 @@
 ---
 lang: fr
-title: Stammtisch
+title: Table des habitués
 date: 2026-05-07
 visibilityEnd: 2026-05-08
 image: ~/assets/images/events/stammtisch.jpg
