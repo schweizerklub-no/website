@@ -17,6 +17,7 @@ export const fr = {
     interessegruppen: "Groupes d'intérêt",
     asrUndAso: "ASR et ASO",
     kontakt: "Contact",
+    skipToContent: "Aller au contenu",
   },
   footer: {
     tagline:

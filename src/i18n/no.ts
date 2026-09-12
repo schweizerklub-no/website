@@ -17,6 +17,7 @@ export const no = {
     interessegruppen: "Interessegrupper",
     asrUndAso: "ASR og ASO",
     kontakt: "Kontakt",
+    skipToContent: "Hopp til innhold",
   },
   footer: {
     tagline: "Sveitsisk kultur, fellesskap og utveksling i Norges hovedstad.",

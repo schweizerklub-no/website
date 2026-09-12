@@ -26,9 +26,9 @@ const localeDate = event.data.date.toLocaleDateString(dateLocale[event.data.lang
 {hasDetails ? (
   <a
     href={href}
-    class:list={['block border-2 border-primary/15 dark:border-primary/30 rounded-lg overflow-hidden transition-all bg-white dark:bg-neutral-800', past ? 'opacity-60' : 'hover:bg-primary/5 dark:hover:bg-primary/10 hover:border-primary/40 dark:hover:border-primary/50']}
+    class:list={['block border-2 border-primary/40 dark:border-primary/50 rounded-lg overflow-hidden transition-all bg-white dark:bg-neutral-800', past ? 'opacity-60' : 'hover:bg-primary/5 dark:hover:bg-primary/10 hover:border-primary dark:hover:border-primary']}
   >
-    {image && <Image src={image as ImageMetadata} alt={event.data.title} class="w-full h-40 object-cover" />}
+    {image && <Image src={image as ImageMetadata} alt={event.data.title} width={800} height={450} widths={[400, 640, 800]} sizes="(min-width: 1024px) 340px, (min-width: 768px) 45vw, 100vw" class="w-full aspect-[16/9] object-cover" />}
     <div class="p-6">
       <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>{localeDate}</time>
       <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
@@ -37,8 +37,8 @@ const localeDate = event.data.date.toLocaleDateString(dateLocale[event.data.lang
     </div>
   </a>
 ) : (
-  <div class:list={['border-2 border-primary/15 dark:border-primary/30 rounded-lg overflow-hidden bg-white dark:bg-neutral-800', past && 'opacity-60']}>
-    {image && <Image src={image as ImageMetadata} alt={event.data.title} class="w-full h-40 object-cover" />}
+  <div class:list={['border-2 border-primary/40 dark:border-primary/50 rounded-lg overflow-hidden bg-white dark:bg-neutral-800', past && 'opacity-60']}>
+    {image && <Image src={image as ImageMetadata} alt={event.data.title} width={800} height={450} widths={[400, 640, 800]} sizes="(min-width: 1024px) 340px, (min-width: 768px) 45vw, 100vw" class="w-full aspect-[16/9] object-cover" />}
     <div class="p-6">
       <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>{localeDate}</time>
       <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>

@@ -25,7 +25,7 @@ const t = Astro.locals.t.pages;
 
       <div class="flex flex-col md:flex-row gap-8 items-start mb-10">
         {image ? (
-          <Image src={image as ImageMetadata} alt={entry.data.name} class="w-48 h-48 rounded-full object-cover shrink-0" />
+          <Image src={image as ImageMetadata} alt={entry.data.name} width={384} height={384} class="w-48 h-48 rounded-full object-cover shrink-0" />
         ) : (
           <div class="w-48 h-48 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
             <span class="text-6xl font-bold text-primary">{entry.data.name.charAt(0)}</span>
