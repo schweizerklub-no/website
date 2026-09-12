@@ -5,52 +5,38 @@ description: Use when adding a new event content file or event page entry to thi
 
 # Add a New Event
 
-Checklist for adding an event to the website.
+Checklist for adding an event.
 
-## 1. Create content file
+## 1. Content file
 
-Create `src/content/events/{locale}/{slug}.md`:
+Create `src/content/events/{locale}/{slug}.md` (`YYYY-MM-slug` naming):
 
 ```md
 ---
 lang: "de"
 title: "Event Title"
 date: 2026-12-25
-visibilityEnd: 2026-12-26
-image: "~/assets/images/events/your-image.jpg"
-description: "A short description shown on the event card."
-location: "Oslo"
+visibilityEnd: 2026-12-26      # optional
+image: "~/assets/images/events/your-image.jpg"  # optional
+description: "Card text"       # optional
+location: "Oslo"               # optional
 ---
-
-Markdown body for the event detail page.
+Markdown body for the detail page.
 ```
 
-### Frontmatter fields
+- The event **slug stays locale-neutral**; the listing segment is language-specific (`PAGE_ROUTES`).
+- To show the event in another language, create a parallel file `{locale}/{slug}.md` with that locale's `lang`.
 
-| Field | Required | Description |
-|---|---|---|
-| `lang` | yes | Locale code — `"de"` or `"no"` (+ any future locale) |
-| `title` | yes | Event name |
-| `date` | yes | ISO date `YYYY-MM-DD` |
-| `visibilityEnd` | no | After this date, event is hidden from listings |
-| `image` | no | Path using `~/assets/images/...` alias |
-| `description` | no | Shown on card and detail page header |
-| `location` | no | Displayed on detail page |
+## 2. Date rules
 
-## 2. Variants in other languages
+- **No `visibilityEnd`** → "upcoming" until the date passes.
+- **Past `visibilityEnd`** → moves to "past events".
+- Past events within `PAST_EVENTS_MONTHS` (`src/site-config.ts`) show; older are hidden.
 
-If the event should also appear in another language, create a parallel file at `src/content/events/{locale}/{slug}.md` with that locale's `lang` — currently `no` (e.g. `src/content/events/no/{slug}.md` with `lang: "no"`).
+## 3. Image (optional)
 
-## 3. Date rules
+Place images in `src/assets/images/events/`; reference as `~/assets/images/events/name.jpg`.
 
-- **Future events**: no `visibilityEnd` needed — event appears in "upcoming" until the date passes.
-- **Past events**: set `visibilityEnd` to a date in the past to remove from listings. Event stays visible until `visibilityEnd` passes, then moves to "past events" section.
-- **6-month window**: past events within 6 months (configurable via `PAST_EVENTS_MONTHS` in `src/site-config.ts`) appear in the "past events" section. Older events are hidden.
+## 4. Verify
 
-## 4. Image (optional)
-
-Place images in `src/assets/images/events/`. Reference them as `~/assets/images/events/your-image.jpg`.
-
-## 5. Verify
-
-Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and confirm the event appears at `/anlasse/{slug}/` (DE) and `/no/arrangementer/{slug}/` (NO) — plus the equivalent URL for any future locale. The listing segment is language-specific (see `PAGE_ROUTES` in `src/utils/pages.ts`); the event slug itself stays locale-neutral.
+Run the mandatory gates and confirm the event renders at the expected URLs (e.g. `/anlasse/{slug}/`, `/fr/evenements/{slug}/`).

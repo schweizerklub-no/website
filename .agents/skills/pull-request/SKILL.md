@@ -9,49 +9,28 @@ Create consistent, well-structured PRs linked to issues.
 
 ## Pre-flight
 
-Before creating, inspect the working tree:
+Inspect `git status && git diff && git log --oneline -10`. Stage only intended files, never secrets. Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and fix failures first; ask the user what the PR is about if the commits alone don't tell the story.
 
-```bash
-git status && git diff && git log --oneline -10
-```
+## Title
 
-If the commits alone don't tell the full story, ask the user what the PR is about.
+`type(scope): description` — types: `feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `style`.
 
-Stage only intended files — never commit secrets. Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and fix any failure first.
+## Body
 
-## PR title
-
-Use semantic commit format: `type(scope): description`.
-
-- **Types:** `feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `style`
-- **Scope:** module or domain being changed
-
-## PR body
-
-Briefly summarize:
-
-- what was changed
-- issue linking
-- verification (build/typecheck/test/lint all green)
-- risk: none / low / medium / high
+Summarize: what changed, issue linking, verification (all gates green), risk: none/low/medium/high.
 
 ## Issue linking
 
-| Situation | In PR body |
-|-----------|------------|
-| Issue fully resolved | `Closes #123` |
-| Partial work, issue still open | `Relates to #123` |
-| No issue | Write motivation directly in the description |
+| Situation | In body |
+|---|---|
+| Fully resolved | `Closes #123` |
+| Partial, still open | `Relates to #123` |
+| No issue | Write motivation directly |
 
-## Creation
+## Commands
 
 ```bash
-gh pr create \
-  --repo schweizerklub-no/website \
-  --title "type(scope): description" \
-  --body "BODY"
+gh pr create --title "type(scope): description" --body "BODY"
 ```
 
-## Updating an existing PR
-
-Push new commits to the same branch — the PR updates automatically. Re-run the mandatory gates first.
+Push new commits to the same branch to update the PR — re-run the mandatory gates first.

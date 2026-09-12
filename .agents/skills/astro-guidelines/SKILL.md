@@ -5,23 +5,21 @@ description: Use when writing, refactoring, or reviewing Astro components, pages
 
 # Astro Guidelines
 
-The canonical, always-on conventions live in `AGENTS.md` — "Astro best practices", "Test conventions", and the "Mandatory Gates" sections are the source of truth. This skill is the working procedure: what to do and in what order, with concrete pointers. Do not restate the AGENTS.md rules here; reference them.
+Canonical, always-on conventions live in `AGENTS.md` (Astro best practices, Tests, Mandatory Gates) — reference, don't restate.
 
-## Creating or changing components
+## Components
 
-1. Check which shared components already apply — `PageLayout`, `PageSection`, `CardGrid`, `BackLink`, `Button`, and the extracted card bodies (`EventCardBody.astro`, `BoardMemberCardBody.astro`).
-2. Type the `Props` interface with the existing types (`CollectionEntry<"events" | "board">`, `Locale`, `PageKey`, `MetaData`) — never `any`.
-3. Reuse the helpers (`pageHref`, `contentHref`, `localeUrlPrefix`, `getPage`) for every URL; images go through `astro:assets` `Image` or `findImage`.
-4. If your markup begins to repeat existing markup, extract a shared component instead — never duplicate.
-5. Keep logic out of `.astro` files: put it in `src/utils/` with a co-located `*.test.ts`.
+1. Reuse shared pieces first: `PageLayout`, `PageSection`, `CardGrid`, `BackLink`, `Button`, and the extracted card bodies (`EventCardBody`, `BoardMemberCardBody`).
+2. Type `Props` with existing types (`CollectionEntry<"events" | "board">`, `Locale`, `PageKey`, `MetaData`) — never `any`.
+3. URLs via `pageHref`/`contentHref`/`localeUrlPrefix`; images via `Image` or `findImage`.
+4. Extract markup the moment it repeats.
 
-## Writing tests
+## Tests
 
-- Copy the locale-agnostic pattern from `src/i18n/parity.test.ts` (iterate `LOCALE_VALUES`, compare to `Locale.De`) — never write a hardcoded locale or URL into a test.
-- The `astro:content` / `astro:assets` mocks already exist in `src/test/setup.ts` — do not re-declare them; override in-file only for fixtures (see `src/utils/events.test.ts`).
-- Import `describe`/`it`/`expect` from `vitest` (globals are disabled).
+- Follow the locale-agnostic pattern in `src/i18n/parity.test.ts` — never hardcode a locale or URL.
+- Mocks live in `src/test/setup.ts`; override in-file only for fixtures (`src/utils/events.test.ts`).
+- Import from `vitest`; every `src/utils/` function gets a co-located test.
 
-## Before calling a task done
+## Done
 
-1. Re-read the changed files once as a reviewer: any duplicated markup/logic left behind? Any hand-rolled locale or URL where a helper exists?
-2. Run the Mandatory Gates (`mise run verify`); auto-format first with `mise run fix`.
+Review the diff as a reviewer (leftover duplication? hand-rolled URLs?), then run `mise run fix` + `mise run verify`.
