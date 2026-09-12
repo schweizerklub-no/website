@@ -6,7 +6,7 @@ The repo has these workflows:
 
 | Workflow            | Triggers                            | What it does                                                             |
 | ------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
-| `ci.yaml`           | pull requests, push to `main`       | Quality checks: `astro check`, `biome check`, `test`                     |
+| `ci.yaml`           | pull requests, push to `main`       | Quality checks: `biome check`, `test`, `build`                          |
 | `auto-merge.yml`    | `pull_request_target`               | Auto-merges Dependabot PRs (minor+patch only)                            |
 | `deploy.yml`        | push to `main`, `workflow_dispatch` | Semantic-release → build → deploy to Cloudflare Pages                    |
 | `daily-rebuild.yml` | `schedule` (00:00 UTC)              | Redeploys with current version, no new release                           |
@@ -33,7 +33,7 @@ Version bumps are determined by commit message prefixes:
 | `fix:`                                  | patch (1.0.0 → 1.0.1) | `fix: correct date format on event card` |
 | `feat:`                                 | minor (1.0.0 → 1.1.0) | `feat: add board member detail page`     |
 | `BREAKING CHANGE` or `feat!:`           | major (1.0.0 → 2.0.0) | `feat!: redesign navigation`             |
-| `chore:`, `docs:`, `refactor:`, `test:` | **no release**        | `chore(deps): bump astro to 6.4.0`       |
+| `chore:`, `docs:`, `refactor:`, `test:` | **no release**        | `chore(deps): bump astro to 7.x`                |
 
 Dependency updates from Dependabot use `chore(deps):` — they deploy without creating a new version or GitHub Release.
 
