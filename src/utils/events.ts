@@ -3,14 +3,15 @@ import { getCollection } from "astro:content";
 import { Locale } from "~/config";
 import { EventConfig } from "~/site-config";
 
+async function eventsFor(locale: Locale): Promise<CollectionEntry<"events">[]> {
+  return getCollection("events", ({ data }) => data.lang === locale);
+}
+
 export async function getUpcomingEvents(
   locale: Locale = Locale.De,
   limit?: number,
 ): Promise<CollectionEntry<"events">[]> {
-  const events = await getCollection(
-    "events",
-    ({ data }) => data.lang === locale,
-  );
+  const events = await eventsFor(locale);
   const upcoming = events
     .filter((e) => !e.data.visibilityEnd || e.data.visibilityEnd >= new Date())
     .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
@@ -20,10 +21,7 @@ export async function getUpcomingEvents(
 export async function getPastEvents(
   locale: Locale = Locale.De,
 ): Promise<CollectionEntry<"events">[]> {
-  const events = await getCollection(
-    "events",
-    ({ data }) => data.lang === locale,
-  );
+  const events = await eventsFor(locale);
   const cutoffDate = new Date();
   cutoffDate.setMonth(cutoffDate.getMonth() - EventConfig.PAST_EVENTS_MONTHS);
   return events

@@ -5,109 +5,33 @@ description: Use when adding a new locale, language, or translation files to thi
 
 # Add a New Locale
 
-Checklist for adding a new language to the project.
+Checklist for adding a language (currently `de`, `no`, `fr`). Each step names the file to extend — read it and mirror the existing locales rather than pasting full maps.
 
-## 1. Define locale in config
+## 1. Register the locale
 
-In `src/config.ts`, add the locale to the `Locale` const:
+- `src/config.ts` — add the code to the `Locale` const. `LOCALE_VALUES = Object.values(Locale)` is the single source of truth.
+- `src/content.config.ts` — no edit needed; the `lang` schema derives from `LOCALE_VALUES`.
 
-```ts
-export const Locale = {
-  De: "de",
-  No: "no",
-  Fr: "fr",
-} as const;
-```
+## 2. URL prefix and date locale
 
-## 2. Add URL prefix and date locale
+In `src/utils/locale.ts`, add the new locale to `localeUrlPrefix` and `dateLocale`, mirroring existing entries.
 
-In `src/utils/locale.ts`, add entries to:
+## 3. Own slugs (REQUIRED)
 
-```ts
-export const localeUrlPrefix: Record<Locale, string> = {
-  de: "",
-  no: "/no",
-  fr: "/fr",
-};
+In `src/utils/pages.ts`, add the locale to the `segment` and `contentSlug` maps for **every** `PAGE_ROUTES` key. Every locale gets language-specific slugs (German is the only exception, as default `de`). `contentHref`, `navigation.ts`, `pageSegment`, `pageSlug`, and `translatePath` all derive from this map.
 
-export const dateLocale: Record<Locale, string> = {
-  de: "de-DE",
-  no: "nb-NO",
-  fr: "fr-FR",
-};
-```
+## 4. UI strings
 
-## 2b. Give the new locale its own slugs (REQUIRED)
+Create `src/i18n/{code}.ts` mirroring the full key structure of `src/i18n/de.ts` (translated values; `lang` must equal `{code}`). Register it in `src/i18n/index.ts`'s `UI`.
 
-Every locale gets language-specific slugs (German slugs are only the exception for the default `de` locale).
+## 5. Content directories
 
-In `src/utils/pages.ts`, add `fr` to the `segment` (URL) and `contentSlug` (content file) maps for **every** page key:
+Create `src/content/{events,board,pages}/{code}/` with at least one sample file using `lang: "{code}"`. **Page** files must use the language-specific names from step 3 (e.g. `a-propos.md`, not `uber-uns.md`).
 
-```ts
-export const PAGE_ROUTES: Record<PageKey, PageRoute> = {
-  anlasse: {
-    segment: { de: "anlasse", no: "arrangementer", fr: "evenements" },
-  },
-  uberUns: {
-    segment: { de: "uber-uns", no: "om-oss", fr: "a-propos" },
-    contentSlug: { de: "uber-uns", no: "om-oss", fr: "a-propos" },
-  },
-  // ... mitgliedschaft, interessegruppen, asrUndAso, kontakt, privacyPolicy
-};
-```
+## 6. Tests stay untouched (REQUIRED)
 
-`contentHref`, `navigation.ts`, `pageSegment`, `pageSlug`, and `translatePath` all read from this map — no other code needs locale-specific branches.
+Do not modify any `*.test.ts`. Tests are locale-agnostic (iterate `LOCALE_VALUES`, compare to `Locale.De`); a failing test means a step above is incomplete — `src/utils/pages.test.ts` also verifies a route page and content file exist per locale.
 
-## 3. Create i18n file
+## 7. Verify
 
-Create `src/i18n/fr.ts` with **all keys** matching `src/i18n/de.ts`. Example structure:
-
-```ts
-export const fr = {
-  lang: "fr",
-  label: "Français",
-  home: {
-    metaTitle: "...",
-    title: "...",
-    // ... all home keys
-  },
-  nav: {
-    anlasse: "...",
-    // ... all nav keys
-  },
-  footer: {
-    // ... all footer keys
-  },
-  pages: {
-    // ... all pages keys
-  },
-  misc: {
-    // ... all misc keys
-  },
-} as const;
-```
-
-## 4. Register in i18n index
-
-In `src/i18n/index.ts`:
-
-```ts
-import { fr } from "./fr";
-export const UI = { de, no, fr } as const;
-```
-
-## 5. Create content directories
-
-```
-src/content/events/fr/
-src/content/board/fr/
-src/content/pages/fr/
-```
-
-Add at least one sample file per collection with `lang: "fr"` in frontmatter.
-
-**Page content files** must use the language-specific file names defined in `PAGE_ROUTES` (step 2b), e.g. `src/content/pages/fr/a-propos.md`, NOT the German names.
-
-## 6. Verify
-
-Run the [Mandatory Gates](/AGENTS.md#mandatory-gates) and update the i18n parity test if needed. Also extend `src/utils/pages.test.ts` (new segments/slugs) and `src/utils/language-path.test.ts` (path translation to/from the new locale).
+Run the mandatory gates and confirm pages/events render at the new locale's URLs (e.g. `/fr/evenements/`).

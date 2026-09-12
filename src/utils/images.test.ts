@@ -1,8 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
-
-vi.mock("astro:assets", () => ({
-  getImage: vi.fn(),
-}));
+import { describe, expect, it } from "vitest";
 
 import { findImage } from "./images";
 

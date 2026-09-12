@@ -33,6 +33,7 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm astro check
       - run: pnpm check
       - run: pnpm test
       - run: pnpm build

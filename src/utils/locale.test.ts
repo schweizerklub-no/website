@@ -1,10 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
-
-vi.mock("astro:content", () => ({
-  getCollection: vi.fn(),
-  getEntry: vi.fn(),
-  render: vi.fn(),
-}));
+import { describe, expect, it } from "vitest";
 
 import { LOCALE_VALUES, Locale } from "~/config";
 import {
@@ -68,8 +62,11 @@ describe("detectLocale", () => {
     }
   });
 
-  it("returns no for bare /no", () => {
-    expect(detectLocale("/no")).toBe(Locale.No);
+  it("returns the locale for its bare prefix", () => {
+    for (const locale of LOCALE_VALUES) {
+      if (locale === Locale.De) continue;
+      expect(detectLocale(localeUrlPrefix[locale])).toBe(locale);
+    }
   });
 });
 

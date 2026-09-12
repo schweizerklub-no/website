@@ -7,7 +7,7 @@ import CustomStyles from '~/components/CustomStyles.astro';
 import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
-import { Locale } from '~/config';
+import { I18N, Locale } from '~/config';
 import type { MetaData as MetaDataType } from '~/types';
 
 // Comment the line below to disable View Transitions
@@ -19,7 +19,7 @@ export interface Props {
 }
 
 const { metadata = {}, lang = Locale.De } = Astro.props;
-const textDirection = 'ltr';
+const textDirection = I18N.textDirection;
 ---
 
 <!doctype html>

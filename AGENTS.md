@@ -9,131 +9,69 @@ Every change MUST pass ALL of these before being considered done:
 - `pnpm test` — all tests pass
 - `pnpm build` — succeeds
 
-Use `mise run verify` to run all four at once. Use `mise run fix` to auto-format with Biome.
-
-- `mise run dev` — start dev server
-- `mise run build` — production build
+`mise run verify` runs all four at once. `mise run fix` auto-formats with Biome.
 
 ## Code Rules
 
-### No duplication
+- **No duplication** — extract shared logic into `src/utils/` helpers; factor out any pattern that appears more than once.
+- **Tests required** — every utility function MUST have a co-located `*.test.ts` importing `describe`/`it`/`expect` from `vitest` (no globals).
+- **Package manager** — use **pnpm** only, never npm/yarn. Node version from `.nvmrc`.
+- **Linting/formatting** — Biome only (no ESLint, no Prettier); configured in `biome.json`.
+- **TypeScript** — strict, checked via `astro check`. Use the `~/*` alias for `src/*` imports; `z` comes from `astro/zod`, NOT from `astro:content`.
+- **GitHub Actions** — action versions must be SHA-pinned; prefer `step-security/harden-runner`. Workflows live in `.github/workflows/` (ci, codeql, auto-merge, deploy, daily-rebuild, build-deploy).
 
-Extract shared logic into `src/utils/` helpers. Do not copy-paste. If the same pattern appears more than once, factor it out.
-
-### Tests required
-
-Every utility function MUST have a Vitest test file (`*.test.ts`) co-located in the same directory. Test files use `describe`/`it`/`expect` (Vitest globals are not enabled — import from `vitest`).
-
-### Package manager
-
-Use **pnpm** only. Never npm, never yarn.
-
-pnpm version is auto-detected from the `packageManager` field in `package.json` — no need to specify it in CI. Node version is always read from `.nvmrc`.
-
-### Linting and formatting
-
-Use **Biome** (not ESLint, not Prettier). Biome is configured in `biome.json`.
-
-### TypeScript
-
-- TypeScript 6.0.3 with `strictNullChecks: true`
-- Check with `astro check` (wraps `tsc` with Astro-aware settings)
-- Use `~/*` path alias for `src/*` imports in `.ts` and `.astro` files
-- `z` imports from `astro/zod`, NOT from `astro:content`
-
-### GitHub Actions
-
-All action steps MUST use SHA-pinned versions (no semver tags). Use `step-security/harden-runner` where possible.
-
-#### Workflows
-
-- `ci.yaml` — fast quality checks (`astro check`, `biome check`, `test`, `build`), required status check
-- `codeql.yml` — CodeQL security analysis (`javascript-typescript` + `actions`), runs separately from CI so it doesn't block the feedback loop
-- `auto-merge.yml` — auto-merges Dependabot minor+patch PRs
-- `deploy.yml` — semantic-release + deploy to Cloudflare Pages (push to `main`)
-- `daily-rebuild.yml` — scheduled redeploy to refresh event categories
-- `build-deploy.yml` — reusable shared build+deploy steps
-
-### Deployment & Versioning
+## Deployment & Versioning
 
 See [`docs/development/deployment.md`](docs/development/deployment.md) for the full picture.
 
-- Push to `main` triggers the **Tag, Build & Deploy** workflow: semantic-release → build (`PUBLIC_APP_VERSION`) → deploy to Cloudflare Pages
-- Version bumps follow conventional commits: `fix:` → patch, `feat:` → minor, `BREAKING` → major
-- `chore:`, `docs:`, `refactor:`, `test:` — **no version bump** (no GitHub Release created, but deploy still runs)
-- Dependabot PRs are auto-merged via `auto-merge.yml` (minor+patch only) — `chore(deps:)` deploys without a version bump
-- The version appears in the footer as `import.meta.env.PUBLIC_APP_VERSION` (falls back to `0.0.0-dev` locally)
-- Manual deploy: use `workflow_dispatch` on the **Tag, Build & Deploy** action
+- Push to `main` triggers **Tag, Build & Deploy**: semantic-release → build (`PUBLIC_APP_VERSION`) → Cloudflare Pages
+- Version bumps: `fix:` → patch, `feat:` → minor, `BREAKING` → major
+- No version bump (deploy still runs): `chore:`, `docs:`, `refactor:`, `test:`, Dependabot `chore(deps:)`
 
 ## Project Conventions
 
 ### Framework & integrations
 
-- **Astro 6.x** with static output (`output: "static"`)
-- **Tailwind CSS v4** via `@tailwindcss/vite` (no PostCSS config, no tailwind.config, no `@layer`, no `@apply`)
-- **DM Sans** font via `@fontsource-variable/dm-sans` — loaded in `Layout.astro`
-- **astro-icon** with Tabler icons (`tabler:*`)
-- No JS framework (React, Vue, Svelte) — zero client interactivity
-- **Tailwind `prose`** for Markdown-rendered content (require `@tailwindcss/typography`)
+- **Astro** with static output (`output: "static"`); versions per `package.json`
+- **Tailwind CSS v4** via `@tailwindcss/vite` (no PostCSS config, no tailwind.config, no `@layer`, no `@apply`); `prose` via `@tailwindcss/typography`
+- **DM Sans** via `@fontsource-variable/dm-sans` (loaded in `Layout.astro`); **astro-icon** with Tabler icons (`tabler:*`)
+- No JS framework — zero client interactivity unless truly required; incremental scripts only via `<script>` islands
+
+### Astro best practices
+
+- Small, focused components; extract repeated markup into shared components (e.g. `EventCardBody.astro`)
+- Type every component's `Props`; use collection generics (`CollectionEntry<"events">`)
+- Prefer data-driven loops (`LOCALE_VALUES`, `PAGE_ROUTES` keys) over hardcoded branches
+- `astro:assets` `Image` with explicit `alt`, `widths`, `sizes`; never a bare `<img>`
+- `getStaticPaths` via `getDetailPaths` from `src/utils/locale.ts`
+- Logic in `src/utils/` (typed, unit-tested); `.astro` files stay declarative
+- Reuse the helpers (`pageHref`, `contentHref`, `localeUrlPrefix`, `getPage`) — never hand-build URLs or locale maps
 
 ### i18n
 
-- Default locale: German (`de`), no URL prefix
-- Every other locale gets its own URL prefix (Norwegian: `/no/`) and its own language-specific slugs (see `src/utils/pages.ts`)
-- Adding a locale: follow `.agents/skills/add-locale/SKILL.md`
-- All UI text lives in `src/i18n/{de,no}.ts` (one file per locale), exported from `src/i18n/index.ts` as `UI`
-- Type of all UI text is `UIType` (inferred from `UI.de`)
-- Access via `Astro.locals.t` (set by middleware in `src/middleware.ts`)
-- `Astro.locals.locale` is `"de" | "no"`
-- Use `Locale.De` and `Locale.No` from `src/config.ts` (const object, inline string), never inline `"de"` or `"no"`
-- Use `localeUrlPrefix[locale]` (from `src/utils/locale.ts`) instead of ternaries like `locale === Locale.De ? "" : "/no"`
+- Default locale German (`de`), no URL prefix; other locales get a prefix (Norwegian `/no/`, French `/fr/`) and language-specific slugs (`src/utils/pages.ts`)
+- UI strings in `src/i18n/{de,no,fr}.ts`, typed as `UIType` (from `UI.de`), exported as `UI` from `src/i18n/index.ts`; access via `Astro.locals.t` (set in `src/middleware.ts`)
+- `Astro.locals.locale` is a `Locale` from `src/config.ts`; use `Locale.De`/`Locale.No`/`Locale.Fr` and `localeUrlPrefix[locale]`, never inline locale literals
+- Content schema `lang` is derived from `LOCALE_VALUES` in `src/content.config.ts`
+- Adding a locale: `.agents/skills/add-locale/SKILL.md`
 
 ### Content
 
-Content lives in Astro Content Collections in `src/content/`:
-- `events` — `src/content/events/{de,no}/*.md`
-- `board` — `src/content/board/{de,no}/*.md`
-- `pages` — `src/content/pages/{de,no}/*.md`
+Collections in `src/content/{events,board,pages}/{de,no,fr}/*.md`; schemas in `src/content.config.ts`. Helpers in `src/utils/locale.ts`: `getPage(locale, slug)`, `getDetailPaths(collectionName, locale)`, `contentHref(entry, collectionName)`.
 
-Collections are configured in `src/content.config.ts` with Zod schemas.
+### Components & Pages
 
-Helpers to use:
-- `getPage(locale, slug)` from `src/utils/locale.ts` — returns `{ entry, Content }`
-- `getDetailPaths(collectionName, locale)` — for `getStaticPaths` in detail pages
-- `contentHref(entry, collectionName)` — builds locale-aware URL for a content entry
-
-### Components
-
-Shared components in `src/components/`:
-- `PageLayout.astro` — standard page wrapper, reads `Astro.locals`
-- `PageSection.astro` — section with optional prose styling
-- `EventCard.astro` — event listing card (locale-aware link)
-- `BoardMemberCard.astro` — board member card (locale-aware link)
-- `CardGrid.astro` — responsive grid container
-- `BackLink.astro` — back-navigation link
-- `LanguageSwitcher.astro` — CSS dropdown, fully data-driven from `localeUrlPrefix`
-- `LanguageLink.astro` — reusable locale-switch link
-- `Button.astro` — styled link button
-- `HeroText.astro` — homepage hero section
-- `ToggleTheme.astro` — dark/light mode toggle
-- `ToggleMenu.astro` — mobile nav toggle
-
-### Pages
-
-- Prose-only pages use the `pages` content collection + existing template at `src/pages/{slug}/index.astro`
-- Mixed pages (structured + markdown) need a custom template
-- All pages read `Astro.locals.locale` and `Astro.locals.t`
-- Detail pages (event detail, board member detail) use `getDetailPaths` in `getStaticPaths`
+- Reusable components in `src/components/` (inspect the folder for props): `PageLayout`, `PageSection`, `CardGrid`, `BackLink`, `Button`, `LanguageSwitcher`, plus the extracted card bodies
+- Prose-only pages reuse the `pages` collection + existing route template; mixed pages add a custom template
+- All pages read `Astro.locals.locale` and `Astro.locals.t`; detail pages (event / board member) use `getDetailPaths` in `getStaticPaths`
 
 ### Styling
 
 - Brand red: `#d51f27` (light) / `#ef4444` (dark)
-- Borders use red-tinted colors for brand identity — use `border-2` for sufficient contrast (UU)
-- Hover effects must be clearly perceptible
-- All interactive elements need visible focus rings
-- Cards have consistent design: white bg, red-tinted border, rounded corners
-- LanguageSwitcher trigger: `py-3` matches nav item height, `text-sm`, `gap-2`
+- Red-tinted `border-2`, clearly perceptible hovers, visible focus rings, cards with white bg, red-tinted border, rounded corners
 
 ### Tests
 
-Located in `src/**/*.test.ts`, parsed via `vitest.config.ts` (`include: ["src/**/*.test.ts"]`). Import from `vitest` (no globals).
+- **Locale-agnostic**: adding a language MUST NOT require editing any `*.test.ts`
+- Never hardcode a locale — iterate `LOCALE_VALUES` and compare against `Locale.De` (see `src/i18n/parity.test.ts`)
+- Shared `astro:content`/`astro:assets` mocks live once in `src/test/setup.ts` (Vitest `setupFiles`); override in-file only for fixtures (see `src/utils/events.test.ts`)

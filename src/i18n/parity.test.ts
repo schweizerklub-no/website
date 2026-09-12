@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { LOCALE_VALUES, Locale } from "~/config";
 import { UI } from "~/i18n";
 
 function keysDeep(obj: Record<string, unknown>, prefix = ""): string[] {
@@ -14,36 +15,24 @@ function keysDeep(obj: Record<string, unknown>, prefix = ""): string[] {
   return result;
 }
 
-describe("i18n parity", () => {
-  it("de and no have the same deep key structure", () => {
-    const deKeys = keysDeep(UI.de as unknown as Record<string, unknown>).filter(
-      (k) => k !== "lang",
-    );
-    const noKeys = keysDeep(UI.no as unknown as Record<string, unknown>).filter(
-      (k) => k !== "lang",
-    );
+const defaultKeys = keysDeep(UI[Locale.De]).filter((key) => key !== "lang");
 
-    expect(noKeys).toEqual(deKeys);
+describe("i18n parity", () => {
+  it("uses the default locale as the canonical structure", () => {
+    expect(Object.keys(UI)).toEqual(LOCALE_VALUES);
   });
 
-  it("has expected top-level sections", () => {
-    expect(Object.keys(UI.de)).toEqual([
-      "lang",
-      "label",
-      "home",
-      "nav",
-      "footer",
-      "pages",
-      "misc",
-    ]);
-    expect(Object.keys(UI.no)).toEqual([
-      "lang",
-      "label",
-      "home",
-      "nav",
-      "footer",
-      "pages",
-      "misc",
-    ]);
+  it("declares its own locale code as lang", () => {
+    for (const locale of LOCALE_VALUES) {
+      expect(UI[locale].lang).toBe(locale);
+    }
+  });
+
+  it("has the same deep key structure in every locale", () => {
+    for (const locale of LOCALE_VALUES) {
+      if (locale === Locale.De) continue;
+      const localeKeys = keysDeep(UI[locale]).filter((key) => key !== "lang");
+      expect(localeKeys).toEqual(defaultKeys);
+    }
   });
 });

@@ -89,7 +89,7 @@ Key files and directories:
 | ----------------- | ----------------------------------------------------- |
 | `src/`            | Source code (components, pages, content)              |
 | `src/content/`    | Astro Content Collections (events, board, pages)      |
-| `src/i18n/`       | UI text translations (de, no)                         |
+| `src/i18n/`       | UI text translations (de, no, fr)                 |
 | `src/components/` | Reusable Astro components                             |
 | `src/utils/`      | Shared utility functions                              |
 | `public/`         | Static assets                                         |
