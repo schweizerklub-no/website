@@ -76,24 +76,38 @@ See [`docs/development/deployment.md`](docs/development/deployment.md) for the f
 - No JS framework (React, Vue, Svelte) — zero client interactivity
 - **Tailwind `prose`** for Markdown-rendered content (require `@tailwindcss/typography`)
 
+### Astro best practices
+
+Write idiomatic Astro, matching how the rest of the codebase is structured:
+
+- Components are small and focused; extract repeated markup into shared components (e.g. `EventCardBody.astro`) instead of duplicating card bodies
+- Type every component's `Props` interface; use generics for content collections (`CollectionEntry<"events">`)
+- Prefer data-driven loops over hardcoded branches — iterate `LOCALE_VALUES`, `PAGE_ROUTES` keys, etc.
+- Use `astro:assets` `Image` with explicit `alt`, `widths`, and `sizes`; never a bare `<img>`
+- Keep `getStaticPaths` locale-driven via `getDetailPaths` from `src/utils/locale.ts`
+- Logic lives in `src/utils/` (typed, unit-tested); `.astro` files stay declarative
+- Zero client interactivity unless truly required; incremental scripts only via `<script>` islands
+- Reuse the existing helpers (`pageHref`, `contentHref`, `localeUrlPrefix`, `getPage`) instead of building URLs or locale maps by hand
+
 ### i18n
 
 - Default locale: German (`de`), no URL prefix
-- Every other locale gets its own URL prefix (Norwegian: `/no/`) and its own language-specific slugs (see `src/utils/pages.ts`)
+- Every other locale gets its own URL prefix (Norwegian: `/no/`, French: `/fr/`) and its own language-specific slugs (see `src/utils/pages.ts`)
 - Adding a locale: follow `.agents/skills/add-locale/SKILL.md`
-- All UI text lives in `src/i18n/{de,no}.ts` (one file per locale), exported from `src/i18n/index.ts` as `UI`
+- All UI text lives in `src/i18n/{de,no,fr}.ts` (one file per locale), exported from `src/i18n/index.ts` as `UI`
 - Type of all UI text is `UIType` (inferred from `UI.de`)
 - Access via `Astro.locals.t` (set by middleware in `src/middleware.ts`)
-- `Astro.locals.locale` is `"de" | "no"`
-- Use `Locale.De` and `Locale.No` from `src/config.ts` (const object, inline string), never inline `"de"` or `"no"`
+- `Astro.locals.locale` is a `Locale` from `src/config.ts` (currently `"de" | "no" | "fr"`)
+- Use `Locale.De` / `Locale.No` / `Locale.Fr` from `src/config.ts` (const object, inline string), never inline a literal locale code
 - Use `localeUrlPrefix[locale]` (from `src/utils/locale.ts`) instead of ternaries like `locale === Locale.De ? "" : "/no"`
+- The content schema's `lang` field is derived from `LOCALE_VALUES` in `src/content.config.ts` — do not hardcode a locale list there
 
 ### Content
 
 Content lives in Astro Content Collections in `src/content/`:
-- `events` — `src/content/events/{de,no}/*.md`
-- `board` — `src/content/board/{de,no}/*.md`
-- `pages` — `src/content/pages/{de,no}/*.md`
+- `events` — `src/content/events/{de,no,fr}/*.md`
+- `board` — `src/content/board/{de,no,fr}/*.md`
+- `pages` — `src/content/pages/{de,no,fr}/*.md`
 
 Collections are configured in `src/content.config.ts` with Zod schemas.
 
@@ -137,3 +151,7 @@ Shared components in `src/components/`:
 ### Tests
 
 Located in `src/**/*.test.ts`, parsed via `vitest.config.ts` (`include: ["src/**/*.test.ts"]`). Import from `vitest` (no globals).
+
+- Tests must be **locale-agnostic**: adding a language MUST NOT require editing any `*.test.ts`
+- Never hardcode a locale (`de`, `no`, …) in a test — iterate `LOCALE_VALUES` and compare every locale against the default (`Locale.De`); see `src/i18n/parity.test.ts` for the pattern
+- The shared `astro:content` / `astro:assets` mocks live once in `src/test/setup.ts` (loaded via Vitest `setupFiles`) — do not repeat `vi.mock` blocks in test files; a test file may still override a mock for its own fixtures (see `src/utils/events.test.ts`)

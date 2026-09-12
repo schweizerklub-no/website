@@ -25,6 +25,8 @@ const {
   twitter = {},
 } = Astro.props;
 
+const pageTitle = title || METADATA?.title?.default || '';
+
 const mergedOg: MetaDataOpenGraph = merge(
   {
     url: canonical,
@@ -49,7 +51,7 @@ function buildOpenGraph(og: MetaDataOpenGraph): SEOProps['openGraph'] | undefine
 
   return {
     basic: {
-      title: title || METADATA?.title?.default || '',
+      title: pageTitle,
       type: og.type || 'website',
       image: imageUrl,
       ...defined({ url: og.url }),
@@ -62,7 +64,7 @@ function buildOpenGraph(og: MetaDataOpenGraph): SEOProps['openGraph'] | undefine
     image: {
       url: imageUrl,
       ...defined({ width: firstImage?.width, height: firstImage?.height }),
-      alt: title || METADATA?.title?.default || '',
+      alt: pageTitle,
     },
   };
 }
@@ -91,7 +93,7 @@ const seoDescription = description || METADATA?.description;
 const seoOpenGraph = buildOpenGraph(adaptedOg);
 
 const seoProps: SEOProps = {
-  title: title || METADATA?.title?.default || '',
+  title: pageTitle,
   titleTemplate: ignoreTitleTemplate ? '%s' : METADATA?.title?.template || '%s',
   canonical: canonical,
   noindex:

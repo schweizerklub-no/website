@@ -1,10 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
-
-vi.mock("astro:content", () => ({
-  getCollection: vi.fn(),
-  getEntry: vi.fn(),
-  render: vi.fn(),
-}));
+import { describe, expect, it } from "vitest";
 
 import { LOCALE_VALUES, Locale } from "~/config";
 import { footerData, HEADER_PAGE_KEYS, headerData } from "~/navigation";

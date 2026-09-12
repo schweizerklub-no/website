@@ -1,12 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { describe, expect, it, vi } from "vitest";
-
-vi.mock("astro:content", () => ({
-  getCollection: vi.fn(),
-  getEntry: vi.fn(),
-  render: vi.fn(),
-}));
+import { describe, expect, it } from "vitest";
 
 import { LOCALE_VALUES, type Locale } from "~/config";
 import { localeUrlPrefix } from "~/utils/locale";

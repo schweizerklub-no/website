@@ -1,5 +1,4 @@
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
@@ -9,8 +8,6 @@ import compress from "astro-compress";
 import icon from "astro-icon";
 import { LOCALE_VALUES, Locale } from "./src/config";
 import { responsiveTablesHastPlugin } from "./src/utils/frontmatter";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   output: "static",
@@ -65,7 +62,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        "~": path.resolve(__dirname, "./src"),
+        "~": path.resolve(import.meta.dirname, "./src"),
       },
     },
   },

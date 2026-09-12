@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import { findImage } from '~/utils/images';
+import { dateLocale } from '~/utils/locale';
+
+interface Props {
+  event: CollectionEntry<'events'>;
+  showWeekday?: boolean;
+}
+
+const { event, showWeekday = false } = Astro.props;
+const image = event.data.image ? await findImage(event.data.image) : undefined;
+const localeDate = event.data.date.toLocaleDateString(dateLocale[event.data.lang], {
+  weekday: showWeekday ? 'long' : undefined,
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+{image && <Image src={image as ImageMetadata} alt={event.data.title} width={800} height={450} widths={[400, 640, 800]} sizes="(min-width: 1024px) 340px, (min-width: 768px) 45vw, 100vw" class="w-full aspect-[16/9] object-cover" />}
+<div class="p-6">
+  <time class="text-sm text-muted" datetime={event.data.date.toISOString()}>{localeDate}</time>
+  <h3 class="text-xl font-semibold mt-2 mb-2">{event.data.title}</h3>
+  {event.data.description && <p class="text-muted text-sm">{event.data.description}</p>}
+  {event.data.location && <p class="text-xs text-muted mt-2">📍 {event.data.location}</p>}
+</div>
