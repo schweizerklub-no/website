@@ -31,7 +31,7 @@ export function footerData(locale: Locale = Locale.De) {
         title: t.links,
         links: [
           {
-            text: "Schweizer Ambassade Oslo",
+            text: t.ambassade,
             href: "https://www.eda.admin.ch/oslo",
           },
           {
@@ -39,7 +39,7 @@ export function footerData(locale: Locale = Locale.De) {
             href: "https://www.swisscommunity.org/de/",
           },
           {
-            text: "Abstimmungen & Wahlen",
+            text: t.votes,
             href: "https://www.ch.ch/de/abstimmungen-und-wahlen/abstimmungen/abstimmungs-und-wahlkalender/",
           },
           { text: "swissinfo.ch", href: "https://www.swissinfo.ch/ger" },
