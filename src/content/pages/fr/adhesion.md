@@ -11,7 +11,7 @@ Es-tu Suisse et vis-tu en Norvège ? As-tu envie de continuer à vivre un peu la
 
 **Tes avantages en tant que membre du Club Suisse :**
 
-- Tu fais partie d'un plus grand réseau suisse dans la région d'Oslo.
+- Tu fais partie du plus grand réseau suisse dans la région d'Oslo.
 - Tu as la possibilité de t'engager dans différents groupes et de participer à des événements.
 - Tu seras informé des événements culturels actuels, souvent en collaboration avec l'Ambassade suisse.
 - Tu souhaites participer au congrès annuel des Suisses de l'étranger en Suisse ? Ou tes enfants / petits-enfants souhaitent-ils participer à un camp de jeunes de l'Organisation des Suisses de l'étranger ? Tu peux alors demander une aide financière tous les deux ans.

@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { SITE } from '~/config';
 import { localeUrlPrefix } from '~/utils/locale';
 import { UI } from '~/i18n';
 import { Locale } from '~/config';
@@ -39,7 +38,7 @@ const homeHref = `${localeUrlPrefix[locale]}/`;
     <div class="grid grid-cols-12 gap-6 py-8 md:py-10">
       <div class="col-span-12 lg:col-span-4">
         <a class="inline-block font-bold text-lg text-primary" href={homeHref}>
-          {SITE?.name}
+          {UI[locale].misc.orgName}
         </a>
         <p class="text-sm text-muted mt-1 max-w-xs">
           {t.tagline}
