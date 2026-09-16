@@ -50,6 +50,7 @@ export const de = {
     vippsPayment: "Vipps Bezahlung",
     membershipForm: "Mitgliederformular",
     membershipFormButton: "Anmelden",
+    membershipFormLoading: "Wird geladen…",
     membershipMessage: "Einzel / Familienmitgliedschaft [Name]",
     vorstand: "Vorstand",
     adresse: "Adresse",

@@ -49,6 +49,7 @@ export const fr = {
     vippsPayment: "Paiement par Vipps",
     membershipForm: "Formulaire d'adhésion",
     membershipFormButton: "Se connecter",
+    membershipFormLoading: "Chargement…",
     membershipMessage: "Adhésion individuelle / famille (nom)",
     vorstand: "Comité directeur",
     adresse: "Adresse",
