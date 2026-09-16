@@ -1,39 +1,51 @@
 ---
-import PageLayout from '~/layouts/PageLayout.astro';
-import PageSection from '~/components/PageSection.astro';
-import { getPage } from '~/utils/locale';
-import { pageSlug } from '~/utils/pages';
-import { BANK_ACCOUNT } from '~/config';
+import PageLayout from "~/layouts/PageLayout.astro";
+import PageSection from "~/components/PageSection.astro";
+import { getPage } from "~/utils/locale";
+import { pageSlug } from "~/utils/pages";
+import { BANK_ACCOUNT } from "~/config";
 
 const { pages: t } = Astro.locals.t;
-const { entry, Content } = await getPage(Astro.locals.locale, pageSlug(Astro.locals.locale, "mitgliedschaft"));
+const { entry, Content } = await getPage(
+  Astro.locals.locale,
+  pageSlug(Astro.locals.locale, "mitgliedschaft"),
+);
 const metadata = { title: entry.data.title };
 ---
 
 <PageLayout metadata={metadata}>
   <PageSection title={entry.data.title}>
-    <div class="prose dark:prose-invert max-w-none prose-a:text-primary dark:prose-a:text-primary mb-12">
+    <div
+      class="prose dark:prose-invert max-w-none prose-a:text-primary dark:prose-a:text-primary mb-12"
+    >
       <Content />
     </div>
 
     <h3 class="text-lg font-semibold mb-3">{t.bankTransfer}</h3>
-    <div class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-5 mb-8">
+    <div
+      class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-5 mb-8"
+    >
       <div class="space-y-1.5">
         <p class="text-sm">
-          <span class="font-semibold">{t.accountName}</span> {BANK_ACCOUNT.name}
+          <span class="font-semibold">{t.accountName}</span>
+          {BANK_ACCOUNT.name}
         </p>
         <p class="text-sm">
-          <span class="font-semibold">{t.accountNumber}</span> {BANK_ACCOUNT.number}
+          <span class="font-semibold">{t.accountNumber}</span>
+          {BANK_ACCOUNT.number}
         </p>
         <p class="text-sm">
-          <span class="font-semibold">{t.accountMessage}</span> {t.membershipMessage}
+          <span class="font-semibold">{t.accountMessage}</span>
+          {t.membershipMessage}
         </p>
       </div>
     </div>
 
     <h3 class="text-lg font-semibold mb-3">{t.vippsPayment}</h3>
     <div class="grid md:grid-cols-2 gap-6 mb-12">
-      <div class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-6 text-center">
+      <div
+        class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-6 text-center"
+      >
         <h3 class="text-lg font-semibold mb-2">{t.singleMember}</h3>
         <p class="text-3xl font-bold text-primary mb-4">200 NOK</p>
         <img
@@ -42,7 +54,9 @@ const metadata = { title: entry.data.title };
           class="w-40 h-40 mx-auto"
         />
       </div>
-      <div class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-6 text-center">
+      <div
+        class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-6 text-center"
+      >
         <h3 class="text-lg font-semibold mb-2">{t.familyMember}</h3>
         <p class="text-3xl font-bold text-primary mb-4">400 NOK</p>
         <img
@@ -53,8 +67,12 @@ const metadata = { title: entry.data.title };
       </div>
     </div>
     <h3 class="text-lg font-semibold mb-3">{t.membershipForm}</h3>
-        <div class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-6 text-center">
-        <a href="http://eepurl.com/dkU3Ub" class="btn">{t.membershipFormButton}</a>
+    <div
+      class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-6 text-center"
+    >
+      <a href="https://eepurl.com/dkU3Ub" class="btn"
+        >{t.membershipFormButton}</a
+      >
     </div>
   </PageSection>
 </PageLayout>
