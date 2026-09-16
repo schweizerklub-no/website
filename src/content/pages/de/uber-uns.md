@@ -9,7 +9,7 @@ Der Schweizer Klub Norwegen Oslo wurde gegründet, um in Norwegen lebenden Schwe
 - Schweizer Traditionen aufrechterhalten (1. August-Feier, Samichlaus-Feier);
 - ein Stückchen Heimat erleben.
 
-Jedes Jahr organisiert der Klub gemeinsame Aktivitäten wie die GV, die 1. August-Feier im gewohnten Schweizer Stil mit Bratwurscht vom Grill, das Herbstfest mit Tombola und Schweizer Musik und den Samichlaus, ein Fest für die Kleinen und die Grossen.
+Jedes Jahr organisiert der Klub gemeinsame Aktivitäten wie die GV, die 1. August-Feier im gewohnten Schweizer Stil mit Bratwurst vom Grill, das Herbstfest mit Tombola und Schweizer Musik und den Samichlaus, ein Fest für die Kleinen und die Grossen.
 
 Neben den grösseren Anlässen bietet sich auch die Möglichkeit, an anderen Aktivitäten wie Stammtischen, Filmabenden, dem Jassklub, der Literaturgruppe oder einer Pilztour teilzunehmen. Alle aktuellen Termine und weiteren Aktivitäten findest du auf der Seite [Anlässe](/anlasse/). Wir sind offen für neue Ideen und heissen Personen, die neue Projekte auf die Beine stellen möchten, herzlich willkommen.
 

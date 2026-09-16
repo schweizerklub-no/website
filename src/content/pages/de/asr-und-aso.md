@@ -15,6 +15,6 @@ Für die Pflege direkter Beziehungen zu den im Ausland lebenden Landsleuten kann
 
 ## Auslandschweizerrat (ASR)
 
-Der [ASR](https://www.swisscommunity.org/de/auslandschweizerrat-asr) ist das oberste Organ der ASO. Der ASR ist somit das offizielle Sprachrohr der Auslandschweizer und wird als *Parlament der fünften Schweiz* von den Bundesbehörden anerkannt. Jedes Land in der Welt ist berechtigt, einen Repräsentanten in den ASR zu wählen. Der Repräsentant wird für vier Jahre gewählt, d.h. die nächste Wahl wird 2029 stattfinden und die Kandidaten werden bisher aus dem Kreis registrierter Schweizervereine gewählt. Der ASR besteht aus ca. 140 Delegaten.
+Der [ASR](https://www.swisscommunity.org/de/auslandschweizerrat-asr) ist das oberste Organ der ASO. Der ASR ist somit das offizielle Sprachrohr der Auslandschweizer und wird als *Parlament der fünften Schweiz* von den Bundesbehörden anerkannt. Jedes Land in der Welt ist berechtigt, einen Repräsentanten in den ASR zu wählen. Der Repräsentant wird für vier Jahre gewählt, d.h. die nächste Wahl wird 2029 stattfinden und die Kandidaten werden bisher aus dem Kreis registrierter Schweizervereine gewählt. Der ASR besteht aus ca. 140 Delegierten.
 
 Die norwegischen Schweizerklubs (Telemark und Oslo) stellen einen Vertreter, der jeweils für vier Jahre ernannt wird. Derzeit ist **Heidi Mustvedt-Pluss** (Schweizer Klub Telemark) die ASO-Vertreterin für Norwegen.
