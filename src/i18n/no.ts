@@ -49,6 +49,7 @@ export const no = {
     vippsPayment: "Vipps betaling",
     membershipForm: "Medlemsskjema",
     membershipFormButton: "Meld deg på",
+    membershipFormLoading: "Laster…",
     membershipMessage: "Enkelt- / familiemedlemskap [Navn]",
     vorstand: "Styret",
     adresse: "Adresse",
