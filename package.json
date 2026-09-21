@@ -42,7 +42,7 @@
     "@types/mdx": "^2.0.13",
     "astro-compress": "^2.4.3",
     "sharp": "0.35.4",
-    "tailwind-merge": "^3.6.0",
+    "tailwind-merge": "^3.7.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "vitest": "^5.0.0"
