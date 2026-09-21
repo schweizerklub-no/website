@@ -5,6 +5,7 @@ import HeroText from '~/components/widgets/HeroText.astro';
 import BoardMemberCard from '~/components/BoardMemberCard.astro';
 import PageSection from '~/components/PageSection.astro';
 import CardGrid from '~/components/CardGrid.astro';
+import Button from '~/components/ui/Button.astro';
 import { getPage } from '~/utils/locale';
 import { pageSlug } from '~/utils/pages';
 import { sortBoardMembers } from '~/utils/board';
@@ -27,6 +28,22 @@ const metadata = { title: entry.data.title };
 
   <PageSection prose>
     <Content />
+    <div class="not-prose mt-8 flex flex-col gap-4 sm:flex-row">
+      <Button
+        variant="primary"
+        target="_blank"
+        href="/documents/statuten.pdf"
+        text={t.statuten}
+        icon="tabler:file-type-pdf"
+      />
+      <Button
+        variant="primary"
+        target="_blank"
+        href="/documents/bilanz-gewinn-verlustrechnung_2025.pdf"
+        text={t.bilanz}
+        icon="tabler:file-type-pdf"
+      />
+    </div>
   </PageSection>
 
   {boardMembers.length > 0 && (

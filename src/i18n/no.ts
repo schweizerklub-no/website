@@ -54,6 +54,8 @@ export const no = {
     vorstand: "Styret",
     adresse: "Adresse",
     socialMedia: "Sosiale medier",
+    statuten: "Vedtekter",
+    bilanz: "Balanse og resultatregnskap 2025",
   },
   misc: {
     email: "vorstand@schweizerklub.no",
