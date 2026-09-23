@@ -25,7 +25,7 @@
     "@astrojs/markdown-satteri": "0.4.1",
     "@astrojs/sitemap": "^3.7.4",
     "@fontsource-variable/dm-sans": "^5.3.0",
-    "astro": "^7.3.2",
+    "astro": "^7.3.3",
     "astro-icon": "^1.2.0",
     "astro-seo": "^1.2.0",
     "lodash.merge": "^4.6.2",
