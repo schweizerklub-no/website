@@ -1,9 +1,9 @@
 ---
 lang: no
-name: Nadja Weilenmann
+name: Nadja Fjeld
 role: Nestleder
 order: 2
-image: ~/assets/images/board/weilenmann-nadja.jpg
+image: ~/assets/images/board/fjeld-nadja.jpg
 ---
 
 Jeg vokste opp i Zürich og tilbrakte en lengre periode med familien min i Tyskland. Deretter fullførte jeg masterstudiene mine i St. Gallen og tilbrakte mine tre første yrkesaktive år der. Jeg har også vært så heldig å få studere og arbeide i andre europeiske land, og jeg er gift med en franskmann. Siden slutten av 2013 har jeg kunnet kalle Oslo mitt nye hjem.

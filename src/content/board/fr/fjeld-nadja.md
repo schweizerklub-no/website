@@ -1,9 +1,9 @@
 ---
 lang: fr
-name: Nadja Weilenmann
+name: Nadja Fjeld
 role: Vice-présidente
 order: 2
-image: ~/assets/images/board/weilenmann-nadja.jpg
+image: ~/assets/images/board/fjeld-nadja.jpg
 ---
 
 J'ai grandi à Zurich et après un long séjour avec ma famille en Allemagne, j'ai complété ma maîtrise et mes trois premières années de travail à Saint-Gall. J'ai aussi eu la chance d'étudier et de travailler dans d'autres pays européens et je suis mariée à un Français. Depuis fin 2013, j'ai le privilège d'appeler Oslo mon nouveau foyer.
