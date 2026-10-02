@@ -3,7 +3,7 @@ lang: de
 name: Nadja Fjeld
 role: Vizepräsidentin
 order: 2
-image: ~/assets/images/board/Fjeld-nadja.jpg
+image: ~/assets/images/board/fjeld-nadja.jpg
 ---
 
 Ich bin in Zürich aufgewachsen und habe nach einem längeren Aufenthalt mit meiner Familie in Deutschland in St. Gallen mein Masterstudium und meine ersten drei Arbeitsjahre absolviert. Ich hatte auch das Glück, in anderen Ländern Europas zu studieren und zu arbeiten und bin mit einem Franzosen verheiratet. Seit Ende 2013 darf ich Oslo mein neues Zuhause nennen.
