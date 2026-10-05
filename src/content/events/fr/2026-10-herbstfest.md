@@ -48,4 +48,4 @@ Nous recherchons encore quelques participants prêts à nous soutenir un peu pen
 
 ## Inscription
 
-Inscription jusqu'au 19 octobre via le [formulaire](https://us.list-manage.com/CmfTazEnyCJ?e=5ccfc8c96e&c2id=9d1e12b026dc8c57579a57a7af571a7f).
+Inscription jusqu'au 18 octobre via le [formulaire](https://us.list-manage.com/CmfTazEnyCJ?e=5ccfc8c96e&c2id=9d1e12b026dc8c57579a57a7af571a7f).
