@@ -9,10 +9,9 @@ description: Melahuset, Mariboes gate 8, 0183 Oslo
 
 **Freitag, 23. Oktober, ab 18:30 - 22:30 Uhr**
 
-
 Mit dem Herbst kommen die kühleren Tage – und manchmal auch ein Hauch von Heimweh. Was würde man nicht alles dafür geben, in guter Gesellschaft ein warmes Käsefondue zu geniessen? Keine Sorge, das Fondue kommt auch dieses Jahr direkt zu euch!
 
-Wir laden euch herzlich zum diesjährigen Herbstfest Fondue-Abend am Freitag, 23. Oktober 2026 von 18:30 - 22:30 Uhr, im [Melahuset](https://www.mela.no/melahuset/om-melahuset/), Mariboes gate 8, 0183 Oslo, ein.
+Wir laden euch herzlich zum diesjährigen Herbstfest-Fonduabend am Freitag, 23. Oktober 2026 von 18:30 - 22:30 Uhr, im [Melahuset](https://www.mela.no/melahuset/om-melahuset/), Mariboes gate 8, 0183 Oslo, ein.
 Auch dieses Jahr hat der Vorstand wieder reichlich Käse organisiert. Wie immer wären wir jedoch dankbar, wenn einige Teilnehmer ein Caquelon-Set mitbringen könnten. Bitte dies bei der Anmeldung angeben.
 
 ## Anreise
@@ -21,10 +20,11 @@ Die Adresse lautet [Melahuset](https://www.mela.no/melahuset/om-melahuset/), Mar
 
 Bushaltestelle in der Nähe: Hammersborggata (ca. 200m entfernt)
 Tramhaltestelle in der Nähe: Storgata (ca. 450m entfernt)
-T-bane Station in der Nähe: Jernbanetoget (ca. 850m entfernt)
+T-bane-Station in der Nähe: Jernbanetoget (ca. 850m entfernt)
 Das nächstgelegene Parkhaus (ohne Zeitbegrenzung) ist das Oslo City Parkhaus (ca. 500m entfernt)
 
 ## Menu
+
 Apéro - Käsefondue & grüner Salat - Fruchtsalat
 
 ## Tombola
