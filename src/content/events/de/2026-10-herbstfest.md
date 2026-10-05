@@ -7,8 +7,6 @@ image: ~/assets/images/events/fondue.jpg
 description: Melahuset, Mariboes gate 8, 0183 Oslo
 ---
 
-**Freitag, 23. Oktober, ab 18:30 - 22:30 Uhr**
-
 Mit dem Herbst kommen die kühleren Tage – und manchmal auch ein Hauch von Heimweh. Was würde man nicht alles dafür geben, in guter Gesellschaft ein warmes Käsefondue zu geniessen? Keine Sorge, das Fondue kommt auch dieses Jahr direkt zu euch!
 
 Wir laden euch herzlich zum diesjährigen Herbstfest-Fonduabend am Freitag, 23. Oktober 2026 von 18:30 - 22:30 Uhr, im [Melahuset](https://www.mela.no/melahuset/om-melahuset/), Mariboes gate 8, 0183 Oslo, ein.
@@ -34,7 +32,7 @@ Kein Herbstfest ohne unsere berühmte Tombola. Wir möchten alle auffordern, ein
 Für musikalische Begleitung und Vergnügen ist gesorgt, ölt eure Stimmbänder, es wird gesungen!
 
 ## Preis
-Mitglieder: 350 NOK
+Mitglieder: 350 NOK\
 Nicht-Mitglieder: 450 NOK
 
 Es gibt keinen Kinderpreis, da die Veranstaltung eher für Erwachsene ausgerichtet ist.

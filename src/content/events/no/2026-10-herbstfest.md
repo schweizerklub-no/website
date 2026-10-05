@@ -7,9 +7,6 @@ image: ~/assets/images/events/fondue.jpg
 description: Melahuset, Mariboes gate 8, 0183 Oslo
 ---
 
-**Fredag, 23. oktober, fra kl. 18:30 - 22:30**
-
-
 Med høsten kommer de kjøligere dagene – og iblant også et snev av hjemlengsel. Hva ville man ikke gjort for å nyte en varm ostefondu i godt selskap? Ingen bekymring, fonduen kommer også i år rett til dere!
 
 Vi inviterer hjertelig til årets høstfest-fonduaften på fredag 23. oktober 2026 fra kl. 18:30 - 22:30 på [Melahuset](https://www.mela.no/melahuset/om-melahuset/), Mariboes gate 8, 0183 Oslo.
@@ -38,7 +35,7 @@ Det er sørget for musikalsk akkompangement og moro, smør stemmebåndene, det s
 
 ## Pris
 
-Medlemmer: 350 NOK
+Medlemmer: 350 NOK\
 Ikke-medlemmer: 450 NOK
 
 Det finnes ingen barnepris, da arrangementet i første rekke er beregnet på voksne.

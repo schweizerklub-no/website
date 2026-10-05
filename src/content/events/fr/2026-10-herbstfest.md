@@ -7,8 +7,6 @@ image: ~/assets/images/events/fondue.jpg
 description: Melahuset, Mariboes gate 8, 0183 Oslo
 ---
 
-**Vendredi 23 octobre, de 18h30 à 22h30**
-
 Avec l'automne viennent les jours plus frais – et parfois aussi un soupçon de mal du pays. Qu'est-ce qu'on ne donnerait pas pour déguster une fondue au fromage chaude en bonne compagnie ? Ne vous inquiétez pas, la fondue vous parviendra cette année encore !
 
 Nous vous invitons à la soirée fondue de la fête d'automne de cette année, le vendredi 23 octobre 2026 de 18h30 à 22h30 au [Melahuset](https://www.mela.no/melahuset/om-melahuset/), Mariboes gate 8, 0183 Oslo.
@@ -37,7 +35,7 @@ L'accompagnement musical et la bonne ambiance sont assurés, huilez vos cordes v
 
 ## Prix
 
-Membres : 350 NOK
+Membres : 350 NOK\
 Non-membres : 450 NOK
 
 Il n'y a pas de prix pour les enfants, car l'événement est plutôt destiné aux adultes.
