@@ -24,6 +24,8 @@ On every push to `main` (or manual trigger via `workflow_dispatch`):
 
 The `build-deploy.yml` reusable workflow contains the shared build + deploy logic used by both `deploy.yml` and `daily-rebuild.yml`.
 
+Everything except the Pages project, custom domain and DNS lives in this repo — see [Cloudflare](cloudflare.md).
+
 ## Conventional commits
 
 Version bumps are determined by commit message prefixes:
