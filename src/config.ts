@@ -43,7 +43,7 @@ export interface UIConfig {
 
 export const SITE: SiteConfig = {
   name: "Schweizer Klub Norwegen Oslo",
-  site: "https://www.schweizerklub.no",
+  site: "https://schweizerklub.no",
   base: "/",
   trailingSlash: true,
 };

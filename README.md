@@ -5,7 +5,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06b6d4.svg)](https://tailwindcss.com)
 [![Biome](https://img.shields.io/badge/Biome-60a5fa.svg)](https://biomejs.dev)
 
-Website repo for [schweizerklub.no](https://www.schweizerklub.no).
+Website repo for [schweizerklub.no](https://schweizerklub.no).
 
 ## For content editors
 

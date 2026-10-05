@@ -11,7 +11,7 @@ import { responsiveTablesHastPlugin } from "./src/utils/frontmatter";
 
 export default defineConfig({
   output: "static",
-  site: "https://www.schweizerklub.no",
+  site: "https://schweizerklub.no",
   base: "/",
   trailingSlash: "always",
 
