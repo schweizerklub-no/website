@@ -17,7 +17,7 @@ See [Getting Started](docs/development/getting-started.md) to set up your dev en
 
 This repo uses [mise](https://mise.jdx.dev) for tools and task management.
 
-See [Deployment & Versioning](docs/development/deployment.md) for how CI/CD and version bumps work, and [Cloudflare](docs/development/cloudflare.md) for the hosting setup.
+See [Deployment & Versioning](docs/development/deployment.md) for how CI/CD and version bumps work, [Domain & DNS](docs/development/domain.md) for registrar/nameservers, and [Cloudflare](docs/development/cloudflare.md) for the hosting setup.
 
 ```sh
 mise tasks
