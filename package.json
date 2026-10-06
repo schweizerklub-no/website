@@ -41,7 +41,7 @@
     "@types/lodash.merge": "^4.6.9",
     "@types/mdx": "^2.0.13",
     "astro-compress": "^2.4.3",
-    "sharp": "0.35.4",
+    "sharp": "0.35.5",
     "tailwind-merge": "^3.7.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
