@@ -29,7 +29,7 @@
     "astro-icon": "^1.2.0",
     "astro-seo": "^1.2.0",
     "lodash.merge": "^4.6.2",
-    "satteri": "^0.11.5"
+    "satteri": "^0.11.6"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
