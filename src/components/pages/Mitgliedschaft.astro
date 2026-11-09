@@ -84,6 +84,8 @@ const metadata = { title: entry.data.title };
 </PageLayout>
 
 <script>
+  import { once } from "~/utils/page-load";
+
   const isModifierClick = (event: MouseEvent) =>
     event.button !== 0 ||
     event.metaKey ||
@@ -137,12 +139,7 @@ const metadata = { title: entry.data.title };
     window.setTimeout(() => recover(link), 8000);
   };
 
-  const init = () => {
-    if (document.documentElement.dataset.membershipLoadingInit) return;
-    document.documentElement.dataset.membershipLoadingInit = "true";
+  once("membershipLoadingInit", () => {
     document.addEventListener("click", onClick);
-  };
-
-  init();
-  document.addEventListener("astro:page-load", init);
+  });
 </script>

@@ -42,9 +42,9 @@ const links = (Object.keys(localeUrlPrefix) as Locale[])
 </div>
 
 <script>
-  if (!document.documentElement.dataset.langSwitcherInit) {
-    document.documentElement.dataset.langSwitcherInit = 'true';
+  import { once, onPageLoad } from '~/utils/page-load';
 
+  once('langSwitcherInit', () => {
     const closeWrapper = (wrapper: HTMLElement) => {
       const dropdown = wrapper.querySelector<HTMLElement>('[data-lang-dropdown]');
       const toggle = wrapper.querySelector<HTMLElement>('[data-lang-toggle]');
@@ -60,7 +60,7 @@ const links = (Object.keys(localeUrlPrefix) as Locale[])
       });
     });
 
-    document.addEventListener('astro:page-load', () => {
+    onPageLoad(() => {
       document.querySelectorAll<HTMLElement>('[data-lang-wrapper]').forEach((wrapper) => {
         const toggle = wrapper.querySelector<HTMLElement>('[data-lang-toggle]');
         const dropdown = wrapper.querySelector<HTMLElement>('[data-lang-dropdown]');
@@ -131,5 +131,5 @@ const links = (Object.keys(localeUrlPrefix) as Locale[])
         });
       });
     });
-  }
+  });
 </script>

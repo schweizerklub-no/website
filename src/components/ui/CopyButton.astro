@@ -28,6 +28,7 @@ const { text, label } = Astro.props;
 
 <script>
   import { copyText } from "~/utils/clipboard";
+  import { once } from "~/utils/page-load";
 
   const FEEDBACK_MS = 2000;
 
@@ -60,12 +61,7 @@ const { text, label } = Astro.props;
     }, FEEDBACK_MS);
   };
 
-  const init = () => {
-    if (document.documentElement.dataset.copyButtonInit) return;
-    document.documentElement.dataset.copyButtonInit = "true";
+  once("copyButtonInit", () => {
     document.addEventListener("click", onClick);
-  };
-
-  init();
-  document.addEventListener("astro:page-load", init);
+  });
 </script>
