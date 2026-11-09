@@ -1,15 +1,21 @@
 name: Dependabot Auto-merge
 
 on:
-  pull_request_target:
+  pull_request:
+    branches:
+      - main
 
+# Dependabot PRs get a read-only GITHUB_TOKEN by default; this block elevates
+# it so `gh pr merge --auto` can enable auto-merge.
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
   auto-merge:
-    if: github.actor == 'dependabot[bot]'
+    if: >-
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1

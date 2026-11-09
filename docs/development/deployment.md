@@ -7,7 +7,7 @@ The repo has these workflows:
 | Workflow            | Triggers                            | What it does                                                             |
 | ------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
 | `ci.yaml`           | pull requests, push to `main`       | Quality checks: `biome check`, `test`, `build`                          |
-| `auto-merge.yml`    | `pull_request_target`               | Auto-merges Dependabot PRs (minor+patch only)                            |
+| `auto-merge.yml`    | `pull_request` (Dependabot PRs)     | Auto-merges Dependabot PRs (minor+patch only)                            |
 | `deploy.yml`        | push to `main`, `workflow_dispatch` | Semantic-release → build → deploy to Cloudflare Pages                    |
 | `daily-rebuild.yml` | `schedule` (00:00 UTC)              | Redeploys with current version, no new release                           |
 | `codeql.yml`        | pull requests, push to `main`       | CodeQL security analysis (`javascript-typescript`, `actions`)            |
@@ -41,9 +41,9 @@ Dependency updates from Dependabot use `chore(deps):` — they deploy without cr
 
 ## Dependabot auto-merge
 
-Dependabot PRs are auto-approved and auto-merged (squash) when CI passes, but only for **minor and patch** updates. Major version bumps skip the auto-merge workflow and require manual review.
+Dependabot PRs are auto-merged (squash) when CI passes, but only for **minor and patch** updates. Major version bumps skip the auto-merge workflow and require manual review.
 
-The workflow (`auto-merge.yml`) uses `pull_request_target` with a `dependabot/fetch-metadata` step to determine the update type.
+The workflow (`auto-merge.yml`) uses `pull_request` with a `dependabot/fetch-metadata` step to determine the update type. Dependabot-triggered `pull_request` runs get a read-only `GITHUB_TOKEN` by default; the workflow's `permissions` block elevates it so `gh pr merge --auto` can enable auto-merge.
 
 ## Version in the UI
 
