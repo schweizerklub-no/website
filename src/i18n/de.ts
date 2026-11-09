@@ -45,6 +45,7 @@ export const de = {
     bankTransfer: "Banküberweisung",
     accountName: "Kontoinhaber",
     accountNumber: "Kontonummer",
+    copyAccountNumber: "Kontonummer kopieren",
     accountMessage: "Nachricht",
     signup: "Anmeldung",
     vippsPayment: "Vipps Bezahlung",

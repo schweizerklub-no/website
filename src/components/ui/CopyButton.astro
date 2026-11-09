@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  text: string;
+  label: string;
+}
+
+const { text, label } = Astro.props;
+---
+
+<button
+  type="button"
+  class="inline-flex items-center justify-center rounded-md border-2 border-primary/20 dark:border-primary/30 p-1 text-primary transition-colors hover:bg-primary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+  data-copy-trigger
+  data-copy-text={text}
+  aria-label={label}
+  title={label}
+>
+  <Icon name="tabler:copy" class="h-4 w-4" data-copy-icon aria-hidden="true" />
+  <Icon
+    name="tabler:check"
+    class="hidden h-4 w-4"
+    data-copy-success
+    aria-hidden="true"
+  />
+</button>
+
+<script>
+  import { copyText } from "~/utils/clipboard";
+
+  const FEEDBACK_MS = 2000;
+
+  const setState = (button: HTMLButtonElement, copied: boolean) => {
+    button
+      .querySelector("[data-copy-icon]")
+      ?.classList.toggle("hidden", copied);
+    button
+      .querySelector("[data-copy-success]")
+      ?.classList.toggle("hidden", !copied);
+  };
+
+  const onClick = async (event: MouseEvent) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const button = target.closest<HTMLButtonElement>("[data-copy-trigger]");
+    if (!button || button.dataset.copying) return;
+
+    const text = button.dataset.copyText;
+    if (!text) return;
+
+    button.dataset.copying = "true";
+    const copied = await copyText(text);
+    setState(button, copied);
+
+    window.setTimeout(() => {
+      setState(button, false);
+      delete button.dataset.copying;
+    }, FEEDBACK_MS);
+  };
+
+  const init = () => {
+    if (document.documentElement.dataset.copyButtonInit) return;
+    document.documentElement.dataset.copyButtonInit = "true";
+    document.addEventListener("click", onClick);
+  };
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

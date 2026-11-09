@@ -44,6 +44,7 @@ export const no = {
     bankTransfer: "Bankoverføring",
     accountName: "Kontoinnehaver",
     accountNumber: "Kontonummer",
+    copyAccountNumber: "Kopier kontonummer",
     accountMessage: "Melding",
     signup: "Påmelding",
     vippsPayment: "Vipps betaling",

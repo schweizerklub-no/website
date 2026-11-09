@@ -1,6 +1,7 @@
 ---
 import PageLayout from "~/layouts/PageLayout.astro";
 import PageSection from "~/components/PageSection.astro";
+import CopyButton from "~/components/ui/CopyButton.astro";
 import { getPage } from "~/utils/locale";
 import { pageSlug } from "~/utils/pages";
 import { BANK_ACCOUNT } from "~/config";
@@ -29,7 +30,10 @@ const metadata = { title: entry.data.title };
         <dt class="font-semibold">{t.accountName}</dt>
         <dd>{BANK_ACCOUNT.name}</dd>
         <dt class="font-semibold">{t.accountNumber}</dt>
-        <dd>{BANK_ACCOUNT.number}</dd>
+        <dd class="flex flex-wrap items-center gap-2">
+          <span>{BANK_ACCOUNT.number}</span>
+          <CopyButton text={BANK_ACCOUNT.number} label={t.copyAccountNumber} />
+        </dd>
         <dt class="font-semibold">{t.accountMessage}</dt>
         <dd>{t.membershipMessage}</dd>
       </dl>

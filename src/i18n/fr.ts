@@ -44,6 +44,7 @@ export const fr = {
     bankTransfer: "Virement bancaire",
     accountName: "Titulaire du compte",
     accountNumber: "Numéro de compte",
+    copyAccountNumber: "Copier le numéro de compte",
     accountMessage: "Message",
     signup: "Inscription",
     vippsPayment: "Paiement par Vipps",
