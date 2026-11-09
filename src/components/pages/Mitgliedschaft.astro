@@ -25,20 +25,14 @@ const metadata = { title: entry.data.title };
     <div
       class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-5 mb-8"
     >
-      <div class="space-y-1.5">
-        <p class="text-sm">
-          <span class="font-semibold">{t.accountName}</span>{" "}
-          {BANK_ACCOUNT.name}
-        </p>
-        <p class="text-sm">
-          <span class="font-semibold">{t.accountNumber}</span>{" "}
-          {BANK_ACCOUNT.number}
-        </p>
-        <p class="text-sm">
-          <span class="font-semibold">{t.accountMessage}</span>{" "}
-          {t.membershipMessage}
-        </p>
-      </div>
+      <dl class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-sm">
+        <dt class="font-semibold">{t.accountName}</dt>
+        <dd>{BANK_ACCOUNT.name}</dd>
+        <dt class="font-semibold">{t.accountNumber}</dt>
+        <dd>{BANK_ACCOUNT.number}</dd>
+        <dt class="font-semibold">{t.accountMessage}</dt>
+        <dd>{t.membershipMessage}</dd>
+      </dl>
     </div>
 
     <h3 class="text-lg font-semibold mb-3">{t.vippsPayment}</h3>
