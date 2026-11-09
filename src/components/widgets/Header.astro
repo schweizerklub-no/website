@@ -166,10 +166,10 @@ const homeHref = `${localeUrlPrefix[locale]}/`;
 </header>
 
 <script>
-  if (!document.documentElement.dataset.headerDropdownInit) {
-    document.documentElement.dataset.headerDropdownInit = 'true';
+  import { once, onPageLoad } from '~/utils/page-load';
 
-    document.addEventListener('astro:page-load', () => {
+  once('headerDropdownInit', () => {
+    onPageLoad(() => {
       const header = document.getElementById('header');
       if (!header) return;
 
@@ -239,5 +239,5 @@ const homeHref = `${localeUrlPrefix[locale]}/`;
         });
       });
     });
-  }
+  });
 </script>

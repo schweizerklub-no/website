@@ -1,6 +1,7 @@
 ---
 import PageLayout from "~/layouts/PageLayout.astro";
 import PageSection from "~/components/PageSection.astro";
+import CopyableValue from "~/components/ui/CopyableValue.astro";
 import { getPage } from "~/utils/locale";
 import { pageSlug } from "~/utils/pages";
 import { BANK_ACCOUNT } from "~/config";
@@ -25,20 +26,25 @@ const metadata = { title: entry.data.title };
     <div
       class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-5 mb-8"
     >
-      <div class="space-y-1.5">
-        <p class="text-sm">
-          <span class="font-semibold">{t.accountName}</span>
-          {BANK_ACCOUNT.name}
-        </p>
-        <p class="text-sm">
-          <span class="font-semibold">{t.accountNumber}</span>
-          {BANK_ACCOUNT.number}
-        </p>
-        <p class="text-sm">
-          <span class="font-semibold">{t.accountMessage}</span>
-          {t.membershipMessage}
-        </p>
-      </div>
+      <dl
+        class="grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-1.5 text-sm"
+      >
+        <dt class="font-semibold">{t.accountName}</dt>
+        <dd>{BANK_ACCOUNT.name}</dd>
+        <dt class="font-semibold">{t.accountNumber}</dt>
+        <dd>
+          <CopyableValue
+            value={BANK_ACCOUNT.number}
+            label={t.copyAccountNumber}
+          />
+        </dd>
+        <dt class="font-semibold">{t.iban}</dt>
+        <dd>
+          <CopyableValue value={BANK_ACCOUNT.iban} label={t.copyIban} />
+        </dd>
+        <dt class="font-semibold">{t.accountMessage}</dt>
+        <dd>{t.membershipMessage}</dd>
+      </dl>
     </div>
 
     <h3 class="text-lg font-semibold mb-3">{t.vippsPayment}</h3>
@@ -86,6 +92,8 @@ const metadata = { title: entry.data.title };
 </PageLayout>
 
 <script>
+  import { once } from "~/utils/page-load";
+
   const isModifierClick = (event: MouseEvent) =>
     event.button !== 0 ||
     event.metaKey ||
@@ -139,12 +147,7 @@ const metadata = { title: entry.data.title };
     window.setTimeout(() => recover(link), 8000);
   };
 
-  const init = () => {
-    if (document.documentElement.dataset.membershipLoadingInit) return;
-    document.documentElement.dataset.membershipLoadingInit = "true";
+  once("membershipLoadingInit", () => {
     document.addEventListener("click", onClick);
-  };
-
-  init();
-  document.addEventListener("astro:page-load", init);
+  });
 </script>

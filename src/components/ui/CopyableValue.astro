@@ -1,0 +1,15 @@
+---
+import CopyButton from "~/components/ui/CopyButton.astro";
+
+export interface Props {
+  value: string;
+  label: string;
+}
+
+const { value, label } = Astro.props;
+---
+
+<span class="flex flex-wrap items-center gap-2">
+  <span>{value}</span>
+  <CopyButton text={value} label={label} />
+</span>
