@@ -86,6 +86,7 @@ export const METADATA: MetaDataConfig = {
 export const BANK_ACCOUNT = {
   name: "Schweizer Klub Norge Oslo",
   number: "0530.28.57050",
+  iban: "NO8105302857050",
 } as const;
 
 export const UI: UIConfig = {

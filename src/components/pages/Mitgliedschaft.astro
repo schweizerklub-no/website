@@ -1,7 +1,7 @@
 ---
 import PageLayout from "~/layouts/PageLayout.astro";
 import PageSection from "~/components/PageSection.astro";
-import CopyButton from "~/components/ui/CopyButton.astro";
+import CopyableValue from "~/components/ui/CopyableValue.astro";
 import { getPage } from "~/utils/locale";
 import { pageSlug } from "~/utils/pages";
 import { BANK_ACCOUNT } from "~/config";
@@ -26,13 +26,21 @@ const metadata = { title: entry.data.title };
     <div
       class="bg-white dark:bg-neutral-800 border-2 border-primary/15 dark:border-primary/30 rounded-lg p-5 mb-8"
     >
-      <dl class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-sm">
+      <dl
+        class="grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-1.5 text-sm"
+      >
         <dt class="font-semibold">{t.accountName}</dt>
         <dd>{BANK_ACCOUNT.name}</dd>
         <dt class="font-semibold">{t.accountNumber}</dt>
-        <dd class="flex flex-wrap items-center gap-2">
-          <span>{BANK_ACCOUNT.number}</span>
-          <CopyButton text={BANK_ACCOUNT.number} label={t.copyAccountNumber} />
+        <dd>
+          <CopyableValue
+            value={BANK_ACCOUNT.number}
+            label={t.copyAccountNumber}
+          />
+        </dd>
+        <dt class="font-semibold">{t.iban}</dt>
+        <dd>
+          <CopyableValue value={BANK_ACCOUNT.iban} label={t.copyIban} />
         </dd>
         <dt class="font-semibold">{t.accountMessage}</dt>
         <dd>{t.membershipMessage}</dd>

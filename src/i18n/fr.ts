@@ -45,6 +45,8 @@ export const fr = {
     accountName: "Titulaire du compte",
     accountNumber: "Numéro de compte",
     copyAccountNumber: "Copier le numéro de compte",
+    iban: "IBAN",
+    copyIban: "Copier l'IBAN",
     accountMessage: "Message",
     signup: "Inscription",
     vippsPayment: "Paiement par Vipps",
