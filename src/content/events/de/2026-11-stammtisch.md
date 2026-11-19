@@ -2,7 +2,7 @@
 lang: de
 title: Stammtisch
 date: 2026-11-26
-visibilityEnd: 2026-11-26
+visibilityEnd: 2026-11-27
 image: ~/assets/images/events/stammtisch.jpg
 description: Royal Gastropub bei der Østbanehalle beim Oslo S.
 ---
