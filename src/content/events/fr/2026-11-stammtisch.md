@@ -2,7 +2,7 @@
 lang: fr
 title: Table des habitués
 date: 2026-11-26
-visibilityEnd: 2026-11-26
+visibilityEnd: 2026-11-27
 image: ~/assets/images/events/stammtisch.jpg
 description: Royal Gastropub vers Østbanehalle, gare de Oslo S.
 ---
