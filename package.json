@@ -34,7 +34,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@astrojs/mdx": "^8.1.5",
-    "@biomejs/biome": "2.6.6",
+    "@biomejs/biome": "2.6.7",
     "@iconify-json/tabler": "^1.2.44",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.3.5",
